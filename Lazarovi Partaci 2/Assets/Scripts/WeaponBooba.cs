@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class WeaponBooba: MonoBehaviour 
-{
+public class WeaponBooba: MonoBehaviour
+{/*
    public Rigidbody playerBody;
-   public PlayerMovement movementScript;
+   public Player movementScript;
    [Header("Up/Down")]
    public float bobbingSpeedUD = 0.03f;
    public float bobbingAmountUD = 0.005f;
@@ -26,7 +26,7 @@ public class WeaponBooba: MonoBehaviour
    void FixedUpdate () 
    {
       //transform.localRotation = Quaternion.Euler(new Vector3(0f ,rotationAmountLR , 0f));
-      if(movementScript.grounded == true)
+      if(movementScript.isGrounded == true)
       {
          float waveslice = 0.0f;
          Vector3 positionVectorWeapon = transform.localPosition; 
@@ -91,7 +91,7 @@ public class WeaponBooba: MonoBehaviour
          if (waveslice2 != 0) 
          {
             float translateChange2 = waveslice2 * bobbingAmountLR;
-            float totalAxes2 = Mathf.Abs(playerBody.velocity.x) + Mathf.Abs(playerBody.velocity.z);
+            float totalAxes2 = Mathf.Abs(playerBody.velocity.x) + Mathf.Abs(w.velocity.z);
             totalAxes2 = Mathf.Clamp (totalAxes2, 0.0f, 1.0f);
             translateChange2 = totalAxes2 * translateChange2;
             positionVectorWeapon2.x = midpoint2 + translateChange2;
@@ -102,9 +102,10 @@ public class WeaponBooba: MonoBehaviour
          }
          transform.localPosition = positionVectorWeapon2;
       }
-      if(movementScript.grounded == false)
+      if(movementScript.isGrounded == false)
       {
          
       }
    }
+*/
 }
