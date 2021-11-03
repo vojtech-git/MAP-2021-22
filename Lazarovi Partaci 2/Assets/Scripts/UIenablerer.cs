@@ -42,7 +42,7 @@ public class UIenablerer : MonoBehaviour
         DepthOfField dof;
         if (volume.profile.TryGet<DepthOfField>(out dof))
         {
-            dof.focalLength.value = 10f;
+            dof.SetAllOverridesTo(true);
         }
         foreach (GameObject juaj in toggleList)
         {
@@ -58,7 +58,7 @@ public class UIenablerer : MonoBehaviour
         DepthOfField dof;
         if (volume.profile.TryGet<DepthOfField>(out dof))
         {
-            dof.focalLength.value = 0.1f;
+            dof.SetAllOverridesTo(false);
         }
         foreach (GameObject juaj in toggleList)
         {

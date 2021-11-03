@@ -139,7 +139,7 @@ public class weaponWheel : MonoBehaviour
             if (wheelParent != null)
                 wheelParent.SetActive(true);
             WheelEnabled = true;
-            Time.timeScale = 0.5f;
+            Time.timeScale = 0.1f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
     }
