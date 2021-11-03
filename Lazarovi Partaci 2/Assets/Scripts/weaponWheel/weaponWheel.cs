@@ -19,8 +19,6 @@ public class weaponWheel : MonoBehaviour
     public GameObject GunRightBot;
     public GameObject GunLeftBot;
     public GameObject GunLeftTop;
-    [Header("Global Volume")]
-    public Volume volume;
     [System.Serializable] public class wheel
     {
         public Material highlightSprite; //zlomový bod 
@@ -158,25 +156,8 @@ public class weaponWheel : MonoBehaviour
         Cursor.visible = false;
     }
 
-    private void enableUI()
-    {
-        DepthOfField dof;
-        if(volume.profile.TryGet<DepthOfField>(out dof))
-        {
-            dof.focalLength.value = 10f;
-        }
-
-    }
-    private void disableUI()
-    {
-        DepthOfField dof;
-        if (volume.profile.TryGet<DepthOfField>(out dof))
-        {
-            dof.focalLength.value = 0.1f;
-        }
 
 
-    }
 
     // Update is called once per frame
     void Update()
@@ -184,13 +165,9 @@ public class weaponWheel : MonoBehaviour
         if(Input.GetKey(wheelKey)){
             enableWheel();
             CheckForCurrentWeapon();
-
-            enableUI();
         }
         else if(Input.GetKeyUp(wheelKey)){
             disableWheel();
-
-            disableUI();
         }
     }
 

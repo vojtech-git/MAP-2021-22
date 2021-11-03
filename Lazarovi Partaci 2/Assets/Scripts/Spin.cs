@@ -25,9 +25,6 @@ public class Spin : MonoBehaviour
     void FixedUpdate()
     {
         toSpin.transform.Rotate(rotateX,rotateY,rotateZ, Space.Self);
-    }
-    void Update()
-    {
         Vector3 pos = transform.position;
         if (heightX > 0)
         {
@@ -45,6 +42,10 @@ public class Spin : MonoBehaviour
             float newZ = Mathf.Sin(Time.deltaTime * speed);
             transform.position = new Vector3(pos.x, newZ, pos.z) * heightZ;
         }
+    }
+    void Update()
+    {
+
 
 
     }
