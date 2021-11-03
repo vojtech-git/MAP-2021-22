@@ -8,11 +8,11 @@ using UnityEngine.Rendering.Universal;
 public class Player : MonoBehaviour
 {
     [Header("Movement")]
+    public float currentSpeed = 1f;
     public CharacterController controller;
     public float movementSpeed = 6f;
     public float sprintSpeed = 18f;
     public float crouchSpeed = 3f;
-    private float currentSpeed = 1f;
     public float jumpHeight = 3f;
     public int jumpStamina = 5;
     public float gravity = -9.81f;
@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+
     [Header("Health")]
     public Slider healthBar;
     public Volume healthVolume;
@@ -29,16 +30,23 @@ public class Player : MonoBehaviour
     public bool healthRegenerate = false;
     public WaitForSeconds healthTick = new WaitForSeconds(0.1f);
     private Coroutine healthWait;
-    VolumeProfile healthProfile;
+
     [Header("Stamina")]
-    public Slider staminaBar;
+    public Slider staminaBar_Left;
+    public Slider staminaBar_Right;
     public int maxStamina = 100;
     public int currentStamina;
-    public WaitForSeconds staminaTick = new WaitForSeconds(0.1f);
+    public WaitForSeconds staminaTick = new WaitForSeconds(0.01f);
     private Coroutine staminaWait;
-    
+    public int sprintStaminaCost = 1;
+    public WaitForSeconds staminaSprintTick = new WaitForSeconds(0.1f);
+    private Coroutine staminaCostWait;
+
+    private bool enterSprint = true;
+
     [Header("Money")]
     public Text moneyText;
+    public Text moneyText_Back;
     public int currentMoney;
     
     void Start()
@@ -48,20 +56,21 @@ public class Player : MonoBehaviour
 
         //Money
         moneyText.text = currentMoney.ToString() + " ¤";
+        moneyText_Back.text = moneyText.text;
 
         //Health
         currentHealth = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = maxHealth;
 
-        healthProfile = healthVolume.sharedProfile;
-        
         //Stamina
         currentStamina = maxStamina;
-        staminaBar.maxValue = maxStamina;
-        staminaBar.value = maxStamina;
+        staminaBar_Left.maxValue = maxStamina;
+        staminaBar_Left.value = maxStamina;
+        staminaBar_Right.maxValue = maxStamina;
+        staminaBar_Left.value = maxStamina;
 
-        
+
     }
     void Update()
     {
@@ -74,14 +83,10 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.N))
         {
             UseHealth(10);
-            if(healthProfile.TryGet<Vignette>(out var vignette))
-            {
-                vignette.intensity = new ClampedFloatParameter (0.5f, 0f, 1f, true);
-            }
         }
         #endregion
 
-        #region Healt
+        #region Health
         healthBar.value = currentHealth;
         #endregion
 
@@ -112,26 +117,34 @@ public class Player : MonoBehaviour
                     UseStamina(jumpStamina);
                 }
             }
-
             if(Input.GetKey(KeyCode.LeftShift))
             {
                 currentSpeed = sprintSpeed;
+                if (currentStamina > 0 && enterSprint == true)
+                {
+                    SprintStaminaUse();
+                }
             }
         }
         if(Input.GetKey(KeyCode.LeftControl))
         {
             currentSpeed = crouchSpeed;
+            controller.height = 0.9f;
+        }
+        else
+        {
+            controller.height = 1.8f;
         }
 
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
         #endregion
-        #region UI
-        if(Input.GetKey(KeyCode.Tab))
-        {
-
-        }
+        #region stamina
+        staminaBar_Right.value = currentStamina;
+        #endregion
+        #region money
+        moneyText_Back.text = moneyText.text;
         #endregion
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -149,7 +162,7 @@ public class Player : MonoBehaviour
         if(currentStamina - amount >= 0)
         {
             currentStamina -= amount;
-            staminaBar.value = currentStamina;
+            staminaBar_Left.value = currentStamina;
 
             if(staminaWait != null)
             {
@@ -159,14 +172,51 @@ public class Player : MonoBehaviour
             staminaWait = StartCoroutine(RegenStamina());
         }
     }
+
+    private void SprintStaminaUse()
+    {
+        if (currentStamina > 0)
+        {
+            staminaBar_Left.value = currentStamina;
+
+            if (staminaCostWait != null)
+            {
+                StopCoroutine(staminaCostWait);
+            }
+
+            staminaCostWait = StartCoroutine(UseSprintStamina());
+
+
+
+        }
+    }
+    private IEnumerator UseSprintStamina()
+    {
+        enterSprint = false;
+
+        while (Input.GetKey(KeyCode.LeftShift))
+        {
+            currentStamina -= sprintStaminaCost;
+            staminaBar_Left.value = currentStamina;
+            yield return staminaSprintTick;
+        }
+        enterSprint = true;
+        staminaCostWait = null;
+        if (staminaWait != null)
+        {
+            StopCoroutine(staminaWait);
+        }
+
+        staminaWait = StartCoroutine(RegenStamina());
+    }
     private IEnumerator RegenStamina()
     {
         yield return new WaitForSeconds(3);
 
-        while(currentStamina < maxStamina)
+        while (currentStamina < maxStamina)
         {
             currentStamina += maxStamina / 100;
-            staminaBar.value = currentStamina;
+            staminaBar_Left.value = currentStamina;
             yield return staminaTick;
         }
         staminaWait = null;
