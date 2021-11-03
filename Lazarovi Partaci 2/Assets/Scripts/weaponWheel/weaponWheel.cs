@@ -2,23 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class weaponWheel : MonoBehaviour
 {
 
 
-     [SerializeField] private KeyCode wheelKey = KeyCode.Tab; //urcime na kterou klavesu chceme wheel
-     [SerializeField] private GameObject wheelParent;
-     [SerializeField] private Camera mojeKamera;  //kamera playera
-     public bool WheelEnabled;
-     
-     public GameObject GunTop;
-     public GameObject GunRightTop;
-     public GameObject GunRightBot;
-     public GameObject GunLeftBot;
-     public GameObject GunLeftTop;
-
-     [System.Serializable] public class wheel
+    [SerializeField] private KeyCode wheelKey = KeyCode.Tab; //urcime na kterou klavesu chceme wheel
+    [SerializeField] private GameObject wheelParent;
+    [SerializeField] private Camera mojeKamera;  //kamera playera
+    public bool WheelEnabled;
+    [Header ("Pieces")]
+    public GameObject GunTop;
+    public GameObject GunRightTop;
+    public GameObject GunRightBot;
+    public GameObject GunLeftBot;
+    public GameObject GunLeftTop;
+    [Header("Global Volume")]
+    public Volume volume;
+    [System.Serializable] public class wheel
     {
         public Material highlightSprite; //zlomový bod 
         private Material m_NormalSprite;
@@ -119,7 +122,7 @@ public class weaponWheel : MonoBehaviour
                 {
                     wheels[i].wheela.material = wheels[i].NormalSprite;  //metoda na zoranzoveni wheelu
                 }
-            }  //honza je píča
+            }  //honza je píča jsem v hlubokých depresích Meraji proč mi to děláš
 
         }
     }
@@ -139,7 +142,7 @@ public class weaponWheel : MonoBehaviour
             if (wheelParent != null)
                 wheelParent.SetActive(true);
             WheelEnabled = true;
-            Time.timeScale = 0.5f;
+            Time.timeScale = 0.1f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
     }
@@ -155,15 +158,39 @@ public class weaponWheel : MonoBehaviour
         Cursor.visible = false;
     }
 
+    private void enableUI()
+    {
+        DepthOfField dof;
+        if(volume.profile.TryGet<DepthOfField>(out dof))
+        {
+            dof.focalLength.value = 10f;
+        }
+
+    }
+    private void disableUI()
+    {
+        DepthOfField dof;
+        if (volume.profile.TryGet<DepthOfField>(out dof))
+        {
+            dof.focalLength.value = 0.1f;
+        }
+
+
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(wheelKey)){ //HONZO TO JE MÍSTO PRO TEBE KURVA
+        if(Input.GetKey(wheelKey)){
             enableWheel();
             CheckForCurrentWeapon();
+
+            enableUI();
         }
         else if(Input.GetKeyUp(wheelKey)){
             disableWheel();
+
+            disableUI();
         }
     }
 
