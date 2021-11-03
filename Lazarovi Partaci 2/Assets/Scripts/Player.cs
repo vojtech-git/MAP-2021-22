@@ -8,11 +8,11 @@ using UnityEngine.Rendering.Universal;
 public class Player : MonoBehaviour
 {
     [Header("Movement")]
-    public float currentSpeed = 1f;
     public CharacterController controller;
     public float movementSpeed = 6f;
     public float sprintSpeed = 18f;
     public float crouchSpeed = 3f;
+    private float currentSpeed = 1f;
     public float jumpHeight = 3f;
     public int jumpStamina = 5;
     public float gravity = -9.81f;
@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-
     [Header("Health")]
     public Slider healthBar;
     public Volume healthVolume;
@@ -30,7 +29,7 @@ public class Player : MonoBehaviour
     public bool healthRegenerate = false;
     public WaitForSeconds healthTick = new WaitForSeconds(0.1f);
     private Coroutine healthWait;
-
+    VolumeProfile healthProfile;
     [Header("Stamina")]
     public Slider staminaBar;
     public int maxStamina = 100;
@@ -54,6 +53,8 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = maxHealth;
+
+        healthProfile = healthVolume.sharedProfile;
         
         //Stamina
         currentStamina = maxStamina;
@@ -73,6 +74,10 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.N))
         {
             UseHealth(10);
+            if(healthProfile.TryGet<Vignette>(out var vignette))
+            {
+                vignette.intensity = new ClampedFloatParameter (0.5f, 0f, 1f, true);
+            }
         }
         #endregion
 
