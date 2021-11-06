@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 8440746080372952478}
   - component: {fileID: 2232578847955299556}
   - component: {fileID: 4920562623406712520}
-  m_Layer: 8
+  - component: {fileID: 7092658043413456198}
+  m_Layer: 9
   m_Name: BULLET
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +93,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6910426116454623382}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -125,3 +126,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2ad3f18ba50bd4a9e295ec6f00e0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7092658043413456198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6910426116454623382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b419b3cba398de49b596c21b53de043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeToLive: 2

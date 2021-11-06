@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 5715112594023024023}
   - component: {fileID: 5056880903638454719}
   - component: {fileID: 5056880903638454716}
-  m_Layer: 0
+  - component: {fileID: 8577763358913217344}
+  - component: {fileID: 2889886320309891822}
+  m_Layer: 10
   m_Name: asteroid 5 game (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -110,6 +112,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 100
   death: {fileID: 0}
+--- !u!54 &8577763358913217344
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906492086580192062}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &2889886320309891822
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906492086580192062}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.86459535, y: 0.90885293, z: 1.0542827}
+  m_Center: {x: -0.005307032, y: -0.16417365, z: 0.040765233}
 --- !u!1 &2443459588941989221
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +154,9 @@ GameObject:
   - component: {fileID: 3728761048487175819}
   - component: {fileID: 5056880903181940427}
   - component: {fileID: 5056880903181940424}
-  m_Layer: 0
+  - component: {fileID: 2495439176455220113}
+  - component: {fileID: 5205299638982091355}
+  m_Layer: 10
   m_Name: asteriod 1 game (2)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -220,6 +253,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 100
   death: {fileID: 0}
+--- !u!54 &2495439176455220113
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2443459588941989221}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &5205299638982091355
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2443459588941989221}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99413204, y: 1.088334, z: 0.85104173}
+  m_Center: {x: -0.00045196855, y: -0.015286985, z: 0.034275044}
 --- !u!1 &3578031810291888672
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +295,9 @@ GameObject:
   - component: {fileID: 6286485773179248798}
   - component: {fileID: 5056880902973674434}
   - component: {fileID: 5056880902973674435}
-  m_Layer: 0
+  - component: {fileID: 4445537391753747609}
+  - component: {fileID: 3286924476610550151}
+  m_Layer: 10
   m_Name: asteriod 1 game
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -330,6 +394,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 100
   death: {fileID: 0}
+--- !u!54 &4445537391753747609
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3578031810291888672}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &3286924476610550151
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3578031810291888672}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.994132, y: 1.088334, z: 0.8510417}
+  m_Center: {x: -0.00045142905, y: -0.015287938, z: 0.034275904}
 --- !u!1 &4456920563907391191
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +436,9 @@ GameObject:
   - component: {fileID: 7447326211113103567}
   - component: {fileID: 5056880903333759870}
   - component: {fileID: 5056880903333759871}
-  m_Layer: 0
+  - component: {fileID: 5787564600777923014}
+  - component: {fileID: 567833333971315092}
+  m_Layer: 10
   m_Name: asteroid 2 game
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -440,6 +535,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 100
   death: {fileID: 0}
+--- !u!54 &5787564600777923014
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456920563907391191}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &567833333971315092
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456920563907391191}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1042383, y: 1.1486076, z: 0.9712513}
+  m_Center: {x: -0.020330125, y: -0.024219617, z: 0.05890654}
 --- !u!1 &4502352035780969788
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +577,9 @@ GameObject:
   - component: {fileID: 3996536075693977585}
   - component: {fileID: 5056880903432591794}
   - component: {fileID: 5056880903432591795}
-  m_Layer: 0
+  - component: {fileID: 8050638707275119540}
+  - component: {fileID: 7714179981175232991}
+  m_Layer: 10
   m_Name: asteroid 4 game (2)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -550,6 +676,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 100
   death: {fileID: 0}
+--- !u!54 &8050638707275119540
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4502352035780969788}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &7714179981175232991
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4502352035780969788}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.91952187, y: 0.9334012, z: 1.0880598}
+  m_Center: {x: -0.01143825, y: -0.15244319, z: 0.02176532}
 --- !u!1 &4803462393916750581
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,7 +718,9 @@ GameObject:
   - component: {fileID: 8052217088603849588}
   - component: {fileID: 5056880903660101916}
   - component: {fileID: 5056880903660101917}
-  m_Layer: 0
+  - component: {fileID: 120694505281185262}
+  - component: {fileID: 4368106139582871460}
+  m_Layer: 10
   m_Name: asteroid 4 game (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -660,6 +817,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 100
   death: {fileID: 0}
+--- !u!54 &120694505281185262
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4803462393916750581}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &4368106139582871460
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4803462393916750581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9195219, y: 0.9334013, z: 1.0880599}
+  m_Center: {x: -0.011438579, y: -0.15244314, z: 0.021765321}
 --- !u!1 &5799016672859619086
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +859,9 @@ GameObject:
   - component: {fileID: 1687398522034585181}
   - component: {fileID: 5056880903775980975}
   - component: {fileID: 5056880903775980972}
-  m_Layer: 0
+  - component: {fileID: 2250164381511180799}
+  - component: {fileID: 7143635923631395396}
+  m_Layer: 10
   m_Name: asteroid 3 game
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -770,6 +958,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 100
   death: {fileID: 0}
+--- !u!54 &2250164381511180799
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5799016672859619086}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &7143635923631395396
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5799016672859619086}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1682177, y: 1.2243462, z: 1.031957}
+  m_Center: {x: -0.007506639, y: -0.018077582, z: 0.037661806}
 --- !u!1 &6370264051502648992
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,7 +1000,9 @@ GameObject:
   - component: {fileID: 8879998725926281162}
   - component: {fileID: 5056880904106588931}
   - component: {fileID: 5056880904106588928}
-  m_Layer: 0
+  - component: {fileID: 1233284908210752022}
+  - component: {fileID: 4816544538600146867}
+  m_Layer: 10
   m_Name: asteroid 3 game (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -880,6 +1099,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 100
   death: {fileID: 0}
+--- !u!54 &1233284908210752022
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6370264051502648992}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &4816544538600146867
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6370264051502648992}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1682177, y: 1.2243462, z: 1.031957}
+  m_Center: {x: -0.0075061624, y: -0.018078059, z: 0.037662104}
 --- !u!1 &6563192358478139784
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,7 +1141,9 @@ GameObject:
   - component: {fileID: 2651106291220314966}
   - component: {fileID: 5056880903439172401}
   - component: {fileID: 5056880903439172414}
-  m_Layer: 0
+  - component: {fileID: 1184862851222004361}
+  - component: {fileID: 4758307412613095315}
+  m_Layer: 10
   m_Name: asteroid 2 game (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -990,6 +1240,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 100
   death: {fileID: 0}
+--- !u!54 &1184862851222004361
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6563192358478139784}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &4758307412613095315
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6563192358478139784}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1042382, y: 1.148607, z: 0.97125083}
+  m_Center: {x: -0.02032942, y: -0.024221033, z: 0.05890688}
 --- !u!1 &6587103354526371633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,7 +1282,9 @@ GameObject:
   - component: {fileID: 4409911072122176421}
   - component: {fileID: 5056880904319553024}
   - component: {fileID: 5056880904319553025}
-  m_Layer: 0
+  - component: {fileID: 6895111445577900554}
+  - component: {fileID: 406996563265957821}
+  m_Layer: 10
   m_Name: asteroid 3 game (2)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1100,6 +1381,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 100
   death: {fileID: 0}
+--- !u!54 &6895111445577900554
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6587103354526371633}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &406996563265957821
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6587103354526371633}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1682177, y: 1.2243462, z: 1.0319571}
+  m_Center: {x: -0.007507595, y: -0.01807758, z: 0.03766115}
 --- !u!1 &8090590521463383683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,7 +1466,9 @@ GameObject:
   - component: {fileID: 1906483940267829889}
   - component: {fileID: 5056880903065463468}
   - component: {fileID: 5056880903065463469}
-  m_Layer: 0
+  - component: {fileID: 1892344559400103870}
+  - component: {fileID: 3270709739806427612}
+  m_Layer: 10
   m_Name: asteroid 4 game
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1253,6 +1565,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 100
   death: {fileID: 0}
+--- !u!54 &1892344559400103870
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8208574395341441582}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &3270709739806427612
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8208574395341441582}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.91952187, y: 0.9334012, z: 1.0880598}
+  m_Center: {x: -0.01143825, y: -0.15244319, z: 0.021765558}
 --- !u!1 &8468876684380855891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,7 +1607,9 @@ GameObject:
   - component: {fileID: 7326555923261233393}
   - component: {fileID: 5056880903032198698}
   - component: {fileID: 5056880903032198699}
-  m_Layer: 0
+  - component: {fileID: 675418200582431627}
+  - component: {fileID: 1517876021511074343}
+  m_Layer: 10
   m_Name: asteroid 5 game
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1363,6 +1706,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 100
   death: {fileID: 0}
+--- !u!54 &675418200582431627
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8468876684380855891}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &1517876021511074343
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8468876684380855891}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.864595, y: 0.9088525, z: 1.0542823}
+  m_Center: {x: -0.0053072567, y: -0.16417323, z: 0.040765}
 --- !u!1 &8875341353461515208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,7 +1748,9 @@ GameObject:
   - component: {fileID: 2030833217338033315}
   - component: {fileID: 5056880903597472495}
   - component: {fileID: 5056880903597472492}
-  m_Layer: 0
+  - component: {fileID: 7883967857636276914}
+  - component: {fileID: 2429964608478140013}
+  m_Layer: 10
   m_Name: asteriod 1 game (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1473,3 +1847,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 100
   death: {fileID: 0}
+--- !u!54 &7883967857636276914
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8875341353461515208}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &2429964608478140013
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8875341353461515208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99413186, y: 1.088334, z: 0.85104173}
+  m_Center: {x: -0.00045053818, y: -0.015287581, z: 0.03427585}
