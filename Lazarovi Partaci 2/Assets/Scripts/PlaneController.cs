@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlaneController : MonoBehaviour
 {
-    public float rychlostVpred = 25f;
+    public float rychlostVpred = 50f;
     public float rychlostDoBoku = 7.5f;
     public float rychlostVznesu = 5f;
     
@@ -28,26 +28,29 @@ public class PlaneController : MonoBehaviour
     public AudioSource spaceshipSound;
     public AudioSource spaceShipHorn;
 
-//    public GameObject Camera;
-//    public float cameraFollowSpeed;
-//    private Vector3 CamOffset;
-
+    public Rigidbody rb;
     
+
+    //    public GameObject Camera;
+    //    public float cameraFollowSpeed;
+    //    private Vector3 CamOffset;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        screenCenter.x = Screen.width * .5f; 
+        screenCenter.x = Screen.width * .5f;
         screenCenter.y = Screen.height * .5f;  //ukládání souřadnic středu obrazovky
         // CamOffset = Camera.transform.position - transform.position;
 
         Cursor.lockState = CursorLockMode.Confined; //omezení kurzoru na velikost naší hry
-        //Cursor.visible=false;
-      
+                                                    //Cursor.visible=false;
 
+        rb = this.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         // Vector3 moveToCam = transform.position - transform.forward * 20.0f + Vector3.up * 15;
@@ -84,10 +87,24 @@ public class PlaneController : MonoBehaviour
         rychlostVznesuLerp = Mathf.Lerp(rychlostVznesuLerp, Input.GetAxisRaw("Hover") * rychlostVznesu, akceleraceVznaseni * Time.deltaTime);
         //Debug.Log(rychlostVpredAktiv);
         // Debug.Log("souradnice" + transform.position);
-        transform.position += transform.forward * rychlostVpredLerp * Time.deltaTime;
-        transform.position += transform.right * rychlostDoBokuLerp * Time.deltaTime;
-        transform.position += transform.up * rychlostVznesuLerp * Time.deltaTime;
+        //transform.position += transform.forward * rychlostVpredLerp * Time.deltaTime;
+        //transform.position += transform.right * rychlostDoBokuLerp * Time.deltaTime;
+        //transform.position += transform.up * rychlostVznesuLerp * Time.deltaTime;
 
+        Vector3 forward = transform.forward * rychlostVpredLerp;
+        Vector3 strafe = transform.right * rychlostDoBokuLerp;
+        Vector3 hover = transform.up * rychlostVznesuLerp;
+
+        Vector3 movement = forward + strafe + hover;
+        rb.AddForce(movement, ForceMode.Acceleration);
+
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, rychlostVpred);
+        
+        //if (rb.velocity.magnitude > rychlostVpred)
+        //{
+        //    rb.velocity = rb.velocity.normalized * rychlostVpred;
+        //}
+        
         /*ukládani do promenny, mathf.lerp používáme, abyhcom zajistili smooth pohyb a akceleraci. 
         Lerp funkce dělá to, že z jedné hodnoty A přejde na hodnotu B v nějakém určitém intervale T.
         Input.getaxisraw využíváme pro získání os v unity. používáme poté na náš movement letadla.

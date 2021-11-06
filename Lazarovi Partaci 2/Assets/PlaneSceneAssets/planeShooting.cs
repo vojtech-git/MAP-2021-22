@@ -4,57 +4,57 @@ using UnityEngine;
 
 public class planeShooting : MonoBehaviour
 {
-   public GameObject bullet;
-   public float shootForce;
-   public float spread, reloadTime, timeBetweenShots;
-   public int magazineSize, bulletsPerTap;
-   public bool allowButtonHold;
-   int bulletsLeft, bulletsShot;
-   bool shooting, readyToShoot, reloading;
-   public Camera kamera;
-   public Transform shootPoint;
+    public GameObject bullet;
+    public float shootForce;
+    public float spread, reloadTime, timeBetweenShots;
+    public int magazineSize, bulletsPerTap;
+    public bool allowButtonHold;
+    int bulletsLeft, bulletsShot;
+    bool shooting, readyToShoot, reloading;
+    public Camera kamera;
+    public Transform shootPoint;
     public Transform shootPoint2;
 
-   public bool allowInvoke = true;
-   public GameObject muzzleFlash;
+    public bool allowInvoke = true;
+    public GameObject muzzleFlash;
 
-   public AudioSource laserSound;
+    public AudioSource laserSound;
 
 
-    private void Awake(){
-        bulletsLeft=magazineSize;
-        readyToShoot=true;
+    private void Awake() {
+        bulletsLeft = magazineSize;
+        readyToShoot = true;
     }
     void Update()
     {
-       /*   if (Input.GetButton("Fire1"))
-        {  
-             if(!laserSound.isPlaying)
-                 laserSound.Play();      
-        } */
+        /*   if (Input.GetButton("Fire1"))
+         {  
+              if(!laserSound.isPlaying)
+                  laserSound.Play();      
+         } */
         myInput();
-       
+
     }
 
-    private void myInput(){
-        if(allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
+    private void myInput() {
+        if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        if(Input.GetKey(KeyCode.R) && bulletsLeft < magazineSize && !reloading)Reload();
+        if (Input.GetKey(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
 
-        if(readyToShoot && shooting && !reloading && bulletsLeft<=0) Reload();
+        if (readyToShoot && shooting && !reloading && bulletsLeft <= 0) Reload();
 
-        if(readyToShoot && shooting && !reloading && bulletsLeft>0) {
+        if (readyToShoot && shooting && !reloading && bulletsLeft > 0) {
             bulletsShot = 0;
             Shoot();
-           
-        }   
+
+        }
     }
 
-    private void Shoot(){
+    private void Shoot() {
         readyToShoot = false;
-       
-       
+
+
         //  Ray ray = kamera.ViewportPointToRay(new Vector3(0.5f, 0.5f,0));    //PRO STRELBU DOPROSTRED OBRAZOVKY TOHLE ODKOMENTOVAT
         //  RaycastHit hit;  
         //  Vector3 targetPoint;
@@ -66,31 +66,31 @@ public class planeShooting : MonoBehaviour
         //  }
 
         //  Vector3 directionWithoutSpread = targetPoint - shootPoint.position;
-         
+
         //  Vector3 directionWithoutSpread2 = targetPoint - shootPoint2.position;
 
-        Vector3 directionWithoutSpread =  shootPoint.forward;
+        Vector3 directionWithoutSpread = shootPoint.forward;
         Vector3 directionWithoutSpread2 = shootPoint2.forward;
 
-         GameObject currentBullet = Instantiate(bullet, shootPoint.position, Quaternion.identity);
-         GameObject currentBullet2 = Instantiate(bullet, shootPoint2.position, Quaternion.identity);
+        GameObject currentBullet = Instantiate(bullet, shootPoint.position, Quaternion.identity);
+        GameObject currentBullet2 = Instantiate(bullet, shootPoint2.position, Quaternion.identity);
 
-          currentBullet.transform.forward = directionWithoutSpread.normalized;
-          currentBullet2.transform.forward = directionWithoutSpread2.normalized;
-         currentBullet.GetComponent<Rigidbody>().AddForce(shootPoint.forward * shootForce, ForceMode.Impulse);
-          currentBullet2.GetComponent<Rigidbody>().AddForce(shootPoint2.forward * shootForce, ForceMode.Impulse);
-        if(muzzleFlash !=null){
+        currentBullet.transform.forward = directionWithoutSpread.normalized;
+        currentBullet2.transform.forward = directionWithoutSpread2.normalized;
+        currentBullet.GetComponent<Rigidbody>().AddForce(shootPoint.forward * shootForce, ForceMode.Impulse);
+        currentBullet2.GetComponent<Rigidbody>().AddForce(shootPoint2.forward * shootForce, ForceMode.Impulse);
+        if (muzzleFlash != null) {
             Instantiate(muzzleFlash, shootPoint.position, Quaternion.identity);  //STRELBA Z DVOU KANONU ROVNE. PRO STRELUBU 
         }
 
 
-          bulletsLeft--;
-         bulletsShot++;
+        bulletsLeft--;
+        bulletsShot++;
 
 
-        if(allowInvoke){
+        if (allowInvoke) {
             Invoke("ResetShot", timeBetweenShots);
-            allowInvoke=false;
+            allowInvoke = false;
 
         }
 
@@ -98,7 +98,7 @@ public class planeShooting : MonoBehaviour
 
 
 
-//--------------------------------------------------------------
+        //--------------------------------------------------------------
 
 
         // GameObject bullet = Instantiate(laserPrefab);
@@ -128,7 +128,7 @@ public class planeShooting : MonoBehaviour
         Invoke("ReloadFinished", reloadTime);
 
     }
-    private void ReloadFinished(){
+    private void ReloadFinished() {
         bulletsLeft = magazineSize;
         reloading = false;
 

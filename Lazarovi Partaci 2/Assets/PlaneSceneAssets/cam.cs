@@ -15,7 +15,7 @@ public class cam : MonoBehaviour
 
     //  }
 
-    void LateUpdate()
+    void FixedUpdate()
 
     {
 
