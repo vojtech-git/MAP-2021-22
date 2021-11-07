@@ -33,12 +33,20 @@ public class QuestingSystem : MonoBehaviour
         #region Instanciace UI elementù
         quest.uiQuestTitle = Instantiate(uiManager.questTitlePrefab, uiManager.questVerticalLayout.transform).GetComponent<Text>();
         quest.uiQuestTitle.GetComponent<Text>().text = quest.title;
-
-        foreach (QuestGoal questGoal in quest.activeQuestGoals)
+        if (quest.questStyle == QuestStyle.AtTheSameTime)
         {
-            questGoal.uiGoalDescription = GameObject.Instantiate(uiManager.goalDescriptionPrefab, uiManager.questVerticalLayout.transform).GetComponent<Text>();
-            questGoal.uiGoalDescription.text = $"{questGoal.goalDescription} {questGoal.currentValue}/{questGoal.goalValue}";
+            foreach (QuestGoal questGoal in quest.activeQuestGoals)
+            {
+                questGoal.uiGoalDescription = GameObject.Instantiate(uiManager.goalDescriptionPrefab, uiManager.questVerticalLayout.transform).GetComponent<Text>();
+                questGoal.uiGoalDescription.text = $"{questGoal.goalDescription} {questGoal.currentValue}/{questGoal.goalValue}";
+            }
         }
+        else if (quest.questStyle == 0) // after each other
+        {
+            quest.activeQuestGoals[0].uiGoalDescription = GameObject.Instantiate(uiManager.goalDescriptionPrefab, uiManager.questVerticalLayout.transform).GetComponent<Text>();
+            quest.activeQuestGoals[0].uiGoalDescription.text = $"{quest.activeQuestGoals[0].goalDescription} {quest.activeQuestGoals[0].currentValue}/{quest.activeQuestGoals[0].goalValue}";
+        }
+
         #endregion
     }
 
@@ -58,6 +66,12 @@ public class QuestingSystem : MonoBehaviour
 
                         GameObject.Destroy(questPair.Value.activeQuestGoals[0].uiGoalDescription.gameObject); // vypni jeho ui reprezentaci
                         goalsToComplete.Add(questPair.Value.activeQuestGoals[0]); // pøidej ho do goals to complete
+
+                        if (questPair.Value.activeQuestGoals.Count > 1) // pokud existuje dalsi questGoal
+                        {
+                            questPair.Value.activeQuestGoals[1].uiGoalDescription = GameObject.Instantiate(uiManager.goalDescriptionPrefab, uiManager.questVerticalLayout.transform).GetComponent<Text>(); //vytvoø ui reprezentaci pro dalsi questGoal
+                            questPair.Value.activeQuestGoals[1].uiGoalDescription.text = $"{questPair.Value.activeQuestGoals[1].goalDescription} {questPair.Value.activeQuestGoals[1].currentValue}/{questPair.Value.activeQuestGoals[1].goalValue}";
+                        }                        
                     }
                 }
             }
