@@ -35,6 +35,6 @@ public class SplashScreen : MonoBehaviour
         lp.Stop();
 
         yield return new WaitForSecondsRealtime(3f);
-        SceneManager.LoadSceneAsync("Plane system");
+        SceneManager.LoadSceneAsync("Main Menu");
     }
 }
