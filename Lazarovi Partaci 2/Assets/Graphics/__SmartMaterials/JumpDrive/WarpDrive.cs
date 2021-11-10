@@ -10,6 +10,7 @@ public class WarpDrive : MonoBehaviour
     public float rate = 0.02f;
     public MeshRenderer cylinder;
     public float delay = 2.5f;
+    public bool activatedDrive = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,19 @@ public class WarpDrive : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (activatedDrive == true)
+        {
+            warpActive = true;
+            StartCoroutine(ActivateParticles());
+            StartCoroutine(ActivateShader());
+        }
+        else
+        {
+            warpActive = false;
+            StartCoroutine(ActivateParticles());
+            StartCoroutine(ActivateShader());
+        }
+        /*
         if(Input.GetKeyDown(KeyCode.V))
         {
             warpActive = true;
@@ -34,6 +48,7 @@ public class WarpDrive : MonoBehaviour
             StartCoroutine(ActivateParticles());
             StartCoroutine(ActivateShader());
         }
+        */
     }
         IEnumerator ActivateParticles()
     {
