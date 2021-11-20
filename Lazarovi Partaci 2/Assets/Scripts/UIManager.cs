@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public GameObject questTitlePrefab;
     public GameObject goalDescriptionPrefab;
+    public GameObject descriptionsLayoutPrefab;
     public VerticalLayoutGroup questVerticalLayout;
     public Text popupText;
     public Text secondaryPopupText;

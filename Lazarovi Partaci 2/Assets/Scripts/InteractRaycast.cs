@@ -7,7 +7,6 @@ public class InteractRaycast : MonoBehaviour
 {
     public Transform playerCamera;
     public int interactionDistance = 3;
-    public Text questAcceptUI;
     public Quest hitQuest;
     public int hitGatherObjectID;
 
@@ -23,23 +22,23 @@ public class InteractRaycast : MonoBehaviour
                 hitQuest = hit.transform.GetComponent<QuestGiver>().qGiverQuest;
 
                 // jestli je to questgiver a nemam quest v dictionary zobraz acceptUI
-                if (!QuestingSystem.playerCompletedQuests.ContainsKey(hitQuest.title) && !QuestingSystem.playerActiveQuests.ContainsKey(hitQuest.title))
+                if (!QuestingSystem.playerCompletedQuests.ContainsKey(hitQuest.title) && !QuestingSystem.activeQuests.ContainsKey(hitQuest.title))
                 {
-                    questAcceptUI.gameObject.SetActive(true);
+                    QuestingSystem.uiManager.acceptQuestText.gameObject.SetActive(true);
                 }
 
                 // jestli je to questgiver, zmacknu na nej "e" a nemam quest S TIMHLE TITLEM v playerCompletedQuests vem si ho
                 // (kdyz budou mit questy stejnej title tak to nebude fungovat)
                 // !!!(pozdeji upravit na usekey)!!!
-                if (Input.GetKeyDown(KeyCode.E) && questAcceptUI.IsActive())
+                if (Input.GetKeyDown(KeyCode.E) && QuestingSystem.uiManager.acceptQuestText.IsActive())
                 {
                     QuestingSystem.AcceptQuest(hitQuest);
-                    questAcceptUI.gameObject.SetActive(false);
+                    QuestingSystem.uiManager.acceptQuestText.gameObject.SetActive(false);
                 }
             }
             if (!hit.transform.CompareTag("quest giver"))
             {
-                questAcceptUI.gameObject.SetActive(false);
+                QuestingSystem.uiManager.acceptQuestText.gameObject.SetActive(false);
             }
             #endregion
 
@@ -60,7 +59,7 @@ public class InteractRaycast : MonoBehaviour
         }
         else
         {
-            questAcceptUI.gameObject.SetActive(false);
+            QuestingSystem.uiManager.acceptQuestText.gameObject.SetActive(false);
         }
     }
 }

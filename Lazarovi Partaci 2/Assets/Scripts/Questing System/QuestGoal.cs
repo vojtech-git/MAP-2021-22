@@ -12,8 +12,8 @@ public class QuestGoal
     public GoalType goalType;
     public int itemID;
 
-    [Header("Mìnící se")]
-    public int currentValue;
+    [Header("Mìnící se, UI")]
+    int currentValue;
     public Text uiGoalDescription;
 
     //tohle snad nebudu potrebovat vyresim pomoci quest number
@@ -23,8 +23,7 @@ public class QuestGoal
     public void AddPoint()
     {
         currentValue++;
-
-        uiGoalDescription.text = $"{goalDescription} {currentValue}/{goalValue}";
+        PutValuesOnUi();
     }
 
     public bool IsComplete()
@@ -35,12 +34,15 @@ public class QuestGoal
         }
         return false;
     }
+    
+    public void PutValuesOnUi()
+    {
+        uiGoalDescription.text = $"{goalDescription} {currentValue}/{goalValue}";
+    }
 }
 
 public enum GoalType
 {
     Reach,
-    Kill,
     Gather,
-    Talk
 }
