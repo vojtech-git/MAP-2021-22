@@ -10,6 +10,15 @@ public class InteractRaycast : MonoBehaviour
     public Quest hitQuest;
     public int hitGatherObjectID;
 
+    GameObject acceptQuestText;
+
+    private void Start()
+    {
+        //playerCamera = Camera.main.transform;
+
+        acceptQuestText = QuestingSystem.uiManager.acceptQuestText.gameObject;
+    }
+
     private void Update()
     {
         RaycastHit hit;
@@ -24,21 +33,21 @@ public class InteractRaycast : MonoBehaviour
                 // jestli je to questgiver a nemam quest v dictionary zobraz acceptUI
                 if (!QuestingSystem.playerCompletedQuests.ContainsKey(hitQuest.title) && !QuestingSystem.activeQuests.ContainsKey(hitQuest.title))
                 {
-                    QuestingSystem.uiManager.acceptQuestText.gameObject.SetActive(true);
+                    acceptQuestText.SetActive(true);
                 }
 
                 // jestli je to questgiver, zmacknu na nej "e" a nemam quest S TIMHLE TITLEM v playerCompletedQuests vem si ho
                 // (kdyz budou mit questy stejnej title tak to nebude fungovat)
                 // !!!(pozdeji upravit na usekey)!!!
-                if (Input.GetKeyDown(KeyCode.E) && QuestingSystem.uiManager.acceptQuestText.IsActive())
+                if (Input.GetKeyDown(KeyCode.E) && acceptQuestText.GetComponent<Text>().IsActive())
                 {
                     QuestingSystem.AcceptQuest(hitQuest);
-                    QuestingSystem.uiManager.acceptQuestText.gameObject.SetActive(false);
+                    acceptQuestText.SetActive(false);
                 }
             }
             if (!hit.transform.CompareTag("quest giver"))
             {
-                QuestingSystem.uiManager.acceptQuestText.gameObject.SetActive(false);
+                acceptQuestText.SetActive(false);
             }
             #endregion
 
@@ -59,7 +68,7 @@ public class InteractRaycast : MonoBehaviour
         }
         else
         {
-            QuestingSystem.uiManager.acceptQuestText.gameObject.SetActive(false);
+            acceptQuestText.SetActive(false);
         }
     }
 }

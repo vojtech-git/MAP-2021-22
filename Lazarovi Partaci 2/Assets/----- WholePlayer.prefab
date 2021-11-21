@@ -5972,6 +5972,7 @@ GameObject:
   - component: {fileID: 1750320025320176369}
   - component: {fileID: 1750320025320176375}
   - component: {fileID: 1750320025320176368}
+  - component: {fileID: 7323475464858683536}
   m_Layer: 3
   m_Name: First Person Player
   m_TagString: Player
@@ -6053,6 +6054,28 @@ MonoBehaviour:
   moneyText: {fileID: 1750320026072826326}
   moneyText_Back: {fileID: 573432444322076180}
   currentMoney: 0
+--- !u!114 &7323475464858683536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750320025320176370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56e520733f2db84bb7997899a44a81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 1750320025754779885}
+  interactionDistance: 3
+  hitQuest:
+    isMainStoryLine: 0
+    title: 
+    questStyle: 0
+    activeQuestGoals: []
+    uiQuestTitle: {fileID: 0}
+    descriptionsLayoutGroup: {fileID: 0}
+  hitGatherObjectID: 0
 --- !u!1 &1750320025328509291
 GameObject:
   m_ObjectHideFlags: 0

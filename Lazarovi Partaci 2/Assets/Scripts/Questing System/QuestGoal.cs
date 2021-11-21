@@ -20,10 +20,25 @@ public class QuestGoal
     //public GameObject[] onGoalCompleteEnable;
     //public GameObject[] onGoalCompleteDisable;
 
+    public void Accept()
+    {
+        // on questStarted EventHandler
+    }
+
     public void AddPoint()
     {
         currentValue++;
         PutValuesOnUi();
+
+        // point added event hadnler? možná?
+    }
+
+    public void Complete()
+    {
+        GameObject.Destroy(uiGoalDescription.gameObject);
+        QuestingSystem.uiManager.ShowMessageFor5Sec($"èast úkolu {goalDescription} byla splnìna", 2);
+
+        //on goalComplete event handler
     }
 
     public bool IsComplete()
@@ -34,7 +49,7 @@ public class QuestGoal
         }
         return false;
     }
-    
+
     public void PutValuesOnUi()
     {
         uiGoalDescription.text = $"{goalDescription} {currentValue}/{goalValue}";

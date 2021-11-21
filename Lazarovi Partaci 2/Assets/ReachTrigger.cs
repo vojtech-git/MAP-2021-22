@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ReachTrigger : MonoBehaviour
 {
+    public int id;
+
     private void OnTriggerEnter(Collider other)
     {
-        QuestingSystem.ProgressQuests(GoalType.Reach, 0);
+        QuestingSystem.ProgressQuests(GoalType.Reach, id);
     }
 }

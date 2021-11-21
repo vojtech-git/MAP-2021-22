@@ -20,9 +20,7 @@ public class QuestingSystem : MonoBehaviour
     {
         activeQuests.Add(quest.title, quest);
 
-        uiManager.ShowMessageFor5Sec($"úkol {quest.title} byl pøijat", 1);
-
-        quest.InstatiateQuestUI();
+        quest.Accept();
     }
 
     public static void ProgressQuests(GoalType _goalType, int _itemID)
@@ -34,21 +32,20 @@ public class QuestingSystem : MonoBehaviour
             quest.Value.AddPoint(_goalType, _itemID);
             if (quest.Value.IsComplete())
             {
-                GameObject.Destroy(quest.Value.uiQuestTitle.gameObject);
                 questsToComplete.Add(quest.Value);
             }
         }
 
-        foreach (Quest quest in questsToComplete)
-        {
-            QuestCompleted(quest);
-        }
+        CompleteQuests(questsToComplete);
     }
 
-    static void QuestCompleted(Quest completedQuest)
+    static void CompleteQuests(List<Quest> questsToComplete)
     {
-        playerCompletedQuests.Add(completedQuest.title, completedQuest);
-        activeQuests.Remove(completedQuest.title);
-        uiManager.ShowMessageFor5Sec($"úkol {completedQuest.title} byl splnìn", 1);
+        foreach (Quest quest in questsToComplete)
+        {
+            activeQuests.Remove(quest.title);
+            playerCompletedQuests.Add(quest.title, quest);
+            quest.Complete();
+        }
     }
 }
