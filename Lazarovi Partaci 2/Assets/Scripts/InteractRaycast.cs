@@ -16,7 +16,7 @@ public class InteractRaycast : MonoBehaviour
     {
         //playerCamera = Camera.main.transform;
 
-        acceptQuestText = QuestingSystem.uiManager.acceptQuestText.gameObject;
+        // acceptQuestText = QuestingSystem.uiManager.acceptQuestText.gameObject; // Honza - Dávalo error
     }
 
     private void Update()
@@ -47,7 +47,7 @@ public class InteractRaycast : MonoBehaviour
             }
             if (!hit.transform.CompareTag("quest giver"))
             {
-                acceptQuestText.SetActive(false);
+                //acceptQuestText.SetActive(false); // Honza - Dávalo error
             }
             #endregion
 
@@ -68,7 +68,7 @@ public class InteractRaycast : MonoBehaviour
         }
         else
         {
-            acceptQuestText.SetActive(false);
+            //acceptQuestText.SetActive(false); // Honza - Dávalo error
         }
     }
 }
