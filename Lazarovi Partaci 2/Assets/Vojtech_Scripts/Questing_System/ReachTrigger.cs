@@ -8,6 +8,6 @@ public class ReachTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        QuestingSystem.ProgressQuests(GoalType.Reach, id);
+        QuestingSystem.Instance.ProgressQuests(GoalType.Reach, id);
     }
 }

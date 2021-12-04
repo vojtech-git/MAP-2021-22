@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GatherObject : MonoBehaviour
+public class SelectedQuest : MonoBehaviour
 {
-    public int id;
+    public Quest selectedQuest;
 }

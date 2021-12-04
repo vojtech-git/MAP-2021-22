@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class QuestGiver : MonoBehaviour
 {
-    public Quest qGiverQuest;
+    public List<Quest> qGiverQuests;
 }

@@ -14,31 +14,25 @@ public class QuestGoal
 
     [Header("Mìnící se, UI")]
     int currentValue;
-    public Text uiGoalDescription;
+    Text uiGoalDescription;
 
-    //tohle snad nebudu potrebovat vyresim pomoci quest number
-    //public GameObject[] onGoalCompleteEnable;
-    //public GameObject[] onGoalCompleteDisable;
-
-    public void Accept()
+    public void Accept(Transform parentOfUI)
     {
-        // on questStarted EventHandler
+        InstantiateUI(parentOfUI);
+
+        PutValuesOnUi();
     }
 
     public void AddPoint()
     {
         currentValue++;
         PutValuesOnUi();
-
-        // point added event hadnler? možná?
     }
 
     public void Complete()
     {
         GameObject.Destroy(uiGoalDescription.gameObject);
-        QuestingSystem.uiManager.ShowMessageFor5Sec($"èast úkolu {goalDescription} byla splnìna", 2);
-
-        //on goalComplete event handler
+        GameStateManager.Instance.ShowMessageFor5Sec($"èast úkolu {goalDescription} byla splnìna", 2);
     }
 
     public bool IsComplete()
@@ -53,6 +47,11 @@ public class QuestGoal
     public void PutValuesOnUi()
     {
         uiGoalDescription.text = $"{goalDescription} {currentValue}/{goalValue}";
+    }
+
+    void InstantiateUI(Transform parent)
+    {
+        uiGoalDescription = GameObject.Instantiate(GameStateManager.Instance.goalDescriptionPrefab, parent).GetComponent<Text>(); //vytvoø ui reprezentaci pro dalsi questGoal
     }
 }
 
