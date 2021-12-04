@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class GameStateManager : MonoBehaviour
 {
+    [Header("Player")]
+    public GameObject FPS;
 
+    [Header("Other")]
     public GameObject questTitlePrefab;
     public GameObject goalDescriptionPrefab;
     public GameObject descriptionsLayoutPrefab;

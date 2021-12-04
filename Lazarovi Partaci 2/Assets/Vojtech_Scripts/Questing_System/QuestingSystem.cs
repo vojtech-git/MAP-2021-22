@@ -6,14 +6,13 @@ using UnityEngine.UI;
 public class QuestingSystem : MonoBehaviour
 {
     [SerializeField] public Quest firstQuest;
-    bool startOfGame;
+    bool startOfGame = false;
 
     public Dictionary<string, Quest> activeQuests = new Dictionary<string, Quest>();
     public Dictionary<string, Quest> completedQuests = new Dictionary<string, Quest>();
 
     private static QuestingSystem _instance;
     public static QuestingSystem Instance { get { return _instance; } }
-
 
     private void Awake()
     {
@@ -77,6 +76,8 @@ public class QuestingSystem : MonoBehaviour
 
     public void OpenQuestMenu(List<Quest> quests)
     {
+        
+
         GameStateManager.Instance.questSelectionMenu.SetActive(true); //zapne questing okno
 
         GameObject questTab = GameStateManager.Instance.questTabButtonPrefab; // cashne vìci z ui manageru
@@ -110,10 +111,12 @@ public class QuestingSystem : MonoBehaviour
             }
             Instantiate(GameStateManager.Instance.acceptButtonPrefab, layoutInProgress.transform).GetComponent<AcceptQuestButton>().relatedQuest = quest; // udelam pro kazdej quest 1 accButon a pridam do nej ten quest
 
-            if (index != 0)
-            {
-                layoutInProgress.SetActive(false); // vypnout celkovej qLayout aby nebyl zadnej zaplej a zapnul se jenom kdyz zmacku button (mohl bych zapnout první) takhle
-            }
+            layoutInProgress.SetActive(false);
+
+            //if (index != 0)
+            //{
+            //    layoutInProgress.SetActive(false); // vypnout celkovej qLayout aby nebyl zadnej zaplej a zapnul se jenom kdyz zmacku button (mohl bych zapnout první) takhle
+            //}
 
             index++;
         }

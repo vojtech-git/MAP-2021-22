@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DontDestroyThis : MonoBehaviour
 {
-    public string objID;
+    string objID;
 
     private void Awake()
     {
