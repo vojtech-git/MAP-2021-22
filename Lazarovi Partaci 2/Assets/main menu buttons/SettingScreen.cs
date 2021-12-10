@@ -11,6 +11,9 @@ public class SettingScreen : MonoBehaviour
     public List <ResItem> resolutions = new List<ResItem>();
     private int selectedResolution;
 
+    public int selectedGraphicsLevel = 2;
+    public Text graphichsLevelLabel;
+
     public AudioMixer theMixer;
 
     public Text masterLabel, musicLabel, sfxLabel;
@@ -56,9 +59,7 @@ public class SettingScreen : MonoBehaviour
         }
 
 
-
-  
-        float vol = 0f;  //zobrazeni predchozi promenne do slideru
+       /*  float vol=0f;  //zobrazeni predchozi promenne do slideru
         theMixer.GetFloat("MasterVol", out vol);
         masterSlider.value = vol;
 
@@ -70,7 +71,9 @@ public class SettingScreen : MonoBehaviour
 
         masterLabel.text = Mathf.RoundToInt(masterSlider.value + 80).ToString();
         musicLabel.text = Mathf.RoundToInt(musicSlider.value + 80).ToString();
-        sfxLabel.text = Mathf.RoundToInt(sfxSlider.value + 80).ToString();
+        sfxLabel.text = Mathf.RoundToInt(sfxSlider.value + 80).ToString(); */
+
+        //KVULI FUNKCIONALITE BYL TENTO KUS KODU PRENES DO AUDIOMANAGERA, IDK PROC ZE DNE NA DEN TO PRESTALO FUNGOVATI
     }
 
     // Update is called once per frame
@@ -94,6 +97,45 @@ public class SettingScreen : MonoBehaviour
         }
 
         Screen.SetResolution(resolutions[selectedResolution].horizontal, resolutions[selectedResolution].vertical, fullScreenToggle.isOn);
+        QualitySettings.SetQualityLevel(selectedGraphicsLevel);
+        PlayerPrefs.SetInt("savedQualityLevel", selectedGraphicsLevel);
+    }
+
+
+     public void GraphicsLeft()
+    {
+        selectedGraphicsLevel--;
+        if(selectedGraphicsLevel < 0)
+        {
+            selectedGraphicsLevel = 0;
+        }
+        UpdateGraphicsLabel();
+    }
+
+    public void GraphicsRight()
+    {
+        selectedGraphicsLevel++;
+        if (selectedGraphicsLevel > 2 )
+        {
+            selectedGraphicsLevel = 2;
+        }
+      UpdateGraphicsLabel();
+    }
+
+    public void UpdateGraphicsLabel()
+    {
+        int currentQualityLevel;
+        currentQualityLevel = QualitySettings.GetQualityLevel();
+        Debug.Log(currentQualityLevel);
+        if (selectedGraphicsLevel ==1){
+            graphichsLevelLabel.text = "Medium";
+        }
+         if (selectedGraphicsLevel ==0){
+            graphichsLevelLabel.text = "Low";
+        }
+         if (selectedGraphicsLevel ==2){
+            graphichsLevelLabel.text = "High";
+        }
     }
 
     public void ResLeft()
