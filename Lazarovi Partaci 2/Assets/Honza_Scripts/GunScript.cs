@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.ParticleSystemJobs;
 
 public class GunScript : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class GunScript : MonoBehaviour
     public RaycastHit rayHit;
     public LayerMask whatIsEnemy;
     public Text AmmoCount;
+    public Text AmmoBack;
+    public GameObject bulletHoleGraphic;
+    public ParticleSystem muzzleFlash, bulletDrop;
 
     private void Awake()
     {
@@ -31,13 +35,14 @@ public class GunScript : MonoBehaviour
     {
         MyInput();
         AmmoCount.text = ""+ bulletsLeft;
+        AmmoBack.text = "" + bulletsMags;
     }
     private void MyInput()
     {
         if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading && bulletsMags - magazineSize >= 0) Reload();
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading && bulletsMags - (magazineSize - bulletsLeft) >= 0) Reload();
 
         //Shoot
         if(readyToShoot && shooting && !reloading && bulletsLeft > 0)
@@ -54,10 +59,13 @@ public class GunScript : MonoBehaviour
         float x = Random.Range(-spread, spread);
         float y = Random.Range(-spread, spread);
 
+        //Calc Direction with Spread
+        Vector3 direction = PlayerCam.transform.forward + new Vector3(x, y, 0);
+
         //Running Spead to do
 
         //RayCast
-        if (Physics.Raycast(PlayerCam.transform.position, PlayerCam.transform.forward, out rayHit, range, whatIsEnemy))
+        if (Physics.Raycast(PlayerCam.transform.position, direction, out rayHit, range, whatIsEnemy))
         {
             Debug.Log(rayHit.collider.name);
 
@@ -66,7 +74,13 @@ public class GunScript : MonoBehaviour
              // tady se volá enemy hit   rayHit.collider.GetComponent<ShootingAi>().TakeDamage(Damage);
             }
         }
+        //Graphics
+        Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
+        muzzleFlash.Play();
+        bulletDrop.Play();
 
+
+        // Yeeters (bulleftShot nefunguje?? whaat?)
         bulletsLeft--;
         bulletsShot--;
 
@@ -88,7 +102,7 @@ public class GunScript : MonoBehaviour
     }
     private void ReloadFinished()
     {
-        bulletsMags = bulletsMags - magazineSize;
+        bulletsMags = bulletsMags - (magazineSize - bulletsLeft);
         bulletsLeft = magazineSize;
         reloading = false;
     }
