@@ -12,7 +12,7 @@ public class IntroToMain : MonoBehaviour
       {
           if (Input.GetKeyDown(KeyCode.Return))
           {
-             
+              IntroMenu.SetActive(false);
               WholeMenu.SetActive(true);
           }
       }
