@@ -33,9 +33,13 @@ public class GunScript : MonoBehaviour
     }
     private void Update()
     {
-        MyInput();
-        AmmoCount.text = ""+ bulletsLeft;
-        AmmoBack.text = "" + bulletsMags;
+        if(PauseMenu.GameIsPaused == false)
+        {
+            MyInput();
+            AmmoCount.text = "" + bulletsLeft;
+            AmmoBack.text = "" + bulletsMags;
+        }
+
     }
     private void MyInput()
     {

@@ -76,7 +76,7 @@ public class QuestingSystem : MonoBehaviour
 
     public void OpenQuestMenu(List<Quest> quests)
     {
-        
+        GameStateManager.Instance.FPS.GetComponentInChildren<Mouse>().enabled = false;
 
         GameStateManager.Instance.questSelectionMenu.SetActive(true); //zapne questing okno
 
@@ -124,6 +124,8 @@ public class QuestingSystem : MonoBehaviour
 
     public void CloseQuestMenu()
     {
+        GameStateManager.Instance.FPS.GetComponentInChildren<Mouse>().enabled = true;
+
         GameStateManager.Instance.questLayout.GetComponent<TabGroup>().UnsbscribeAll();
         GameStateManager.Instance.questLayout.GetComponent<TabGroup>().objectsToSwap.Clear();
         GameStateManager.Instance.questSelectionMenu.SetActive(false);
