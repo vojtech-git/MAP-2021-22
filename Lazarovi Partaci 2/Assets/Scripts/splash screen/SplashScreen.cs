@@ -19,6 +19,13 @@ public class SplashScreen : MonoBehaviour
         audio.GetComponent<AudioSource>().Play();
         StartCoroutine(enumerator(v1.GetComponent<VideoPlayer>(), v2.GetComponent<VideoPlayer>()));
     }
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.Space))
+        {
+            SceneManager.LoadSceneAsync("MainMenu");
+        }
+    }
 
     IEnumerator enumerator(VideoPlayer r, VideoPlayer lp)
     {
@@ -35,6 +42,6 @@ public class SplashScreen : MonoBehaviour
         lp.Stop();
 
         yield return new WaitForSecondsRealtime(3f);
-        SceneManager.LoadSceneAsync("Main Menu");
+        SceneManager.LoadSceneAsync("MainMenu");
     }
 }

@@ -8,7 +8,8 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
    public static bool GameIsPaused = false;  //checkuje zda bezi nejaky skript
     public GameObject pauseMenuUI;
-    public Texture2D crosshair;
+    public bool fpsPlayer;
+    [SerializeField] Texture2D crosshair;
 
     [SerializeField] GameObject redHealth;
     [SerializeField] GameObject greenHealth;
@@ -63,14 +64,24 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f; //pomoci tohoto muzeme delat i slowmotion
         GameIsPaused = false;
-        Vector2 cursorOffset = new Vector2(crosshair.width/2, crosshair.height/2);
-        Cursor.SetCursor(crosshair, cursorOffset,CursorMode.Auto);
+        if (crosshair != null)
+        {
+            Vector2 cursorOffset = new Vector2(crosshair.width / 2, crosshair.height / 2);
+            Cursor.SetCursor(crosshair, cursorOffset, CursorMode.Auto);
+        }
+
         if(redHealth != null && greenHealth != null && border != null && health != null ){
         redHealth.SetActive(true);
         greenHealth.SetActive(true);
         border.SetActive(true);
         health.SetActive(true);
         }
+        if (fpsPlayer)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
     }
 
 
