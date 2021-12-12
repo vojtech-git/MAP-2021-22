@@ -13,6 +13,7 @@ public class TextFade : MonoBehaviour
  
     public IEnumerator FadeTextToFullAlpha(float t, Text i)
     {
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
         while (i.color.a < 1.0f)
         {
             i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));

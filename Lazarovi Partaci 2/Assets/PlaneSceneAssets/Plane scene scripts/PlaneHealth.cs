@@ -16,9 +16,8 @@ public class PlaneHealth : MonoBehaviour
 
     public GameObject defeatScreen;
 
-
-
-    
+    public GameObject explosionEffect;
+    public MeshRenderer planeRenderer; //kvuli explozi
      public float interval = 0.5f;
      public float startDelay = 0f;
      public bool currentState = true;
@@ -31,17 +30,13 @@ public class PlaneHealth : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { //czechpoint
         if (health <= 0){
            // SceneManager.LoadScene("plane system");
-           warning.enabled=false;
-            Cursor.lockState = CursorLockMode.None; //defeat screen
-             DefeatScreen.jsiDead=true;
-             //Time.timeScale = 0f;
-            // Debug.Log(Time.timeScale);
-             defeatScreen.SetActive(true);
-             Cursor.lockState = CursorLockMode.None;
-             Cursor.visible=true;
+           Instantiate(explosionEffect, transform.position, transform.rotation); //explosion effect
+           //planeRenderer.enabled=false; //zmizeni letadla po smrti, destroy by nam nepomohlo, protoze by to znicilo i skripty
+            Destroy(this.gameObject);
+           // Invoke("YouAreDead", 2f); //abychom videli explosion effect
         }
 
           if (Input.GetKeyDown(KeyCode.C))
@@ -56,6 +51,19 @@ public class PlaneHealth : MonoBehaviour
         }
     }
 
+
+   /*  public void YouAreDead()
+    {
+        
+           warning.enabled=false;
+            Cursor.lockState = CursorLockMode.None; //defeat screen
+             DefeatScreen.jsiDead=true;
+             //Time.timeScale = 0f;
+            // Debug.Log(Time.timeScale);
+             defeatScreen.SetActive(true);
+             Cursor.lockState = CursorLockMode.None;
+             Cursor.visible=true;
+    } */
 
     void OnCollisionEnter(Collision col){
            health -= collisionDamage * col.relativeVelocity.magnitude ; 

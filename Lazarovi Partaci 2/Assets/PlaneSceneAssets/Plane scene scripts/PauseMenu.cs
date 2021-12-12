@@ -10,6 +10,11 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public Texture2D crosshair;
 
+    [SerializeField] GameObject redHealth;
+    [SerializeField] GameObject greenHealth;
+    [SerializeField] GameObject border;
+    [SerializeField] GameObject health;
+
 
     void Start() {
         pauseMenuUI.SetActive(false);  // pri startu je vyply pause
@@ -60,6 +65,12 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         Vector2 cursorOffset = new Vector2(crosshair.width/2, crosshair.height/2);
         Cursor.SetCursor(crosshair, cursorOffset,CursorMode.Auto);
+        if(redHealth != null && greenHealth != null && border != null && health != null ){
+        redHealth.SetActive(true);
+        greenHealth.SetActive(true);
+        border.SetActive(true);
+        health.SetActive(true);
+        }
     }
 
 
@@ -71,12 +82,18 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = true;
         Cursor.visible = true;  // moznost klikani na buttony, mys nam nezmizi
         Cursor.lockState = CursorLockMode.None; //
+        if(redHealth != null && greenHealth != null && border != null && health != null ){
+        redHealth.SetActive(false);
+        greenHealth.SetActive(false);
+        border.SetActive(false);
+        health.SetActive(false);
+        }
     }
 
     public void LoadMenu()
     {
         Time.timeScale = 1f;
-         SceneManager.LoadScene("Main Menu");
+         SceneManager.LoadScene("MainMenu");
              // Cursor.lockState = CursorLockMode.None;
              // Cursor.visible=true;
      

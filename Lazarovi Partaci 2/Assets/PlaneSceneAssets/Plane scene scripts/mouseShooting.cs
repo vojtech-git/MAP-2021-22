@@ -45,7 +45,7 @@ public class mouseShooting : MonoBehaviour
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
 
-        if(readyToShoot && shooting && !reloading){
+        if(readyToShoot && shooting && !reloading && PauseMenu.GameIsPaused==false){
             Shoot();
         }
     }

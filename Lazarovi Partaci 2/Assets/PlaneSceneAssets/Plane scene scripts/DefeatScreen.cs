@@ -12,11 +12,12 @@ public class DefeatScreen : MonoBehaviour
     public Text messageText2;
     public AudioSource typingAudioSource;
 
-    public Image redhealth;
-    public Image greenhealth;
-    public Image border;
-    public Text healthValue;
-    public Image warning;
+    [SerializeField] Image redhealth;
+    [SerializeField] Image greenhealth;
+    [SerializeField] Image border;
+    [SerializeField] Text healthValue;
+    [SerializeField] Image warning;
+     public Texture2D crosshair;
    
     public static DefeatScreen instance;
     void Start()
@@ -25,7 +26,7 @@ public class DefeatScreen : MonoBehaviour
        //JE POTREBA EDIT V PAUSE MENU (PODMINKA) V SHOOTINGU A WEAPON SWITCHINGU(PODMINKY)
        // podminka v metode load player, podminka v pause menu, ve weapon wheelu, weapon switchingu, shootingu, a radek kodu v main menu scriptu
         StartTalkingSound();
-       textWriter.addWriter_Static(messageText, "Tvé dýchání bylo velmi jednoduše přerušeno", .1f,true,StopTalkingSound);
+       textWriter.addWriter_Static(messageText, "Your breathing has been easily stopped", .1f,true,StopTalkingSound);
      
         StartCoroutine(Text());
       //  Invoke("typeText",2f);
@@ -38,7 +39,7 @@ public class DefeatScreen : MonoBehaviour
 	
     yield return new WaitForSecondsRealtime(5);
     StartTalkingSound();
-     textWriter.addWriter_Static(messageText2,"Time of elimination: " + System.DateTime.Now.ToString(), .1f,true,StopTalkingSound);
+    textWriter.addWriter_Static(messageText2,"Time of elimination: " + System.DateTime.Now.ToString(), .1f,true,StopTalkingSound);
 }
 
   
@@ -60,17 +61,23 @@ public class DefeatScreen : MonoBehaviour
        
         
           Time.timeScale=0f;
+          Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+          if(redhealth != null && greenhealth != null && border != null && healthValue != null ){
           greenhealth.enabled=false;
           redhealth.enabled=false;
           healthValue.enabled=false;
           border.enabled=false;
+          }
 
           
      }
     public void josef(){
 
          Time.timeScale=1f;
+         if(warning != null)
+         {
          warning.enabled=true;
+         }
      }
     public void restartGame()
     {
@@ -78,6 +85,8 @@ public class DefeatScreen : MonoBehaviour
        Debug.Log("restart");
        
         SceneManager.LoadScene("plane system");
+        Vector2 cursorOffset = new Vector2(crosshair.width/2, crosshair.height/2);
+        Cursor.SetCursor(crosshair, cursorOffset,CursorMode.Auto);
         defeat.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         jsiDead=false;
@@ -98,12 +107,19 @@ public class DefeatScreen : MonoBehaviour
 
     public void exitToMenu() 
     {
-         Time.timeScale=1f;
-            SceneManager.LoadScene("Menu");
-          jsiDead = false;
-            Cursor.lockState = CursorLockMode.None;
-           Time.timeScale=1f;
-           Debug.Log(Time.timeScale);
+        
+        SceneManager.LoadScene("MainMenu");
+        Time.timeScale=1f;
+        jsiDead = false;
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale=1f;
+        Debug.Log(Time.timeScale);
+    }
+
+    public void QuitGame() {
+       
+
+        Application.Quit();
     }
      
  

@@ -15,7 +15,7 @@ public class UiText : MonoBehaviour
    public void hello()
     {   
       StartTalkingSound();
-        textWriter.addWriter_Static(messageText, "Tvé dýchání bylo velmi jednoduše přessssrušeno", .1f,true,StopTalkingSound);
+        textWriter.addWriter_Static(messageText, "sadasdasdasdasdasdasdas", .1f,true,StopTalkingSound);
     }
 
     // Update is called once per frame

@@ -20,9 +20,10 @@ public class cam : MonoBehaviour
     {
 
         //KAMERA SKRIPT, UDELAN PROTO ABY KAMERA NEBYLA CHILD ELEMENTEM LETADLA. DODELAT DELAY U ROTACE, POMOCÍ FUNKCE LERP
-
+        if (target!=null){ //podmuinka kvuli particle effectu
         transform.position = target.TransformPoint(offset);
         transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, Time.deltaTime * 10f);
+        }
         //transform.rotation = target.rotation;
 
 

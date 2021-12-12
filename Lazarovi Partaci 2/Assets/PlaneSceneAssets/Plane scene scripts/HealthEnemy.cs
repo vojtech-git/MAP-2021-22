@@ -6,6 +6,7 @@ public class HealthEnemy : MonoBehaviour
 {
     // Start is called before the first frame update public int enemyHP;
     public int enemyHP = 100;
+    public GameObject explosionEffect;
     public AudioSource death;
     void Start()
     {
@@ -18,6 +19,7 @@ public class HealthEnemy : MonoBehaviour
        
         if(enemyHP<=0){
             //death.Play();
+            Instantiate(explosionEffect, transform.position, transform.rotation);
             Destroy(this.gameObject);
         } //FUNGUJE
     }
