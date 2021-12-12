@@ -64,6 +64,11 @@ public class GameStateManager : MonoBehaviour
     {
         for (int i = 0; i < audioSources.Length; i++)
         {
+            if (audioSources[i].isPlaying)
+            {
+                audioSources[i].Stop();
+            }
+
             if (audioSources[i] != null)
             {
                 audioSources[i].Play();

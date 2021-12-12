@@ -10,7 +10,6 @@ public class InteractRaycast : MonoBehaviour
 
     public GameObject acceptQuestText;
     int hitGatherObjectID;
-    bool cursorLocked = true;
     GameStateManager gameStateManager;
 
     private void Start()
@@ -33,19 +32,17 @@ public class InteractRaycast : MonoBehaviour
                     acceptQuestText.SetActive(true);
                 }
 
-                if (Input.GetKeyDown(KeyCode.E) && cursorLocked)
+                if (Input.GetKeyDown(KeyCode.E) && !QuestingSystem.Instance.questMenuOpen)
                 {
                     QuestingSystem.Instance.OpenQuestMenu(hit.transform.GetComponent<QuestGiver>().qGiverQuests);
                     acceptQuestText.SetActive(false);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
-                    cursorLocked = false;
                 }
-                else if (Input.GetKeyDown(KeyCode.E) && !cursorLocked)
+                else if (Input.GetKeyDown(KeyCode.E) && QuestingSystem.Instance.questMenuOpen)
                 {
                     Cursor.lockState = CursorLockMode.Locked;
                     QuestingSystem.Instance.CloseQuestMenu();
-                    cursorLocked = true;
                     Cursor.visible = false;
                 }
 
@@ -69,6 +66,9 @@ public class InteractRaycast : MonoBehaviour
                 //}
                 #endregion
             }
+
+            
+
             if (!hit.transform.CompareTag("quest giver"))
             {
                 acceptQuestText.SetActive(false);

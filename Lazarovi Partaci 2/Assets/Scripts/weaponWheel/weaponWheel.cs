@@ -93,7 +93,7 @@ public class weaponWheel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        disableWheel();
+        DisableWheel();
         for(int i =0; i < wheels.Length; i++){
 
                 if(wheels[i].wheela !=null){
@@ -133,18 +133,20 @@ public class weaponWheel : MonoBehaviour
             }
         }
     }
-    private void enableWheel()
+    private void EnableWheel()
     {
         //if (PauseMenu.GameIsPaused == false && GameObject.Find("WeaponHolder") != null  && defeatscreen.jsiDead==false) {
-            if (wheelParent != null)
-                wheelParent.SetActive(true);
-            WheelEnabled = true;
-            Time.timeScale = 0.1f;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+        
+        if (wheelParent != null)
+            wheelParent.SetActive(true);
+        WheelEnabled = true;
+        Time.timeScale = 0.1f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true; 
+        
     }
 
-    public void disableWheel()   //udelal jsem z metody public abych to mohl pouzivat na fixnuti bagu na load a na new game, drive to bylo PRIVATE
+    public void DisableWheel()   //udelal jsem z metody public abych to mohl pouzivat na fixnuti bagu na load a na new game, drive to bylo PRIVATE
     {
        // if (PauseMenu.GameIsPaused == false) {
         if (wheelParent != null)
@@ -158,12 +160,15 @@ public class weaponWheel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(wheelKey)){ //HONZO TO JE MÍSTO PRO TEBE KURVA
-            enableWheel();
+        if(Input.GetKey(wheelKey) && PauseMenu.GameIsPaused == false)
+        { //HONZO TO JE MÍSTO PRO TEBE KURVA
+
+            EnableWheel();
             CheckForCurrentWeapon();
         }
-        else if(Input.GetKeyUp(wheelKey)){
-            disableWheel();
+        else if(Input.GetKeyUp(wheelKey) && PauseMenu.GameIsPaused == false)
+        {
+            DisableWheel();
         }
     }
 

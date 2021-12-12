@@ -12,9 +12,11 @@ public class Quest
     public QuestStyle questStyle;
     public List<QuestGoal> activeQuestGoals;
     List<QuestGoal> completedGoals = new List<QuestGoal>();
+    public bool completed = false;
 
     [Header("Zvuk")]
-    public AudioSource[] acceptVoiceLines;
+    public AudioSource[] acceptQuestAudio;
+    public AudioSource[] completeQuestAudio;
 
     [Header("UI")]
     private Text uiQuestTitle;
@@ -38,8 +40,8 @@ public class Quest
             }
         }
 
-        if (acceptVoiceLines != null)
-            GameStateManager.Instance.StartCoroutine(GameStateManager.Instance.PlayAudio(acceptVoiceLines));
+        if (acceptQuestAudio != null)
+            GameStateManager.Instance.StartCoroutine(GameStateManager.Instance.PlayAudio(acceptQuestAudio));
     }
 
     public void AddPoint(GoalType _goalType, int _itemID)
@@ -86,6 +88,8 @@ public class Quest
 
     public void Complete()
     {
+        if (completeQuestAudio != null)
+            GameStateManager.Instance.StartCoroutine(GameStateManager.Instance.PlayAudio(completeQuestAudio));
 
         GameStateManager.Instance.ShowMessageFor5Sec($"Úkol {title} byl splnìn", 1);
 
@@ -93,7 +97,7 @@ public class Quest
         GameObject.Destroy(uiQuestTitle);
         GameObject.Destroy(descriptionsLayoutGroup);
 
-
+        completed = true;
     }
 
     public bool IsComplete()

@@ -8,7 +8,7 @@ public class DontDestroyThis : MonoBehaviour
 
     private void Awake()
     {
-        objID = name + transform.position.ToString();
+        objID = name /*+ transform.position.ToString()*/;
     }
 
     void Start()

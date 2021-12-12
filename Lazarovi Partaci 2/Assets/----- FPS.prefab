@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d46fe24eb9f63d4b95205dc30c30723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 1
   timeBetweenShooting: 0.5
   spread: 0.02
   range: 1000
@@ -7590,6 +7590,7 @@ GameObject:
   - component: {fileID: 2148236045496359552}
   - component: {fileID: 2148236045496359553}
   - component: {fileID: 2148236045496359558}
+  - component: {fileID: 3972210294582983854}
   m_Layer: 3
   m_Name: ----- FPS
   m_TagString: Player
@@ -7692,6 +7693,18 @@ MonoBehaviour:
   playerCamera: {fileID: 2148236046332813764}
   interactionDistance: 3
   acceptQuestText: {fileID: 0}
+--- !u!114 &3972210294582983854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2148236045496359556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfab2368a528a5d42ab31093c5285ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2148236045498542406
 GameObject:
   m_ObjectHideFlags: 0
@@ -14666,7 +14679,9 @@ MonoBehaviour:
     title: 
     questStyle: 0
     activeQuestGoals: []
-    acceptVoiceLines: []
+    completed: 0
+    acceptQuestAudio: []
+    completeQuestAudio: []
 --- !u!1 &2148236046154020066
 GameObject:
   m_ObjectHideFlags: 0
@@ -22582,6 +22597,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2148236045496359559}
     m_Modifications:
+    - target: {fileID: 514133626130516555, guid: 3f548744e478a504db35428ab3af7eb1, type: 3}
+      propertyPath: m_Text
+      value: Paused Game
+      objectReference: {fileID: 0}
     - target: {fileID: 1603607988922093296, guid: 3f548744e478a504db35428ab3af7eb1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -22589,6 +22608,12 @@ PrefabInstance:
     - target: {fileID: 1603607988922093296, guid: 3f548744e478a504db35428ab3af7eb1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315759770089520759, guid: 3f548744e478a504db35428ab3af7eb1, type: 3}
+      propertyPath: m_Text
+      value: 'Paused Game
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 3946380078068625739, guid: 3f548744e478a504db35428ab3af7eb1, type: 3}
       propertyPath: crosshair

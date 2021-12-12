@@ -9,17 +9,11 @@ public class LevelLoader : MonoBehaviour
     public float transitionTime;
     public int targetSceneIndex;
 
-    private void Awake()
-    {
-        
-    }
-
     private void OnTriggerStay(Collider other)
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
             LoadNextScene(targetSceneIndex);
-            
         }
     }
 
@@ -30,8 +24,6 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex)
     {
-       
-
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
 

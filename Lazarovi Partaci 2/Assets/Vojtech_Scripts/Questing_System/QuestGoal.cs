@@ -11,6 +11,7 @@ public class QuestGoal
     public int goalValue;
     public GoalType goalType;
     public int itemID;
+    public AudioSource[] completeGoalAudio;
 
     [Header("Mìnící se, UI")]
     int currentValue;
@@ -32,7 +33,9 @@ public class QuestGoal
     public void Complete()
     {
         GameObject.Destroy(uiGoalDescription.gameObject);
-        GameStateManager.Instance.ShowMessageFor5Sec($"èast úkolu {goalDescription} byla splnìna", 2);
+        GameStateManager.Instance.ShowMessageFor5Sec($"èast úkolu {goalDescription} byla splnìna", 2); 
+        if (completeGoalAudio != null)
+            GameStateManager.Instance.StartCoroutine(GameStateManager.Instance.PlayAudio(completeGoalAudio));
     }
 
     public bool IsComplete()
@@ -59,4 +62,5 @@ public enum GoalType
 {
     Reach,
     Gather,
+    Kill
 }

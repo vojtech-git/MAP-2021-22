@@ -75,6 +75,10 @@ public class GunScript : MonoBehaviour
 
             if (rayHit.collider.CompareTag("Enemy"))
             {
+                Entity hitTarget;
+                rayHit.collider.gameObject.TryGetComponent<Entity>(out hitTarget);
+                hitTarget.TakeDamage(damage);
+
              // tady se volá enemy hit   rayHit.collider.GetComponent<ShootingAi>().TakeDamage(Damage);
             }
         }
