@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
     public Text moneyText;
     public Text moneyText_Back;
     public int currentMoney;
-    
+
     void Start()
     {
         //Movement
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
         staminaBar_Left.value = maxStamina;
 
 
-    }
+}
     void Update()
     {
         //PlaceHolders
