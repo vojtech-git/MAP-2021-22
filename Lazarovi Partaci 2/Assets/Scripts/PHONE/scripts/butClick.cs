@@ -21,7 +21,7 @@ public class butClick : MonoBehaviour
 
     private void Update()
     {
-        if (show.activeSelf && Input.GetKeyDown(KeyCode.Backspace))
+        /*if (show.activeSelf && Input.GetKeyDown(KeyCode.Backspace))
         {
             if (show.gameObject == GameObject.Find("Vyzvánìní"))
             {
@@ -33,6 +33,30 @@ public class butClick : MonoBehaviour
             hide.SetActive(true);
             show.SetActive(false);
             b2.Select();
+        }*/
+
+        if (show.gameObject == GameObject.Find("Vyzvánìní"))
+        {
+            if (show.activeSelf && Input.GetKeyDown(KeyCode.Backspace))
+            {
+                foreach (GameObject tone in ringtones)
+                {
+                    tone.GetComponent<AudioSource>().Stop();
+                }
+
+                hide.SetActive(true);
+                show.SetActive(false);
+                b2.Select();
+            }
+        }
+        else
+        {
+            if (show.activeSelf && Input.GetKeyDown(KeyCode.Backspace))
+            {
+                hide.SetActive(true);
+                show.SetActive(false);
+                b2.Select();
+            }
         }
     }
 }
