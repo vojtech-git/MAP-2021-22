@@ -6,9 +6,9 @@ public class GatherObject : MonoBehaviour
 {
     public int id;
 
-    public void ItemPicked()
+    public void PickupItem()
     {
-        QuestingSystem.Instance.ProgressQuests(GoalType.Gather, id);
+        QuestingSystem.ProgressQuests(GoalType.Gather, id);
 
         Destroy(gameObject);
     }

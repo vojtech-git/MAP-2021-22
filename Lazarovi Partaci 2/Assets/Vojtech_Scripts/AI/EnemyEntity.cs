@@ -8,13 +8,6 @@ public class EnemyEntity : Entity
     public GameObject HealthKitPrefab;
     public GameObject[] MoneyPrefabs;
  
-    public override void Die()
-    {
-        QuestingSystem.Instance.ProgressQuests(GoalType.Kill, enemyEntityId);
-        DropLoot();
-        base.Die();
-    }
-
     public void DropLoot()
     {
         int random = Random.Range(0, 2);
@@ -29,5 +22,12 @@ public class EnemyEntity : Entity
         {
             Instantiate(MoneyPrefabs[Random.Range(0, MoneyPrefabs.Length)], transform.position, Quaternion.identity);
         }
+    }
+
+    public override void Die()
+    {
+        QuestingSystem.ProgressQuests(GoalType.Kill, enemyEntityId);
+        DropLoot();
+        base.Die();
     }
 }

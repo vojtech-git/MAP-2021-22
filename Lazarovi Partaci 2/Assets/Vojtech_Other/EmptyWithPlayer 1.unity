@@ -985,7 +985,7 @@ Transform:
   - {fileID: 1458935028}
   - {fileID: 1982960533}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &839895721
 GameObject:
@@ -1398,7 +1398,7 @@ Transform:
   - {fileID: 235339845}
   - {fileID: 9173825}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1059181081
 GameObject:
@@ -1796,46 +1796,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qGiverQuests:
-  - isMainStoryLine: 0
-    title: "Seber p\xE1r v\u011Bc\xED"
+  - title: "Seber p\xE1r v\u011Bc\xED"
+    isMainStoryLine: 0
     questStyle: 1
-    activeQuestGoals:
-    - goalDescription: "Najdi v\u011Bc 0 mal\xE1 n\xEDzk\xE1"
-      goalValue: 2
-      goalType: 1
-      itemID: 0
-      completeGoalAudio:
-      - {fileID: 1764393221}
-    - goalDescription: "Najdi v\u011Bc 1 mal\xE1 vysok\xE1"
-      goalValue: 2
-      goalType: 1
-      itemID: 1
-      completeGoalAudio:
-      - {fileID: 1764393221}
-    - goalDescription: "Najdi v\u011Bc 2 velk\xE1 n\xEDzk\xE1"
-      goalValue: 2
-      goalType: 1
-      itemID: 2
-      completeGoalAudio: []
+    questGoals: []
     completed: 0
-    acceptQuestAudio:
-    - {fileID: 1892464041}
-    completeQuestAudio:
-    - {fileID: 1097182873}
-  - isMainStoryLine: 0
-    title: "Zabij dva \u010Derven\xE9"
+  - title: "Zabij dva \u010Derven\xE9"
+    isMainStoryLine: 0
     questStyle: 1
-    activeQuestGoals:
-    - goalDescription: "Zabij \u010Derven\xE9ho"
-      goalValue: 2
-      goalType: 2
-      itemID: 0
-      completeGoalAudio: []
+    questGoals: []
     completed: 0
-    acceptQuestAudio:
-    - {fileID: 1892464041}
-    completeQuestAudio:
-    - {fileID: 1097182873}
 --- !u!65 &1308973056
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2234,32 +2204,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qGiverQuests:
-  - isMainStoryLine: 0
-    title: "Najdi fialov\xE9 kostky"
+  - title: "Najdi fialov\xE9 kostky"
+    isMainStoryLine: 0
     questStyle: 0
-    activeQuestGoals:
-    - goalDescription: Najdi kostku vlevo
-      goalValue: 1
-      goalType: 0
-      itemID: 0
-      completeGoalAudio:
-      - {fileID: 1022916170}
-    - goalDescription: Najdi kostku uprostred
-      goalValue: 1
-      goalType: 0
-      itemID: 1
-      completeGoalAudio:
-      - {fileID: 1022916170}
-    - goalDescription: Najdi kostku vpravo
-      goalValue: 1
-      goalType: 0
-      itemID: 2
-      completeGoalAudio: []
+    questGoals: []
     completed: 0
-    acceptQuestAudio:
-    - {fileID: 561755111}
-    completeQuestAudio:
-    - {fileID: 867913541}
 --- !u!65 &1533823282
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2351,7 +2300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4801116328595228387, guid: 8039c6b3d03ea7745a9f82c82df8a544, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4801116328595228387, guid: 8039c6b3d03ea7745a9f82c82df8a544, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3421,60 +3370,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8039c6b3d03ea7745a9f82c82df8a544, type: 3}
---- !u!1001 &8511482636751456028
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8511482637518669570, guid: 4c18e800efc081444b442bc5737af5a5, type: 3}
-      propertyPath: m_Name
-      value: StoryManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8511482637518669628, guid: 4c18e800efc081444b442bc5737af5a5, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8511482637518669628, guid: 4c18e800efc081444b442bc5737af5a5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.4526295
-      objectReference: {fileID: 0}
-    - target: {fileID: 8511482637518669628, guid: 4c18e800efc081444b442bc5737af5a5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.3201424
-      objectReference: {fileID: 0}
-    - target: {fileID: 8511482637518669628, guid: 4c18e800efc081444b442bc5737af5a5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.1135921
-      objectReference: {fileID: 0}
-    - target: {fileID: 8511482637518669628, guid: 4c18e800efc081444b442bc5737af5a5, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8511482637518669628, guid: 4c18e800efc081444b442bc5737af5a5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8511482637518669628, guid: 4c18e800efc081444b442bc5737af5a5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8511482637518669628, guid: 4c18e800efc081444b442bc5737af5a5, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8511482637518669628, guid: 4c18e800efc081444b442bc5737af5a5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8511482637518669628, guid: 4c18e800efc081444b442bc5737af5a5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8511482637518669628, guid: 4c18e800efc081444b442bc5737af5a5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4c18e800efc081444b442bc5737af5a5, type: 3}

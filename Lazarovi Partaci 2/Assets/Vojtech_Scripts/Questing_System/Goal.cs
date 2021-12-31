@@ -4,18 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class QuestGoal
+public class Goal
 {
     [Header("Zadání questu")]
     public string goalDescription;
     public int goalValue;
     public GoalType goalType;
     public int itemID;
-    public AudioSource[] completeGoalAudio;
 
-    [Header("Mìnící se, UI")]
+    [Header("UI")]
+    Text uiDescription;
+
     int currentValue;
-    Text uiGoalDescription;
 
     public void Accept(Transform parentOfUI)
     {
@@ -32,10 +32,9 @@ public class QuestGoal
 
     public void Complete()
     {
-        GameObject.Destroy(uiGoalDescription.gameObject);
-        GameStateManager.Instance.ShowMessageFor5Sec($"èast úkolu {goalDescription} byla splnìna", 2); 
-        if (completeGoalAudio != null)
-            GameStateManager.Instance.StartCoroutine(GameStateManager.Instance.PlayAudio(completeGoalAudio));
+        GameObject.Destroy(uiDescription.gameObject);
+        GameStateManager.Instance.ShowMessageFor5Sec($"èast úkolu {goalDescription} byla splnìna", 2);
+        QuestingSystem.OnGoalComplete(goalDescription);
     }
 
     public bool IsComplete()
@@ -49,12 +48,12 @@ public class QuestGoal
 
     public void PutValuesOnUi()
     {
-        uiGoalDescription.text = $"{goalDescription} {currentValue}/{goalValue}";
+        uiDescription.text = $"{goalDescription} {currentValue}/{goalValue}";
     }
 
     void InstantiateUI(Transform parent)
     {
-        uiGoalDescription = GameObject.Instantiate(GameStateManager.Instance.goalDescriptionPrefab, parent).GetComponent<Text>(); //vytvoø ui reprezentaci pro dalsi questGoal
+        uiDescription = GameObject.Instantiate(GameStateManager.Instance.goalDescriptionPrefab, parent).GetComponent<Text>(); //vytvoø ui reprezentaci pro dalsi questGoal
     }
 }
 

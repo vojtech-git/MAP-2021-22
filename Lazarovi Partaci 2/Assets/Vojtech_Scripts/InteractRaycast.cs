@@ -32,17 +32,17 @@ public class InteractRaycast : MonoBehaviour
                     acceptQuestText.SetActive(true);
                 }
 
-                if (Input.GetKeyDown(KeyCode.E) && !QuestingSystem.Instance.questMenuOpen)
+                if (Input.GetKeyDown(KeyCode.E) && !QuestingSystem.questMenuOpen)
                 {
-                    QuestingSystem.Instance.OpenQuestMenu(hit.transform.GetComponent<QuestGiver>().qGiverQuests);
+                    QuestingSystem.OpenQuestMenu(hit.transform.GetComponent<QuestGiver>().qGiverQuests);
                     acceptQuestText.SetActive(false);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                 }
-                else if (Input.GetKeyDown(KeyCode.E) && QuestingSystem.Instance.questMenuOpen)
+                else if (Input.GetKeyDown(KeyCode.E) && QuestingSystem.questMenuOpen)
                 {
                     Cursor.lockState = CursorLockMode.Locked;
-                    QuestingSystem.Instance.CloseQuestMenu();
+                    QuestingSystem.CloseQuestMenu();
                     Cursor.visible = false;
                 }
 
@@ -80,7 +80,7 @@ public class InteractRaycast : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    hit.transform.GetComponent<GatherObject>().ItemPicked();
+                    hit.transform.GetComponent<GatherObject>().PickupItem();
                 }
             }
             #endregion

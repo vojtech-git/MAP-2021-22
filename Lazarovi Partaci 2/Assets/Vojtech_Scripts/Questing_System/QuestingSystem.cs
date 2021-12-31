@@ -1,44 +1,32 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuestingSystem : MonoBehaviour
+public static class QuestingSystem
 {
-    [SerializeField] public Quest firstQuest;
-    bool startOfGame = false;
+    public static Dictionary<string, Quest> activeQuests = new Dictionary<string, Quest>();
+    public static Dictionary<string, Quest> completedQuests = new Dictionary<string, Quest>();
 
-    public Dictionary<string, Quest> activeQuests = new Dictionary<string, Quest>();
-    public Dictionary<string, Quest> completedQuests = new Dictionary<string, Quest>();
+    public static bool questMenuOpen = false;
+    internal static Action<string> onQuestAccept;
+    internal static Action<string> onQuestComplete;
+    internal static Action<string> onGoalComplete;
 
-    public bool questMenuOpen = false;
-
-    private static QuestingSystem _instance;
-    public static QuestingSystem Instance { get { return _instance; } }
-
-    private void Awake()
+    public static void OnQuestAccept(string qTitle)
     {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-        else
-        {
-            _instance = this;
-        }
-
-        // naèti hodnoty ze saveloadu
+        onQuestAccept?.Invoke(qTitle);
+    }
+    public static void OnQuestComplete(string qTitle)
+    {
+        onQuestComplete?.Invoke(qTitle);
+    }
+    public static void OnGoalComplete(string qTitle)
+    {
+        onGoalComplete?.Invoke(qTitle);
     }
 
-    void Start()
-    {
-        if (startOfGame)
-        {
-            AcceptQuest(firstQuest);
-        }
-    }
-
-    public void AcceptQuest(Quest quest)
+    public static void AcceptQuest(Quest quest)
     {
         if (!activeQuests.ContainsKey(quest.title) && !completedQuests.ContainsKey(quest.title))
         {
@@ -48,7 +36,7 @@ public class QuestingSystem : MonoBehaviour
         }
     }
 
-    public void ProgressQuests(GoalType _goalType, int _itemID)
+    public static void ProgressQuests(GoalType _goalType, int _itemID)
     {
         List<Quest> questsToComplete = new List<Quest>();
 
@@ -65,7 +53,7 @@ public class QuestingSystem : MonoBehaviour
         CompleteQuests(questsToComplete);
     }
 
-    void CompleteQuests(List<Quest> questsToComplete)
+    static void CompleteQuests(List<Quest> questsToComplete)
     {
         foreach (Quest quest in questsToComplete)
         {
@@ -75,7 +63,7 @@ public class QuestingSystem : MonoBehaviour
         }
     }
 
-    public void OpenQuestMenu(List<Quest> questsToDisplay)
+    public static void OpenQuestMenu(List<Quest> questsToDisplay)
     {
         questMenuOpen = true;
 
@@ -104,22 +92,22 @@ public class QuestingSystem : MonoBehaviour
         {
             if (!activeQuests.ContainsKey(quest.title) && !completedQuests.ContainsKey(quest.title))
             {
-                GameObject createdButtonGO = Instantiate(questTab, questLayout.gameObject.transform); //instantiate button na vybirani questu
+                GameObject createdButtonGO = GameObject.Instantiate(questTab, questLayout.gameObject.transform); //instantiate button na vybirani questu
 
                 createdButtonGO.GetComponent<Text>().text = quest.title;
 
                 UiTabButton createdButton = createdButtonGO.GetComponent<UiTabButton>();
                 createdButton.quest = quest; // do toho buttonu hodi quest se kterým pracuje
 
-                layoutInProgress = Instantiate(layoutDescription, qDescriptionTransfrom); //celkovej layout quest popisu
+                layoutInProgress = GameObject.Instantiate(layoutDescription, qDescriptionTransfrom); //celkovej layout quest popisu
                 questTabGroup.objectsToSwap.Add(layoutInProgress); // pøidam ho do objektù pro vypnutí/zapnutí na stejnej index jako je øadový èíslo jeho buttonu
 
-                Instantiate(questTitlePrefab, layoutInProgress.transform).GetComponent<Text>().text = quest.title; // jeden quest title prefab instanciate
-                foreach (QuestGoal questGoal in quest.activeQuestGoals)
+                GameObject.Instantiate(questTitlePrefab, layoutInProgress.transform).GetComponent<Text>().text = quest.title; // jeden quest title prefab instanciate
+                foreach (Goal questGoal in quest.questGoals)
                 {
-                    Instantiate(gDescriptionPrefab, layoutInProgress.transform).GetComponent<Text>().text = questGoal.goalDescription; // pro kazdej qGoal instance jeho popisu
+                    GameObject.Instantiate(gDescriptionPrefab, layoutInProgress.transform).GetComponent<Text>().text = questGoal.goalDescription; // pro kazdej qGoal instance jeho popisu
                 }
-                Instantiate(GameStateManager.Instance.acceptButtonPrefab, layoutInProgress.transform).GetComponent<AcceptQuestButton>().relatedQuest = quest; // udelam pro kazdej quest 1 accButon a pridam do nej ten quest
+                GameObject.Instantiate(GameStateManager.Instance.acceptButtonPrefab, layoutInProgress.transform).GetComponent<AcceptQuestButton>().relatedQuest = quest; // udelam pro kazdej quest 1 accButon a pridam do nej ten quest
 
                 layoutInProgress.SetActive(false);
 
@@ -133,7 +121,7 @@ public class QuestingSystem : MonoBehaviour
         }
     }
 
-    public void CloseQuestMenu()
+    public static void CloseQuestMenu()
     {
         questMenuOpen = false;
 
@@ -144,11 +132,11 @@ public class QuestingSystem : MonoBehaviour
         GameStateManager.Instance.questSelectionMenu.SetActive(false);
         foreach (Transform child in GameStateManager.Instance.questLayout.transform)
         {
-            Destroy(child.gameObject);
+            GameObject.Destroy(child.gameObject);
         }
         foreach (Transform child in GameStateManager.Instance.qDescriptionLayout.transform)
         {
-            Destroy(child.gameObject);
+            GameObject.Destroy(child.gameObject);
         }
     }
 }

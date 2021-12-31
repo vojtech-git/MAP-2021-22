@@ -7,16 +7,13 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Quest
 {
-    public bool isMainStoryLine;
     public string title;
+    public bool isMainStoryLine;
     public QuestStyle questStyle;
-    public List<QuestGoal> activeQuestGoals;
-    List<QuestGoal> completedGoals = new List<QuestGoal>();
+    public List<Goal> questGoals;
+    List<Goal> completedGoals = new List<Goal>();
+    [HideInInspector]
     public bool completed = false;
-
-    [Header("Zvuk")]
-    public AudioSource[] acceptQuestAudio;
-    public AudioSource[] completeQuestAudio;
 
     [Header("UI")]
     private Text uiQuestTitle;
@@ -30,45 +27,44 @@ public class Quest
 
         if (questStyle == QuestStyle.AfterEachOther)
         {
-            activeQuestGoals[0].Accept(descriptionsLayoutGroup.transform);
+            questGoals[0].Accept(descriptionsLayoutGroup.transform);
         }
         else if (questStyle == QuestStyle.AtTheSameTime)
         {
-            foreach (QuestGoal questGoalToAccept in activeQuestGoals)
+            foreach (Goal questGoalToAccept in questGoals)
             {
                 questGoalToAccept.Accept(descriptionsLayoutGroup.transform);
             }
         }
 
-        if (acceptQuestAudio != null)
-            GameStateManager.Instance.StartCoroutine(GameStateManager.Instance.PlayAudio(acceptQuestAudio));
+        QuestingSystem.OnQuestAccept(title);
     }
 
     public void AddPoint(GoalType _goalType, int _itemID)
     {
-        List<QuestGoal> goalsToComplete = new List<QuestGoal>();
+        List<Goal> goalsToComplete = new List<Goal>();
 
         if (questStyle == QuestStyle.AfterEachOther)
         {
-            if (_goalType == activeQuestGoals[0].goalType && _itemID == activeQuestGoals[0].itemID) // pro prvni questGoal v øadì questGoalù, pokid se shoduje itemId a questType
+            if (_goalType == questGoals[0].goalType && _itemID == questGoals[0].itemID) // pro prvni questGoal v øadì questGoalù, pokid se shoduje itemId a questType
             {
-                activeQuestGoals[0].AddPoint(); // Pøidej bodu do prvniho goalu
+                questGoals[0].AddPoint(); // Pøidej bodu do prvniho goalu
 
-                if (activeQuestGoals[0].IsComplete()) // pokud je po pøidani pointu completed  
+                if (questGoals[0].IsComplete()) // pokud je po pøidani pointu completed  
                 {
-                    activeQuestGoals[0].Complete(); // spust jeho complete()
-                    goalsToComplete.Add(activeQuestGoals[0]); // pøidej ho do goals to complete
+                    questGoals[0].Complete(); // spust jeho complete()
+                    goalsToComplete.Add(questGoals[0]); // pøidej ho do goals to complete
 
-                    if (activeQuestGoals.Count > 1) // pokud existuje dalsi questGoal
+                    if (questGoals.Count > 1) // pokud existuje dalsi questGoal
                     {
-                        activeQuestGoals[1].Accept(descriptionsLayoutGroup.transform);
+                        questGoals[1].Accept(descriptionsLayoutGroup.transform);
                     }
                 }
             }
         }
         else if (questStyle == QuestStyle.AtTheSameTime)
         {
-            foreach (QuestGoal goal in activeQuestGoals)
+            foreach (Goal goal in questGoals)
             {
                 if (_goalType == goal.goalType && _itemID == goal.itemID)
                 {
@@ -88,21 +84,16 @@ public class Quest
 
     public void Complete()
     {
-        if (completeQuestAudio != null)
-            GameStateManager.Instance.StartCoroutine(GameStateManager.Instance.PlayAudio(completeQuestAudio));
-
         GameStateManager.Instance.ShowMessageFor5Sec($"Úkol {title} byl splnìn", 1);
-
-        //event handler OnQuestComplete
         GameObject.Destroy(uiQuestTitle);
         GameObject.Destroy(descriptionsLayoutGroup);
-
         completed = true;
+        QuestingSystem.OnQuestComplete(title);
     }
 
     public bool IsComplete()
     {
-        foreach (QuestGoal questGoal in activeQuestGoals)
+        foreach (Goal questGoal in questGoals)
         {
             if (!questGoal.IsComplete())
                 return false;
@@ -110,11 +101,11 @@ public class Quest
         return true;
     }
 
-    void CompleteQuestGoals(List<QuestGoal> questGoalsToComplete)
+    void CompleteQuestGoals(List<Goal> questGoalsToComplete)
     {
-        foreach (QuestGoal questGoal in questGoalsToComplete)
+        foreach (Goal questGoal in questGoalsToComplete)
         {
-            activeQuestGoals.Remove(questGoal);
+            questGoals.Remove(questGoal);
             completedGoals.Add(questGoal);
             questGoal.Complete();
         }

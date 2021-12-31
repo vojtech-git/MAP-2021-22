@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,12 @@ public class GameStateManager : MonoBehaviour
 
     public static GameStateManager Instance { get { return _instance; } }
 
+    internal void PlayAudioMethod(AudioSource[] audioSources)
+    {
+        Debug.Log("play audio method ");
+
+        StartCoroutine(PlayAudio(audioSources));
+    }
 
     private void Awake()
     {
@@ -64,13 +71,13 @@ public class GameStateManager : MonoBehaviour
     {
         for (int i = 0; i < audioSources.Length; i++)
         {
-            if (audioSources[i].isPlaying)
-            {
-                audioSources[i].Stop();
-            }
-
             if (audioSources[i] != null)
             {
+                if (audioSources[i].isPlaying)
+                {
+                    audioSources[i].Stop();
+                }
+
                 audioSources[i].Play();
                 yield return new WaitUntil(() => !audioSources[i].isPlaying); // wait untill musi pøijmout func jako parametr. proto vytvaøím anonym metodu
             }
