@@ -61,5 +61,6 @@ public enum GoalType
 {
     Reach,
     Gather,
-    Kill
+    Kill,
+    Talk
 }

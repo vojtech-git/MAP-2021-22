@@ -4,8 +4,7 @@ using UnityEngine;
 
 public abstract class QuestEvent : MonoBehaviour
 {
-    public string forWhatQuest;
-    public AtWhatStage atWhatStage;
+    public List<QuestEventInfo> info;
 
     protected virtual void Start()
     {

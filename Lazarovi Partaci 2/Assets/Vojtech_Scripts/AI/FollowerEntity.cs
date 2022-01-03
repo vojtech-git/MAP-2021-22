@@ -139,8 +139,6 @@ public class FollowerEntity : Entity
 
     IEnumerator ChaseTargetForSeconds(float outOfRangeChaseTime)
     {
-        Debug.Log("Start of chase target corutine");
-
         chasingTargetOutOfRange = true;
         yield return new WaitForSeconds(outOfRangeChaseTime);
         currentTarget = null;

@@ -608,7 +608,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4317715398396028932, guid: 3f4aceb558a10dd42afd08b942461f96, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4317715398396028932, guid: 3f4aceb558a10dd42afd08b942461f96, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1797,14 +1797,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   qGiverQuests:
   - title: "Seber p\xE1r v\u011Bc\xED"
-    isMainStoryLine: 0
+    details: adsadadasdsdasd
+    isSideQuest: 0
+    unlocksWhen: 0
     questStyle: 1
-    questGoals: []
+    questGoals:
+    - goalDescription: seber nizkou kratkou
+      goalValue: 2
+      goalType: 1
+      itemID: 0
+    - goalDescription: seber vysokou kratkou
+      goalValue: 2
+      goalType: 1
+      itemID: 1
+    - goalDescription: seber nizkou dlouhou
+      goalValue: 2
+      goalType: 1
+      itemID: 2
     completed: 0
   - title: "Zabij dva \u010Derven\xE9"
-    isMainStoryLine: 0
+    details: asssssssssdadadadadsda
+    isSideQuest: 0
+    unlocksWhen: 0
     questStyle: 1
-    questGoals: []
+    questGoals:
+    - goalDescription: zabij 2 red dud
+      goalValue: 2
+      goalType: 2
+      itemID: 0
     completed: 0
 --- !u!65 &1308973056
 BoxCollider:
@@ -1927,6 +1947,111 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+--- !u!1001 &1424604706
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3833563456077540452, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1614979951}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540472, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563456077540479, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_Name
+      value: QuestCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153206132251150067, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -28.400002
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7a1c7e2b1814f064baaba706229c0635, type: 3}
 --- !u!1 &1458935027
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,6 +2292,7 @@ GameObject:
   - component: {fileID: 1533823283}
   - component: {fileID: 1533823282}
   - component: {fileID: 1533823281}
+  - component: {fileID: 1533823285}
   m_Layer: 0
   m_Name: QuestGiver
   m_TagString: quest giver
@@ -2205,9 +2331,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   qGiverQuests:
   - title: "Najdi fialov\xE9 kostky"
-    isMainStoryLine: 0
+    details: They live in the walls. They live in the walls. They live in the walls.
+      They live in the walls. They live in the walls. They live in the walls.
+    isSideQuest: 0
+    unlocksWhen: 1
     questStyle: 0
-    questGoals: []
+    questGoals:
+    - goalDescription: najdi kostku vlevo
+      goalValue: 1
+      goalType: 0
+      itemID: 0
+    - goalDescription: najdi kostku uprostred
+      goalValue: 1
+      goalType: 0
+      itemID: 1
+    - goalDescription: najdi kostku vpravo
+      goalValue: 1
+      goalType: 0
+      itemID: 2
     completed: 0
 --- !u!65 &1533823282
 BoxCollider:
@@ -2271,6 +2412,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533823279}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1533823285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533823279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 268fd4c5cf0de7745bfdaacb4bd7938a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventInfo: []
 --- !u!1001 &1537847901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2470,6 +2624,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!20 &1614979951 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2148236044846018494, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
+  m_PrefabInstance: {fileID: 1879498667}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1735829685
 GameObject:
   m_ObjectHideFlags: 0
@@ -2866,7 +3025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2148236045496359559, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2148236045515563119, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2895,6 +3054,26 @@ PrefabInstance:
     - target: {fileID: 2148236046072719610, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148236046176244405, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
+      propertyPath: startGameQuest.title
+      value: First Quest
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148236046176244405, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
+      propertyPath: startGameQuest.isMainStoryLine
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148236046176244405, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
+      propertyPath: startGameQuest.questGoals.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148236046176244405, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
+      propertyPath: startGameQuest.questGoals.Array.data[0].goalValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148236046176244405, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
+      propertyPath: startGameQuest.questGoals.Array.data[0].goalDescription
+      value: NIGAA SODA
       objectReference: {fileID: 0}
     - target: {fileID: 2148236046422637242, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3314,7 +3493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4801116328595228384, guid: 8039c6b3d03ea7745a9f82c82df8a544, type: 3}
       propertyPath: targetSceneIndex
-      value: 9
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4801116328595228386, guid: 8039c6b3d03ea7745a9f82c82df8a544, type: 3}
       propertyPath: m_Name
@@ -3322,11 +3501,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4801116328595228386, guid: 8039c6b3d03ea7745a9f82c82df8a544, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4801116328595228387, guid: 8039c6b3d03ea7745a9f82c82df8a544, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4801116328595228387, guid: 8039c6b3d03ea7745a9f82c82df8a544, type: 3}
       propertyPath: m_LocalPosition.x

@@ -29,11 +29,17 @@ public class LevelLoader : MonoBehaviour
 
         if (levelIndex == 10)
         {
-            GameStateManager.Instance.FPS?.SetActive(false);
+            if (GameStateManager.Instance.FPS != null)
+            {
+                GameStateManager.Instance.FPS.SetActive(false);
+            }
         }
         else
         {
-            GameStateManager.Instance.FPS?.SetActive(true);
+            if (GameStateManager.Instance.FPS != null)
+            {
+                GameStateManager.Instance.FPS.SetActive(true);
+            }
         }
 
         SceneManager.LoadScene(levelIndex);

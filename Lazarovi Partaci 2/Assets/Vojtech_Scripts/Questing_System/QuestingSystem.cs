@@ -5,10 +5,15 @@ using UnityEngine.UI;
 
 public static class QuestingSystem
 {
+    public static int progressNumber = 0;
+
     public static Dictionary<string, Quest> activeQuests = new Dictionary<string, Quest>();
     public static Dictionary<string, Quest> completedQuests = new Dictionary<string, Quest>();
 
     public static bool questMenuOpen = false;
+
+    public static bool isStartOfGame = true;
+
     internal static Action<string> onQuestAccept;
     internal static Action<string> onQuestComplete;
     internal static Action<string> onGoalComplete;
@@ -66,77 +71,53 @@ public static class QuestingSystem
     public static void OpenQuestMenu(List<Quest> questsToDisplay)
     {
         questMenuOpen = true;
+        GameStateManager.Instance.questSelectionMenu.SetActive(true);
+
+        // nejak lepe vyresit celkove vypnout ovladani playera
+        GameStateManager.Instance.FPS.GetComponentInChildren<Mouse>().enabled = false;
+        Cursor.lockState = CursorLockMode.None; 
+        Cursor.visible = true;
 
         if (questsToDisplay.Count == 0)
         {
-            GameStateManager.Instance.ShowMessageFor5Sec("Žádné questy na pøijetí", 1);
+            GameStateManager.Instance.NoQuestAvailable.enabled = true;
+            GameStateManager.Instance.QuestAcceptButton.SetActive(false);
+            return;
         }
 
-        GameStateManager.Instance.FPS.GetComponentInChildren<Mouse>().enabled = false;
+        GameStateManager.Instance.NoQuestAvailable.enabled = false;
+        GameStateManager.Instance.QuestAcceptButton.SetActive(true);
 
-        GameStateManager.Instance.questSelectionMenu.SetActive(true); //zapne questing okno
 
-        GameObject questTab = GameStateManager.Instance.questTabButtonPrefab; // cashne vìci z ui manageru
-        HorizontalLayoutGroup questLayout = GameStateManager.Instance.questLayout;
-        TabGroup questTabGroup = questLayout.GetComponent<TabGroup>();
+        // cashne vìci z ui manageru
+        GameObject tabButtonPrefab = GameStateManager.Instance.questTabButtonPrefab;
+        HorizontalLayoutGroup tabButtonsLayoutGroup = GameStateManager.Instance.questLayout;
+        TabGroup menuTabGroup = tabButtonsLayoutGroup.GetComponent<TabGroup>();
 
-        GameObject layoutDescription = GameStateManager.Instance.descriptionsLayoutPrefab;
-        GameObject questTitlePrefab = GameStateManager.Instance.questTitlePrefab;
-        GameObject gDescriptionPrefab = GameStateManager.Instance.goalDescriptionPrefab;
-        Transform qDescriptionTransfrom = GameStateManager.Instance.qDescriptionLayout.transform;
-
-        GameObject layoutInProgress; // místo na uložení celkovýho quest popis layout do kteryho dávám quest title a goal description
-
-        int index = 0; // index pro foreach
-        foreach (Quest quest in questsToDisplay) // pøes interact raycast zavolam metodu která pošle pole questù z questgivera se kterým interaguju
+        // pøes interact raycast zavolam metodu která pošle pole questù z questgivera se kterým interaguju
+        foreach (Quest quest in questsToDisplay)
         {
-            if (!activeQuests.ContainsKey(quest.title) && !completedQuests.ContainsKey(quest.title))
-            {
-                GameObject createdButtonGO = GameObject.Instantiate(questTab, questLayout.gameObject.transform); //instantiate button na vybirani questu
-
-                createdButtonGO.GetComponent<Text>().text = quest.title;
-
-                UiTabButton createdButton = createdButtonGO.GetComponent<UiTabButton>();
-                createdButton.quest = quest; // do toho buttonu hodi quest se kterým pracuje
-
-                layoutInProgress = GameObject.Instantiate(layoutDescription, qDescriptionTransfrom); //celkovej layout quest popisu
-                questTabGroup.objectsToSwap.Add(layoutInProgress); // pøidam ho do objektù pro vypnutí/zapnutí na stejnej index jako je øadový èíslo jeho buttonu
-
-                GameObject.Instantiate(questTitlePrefab, layoutInProgress.transform).GetComponent<Text>().text = quest.title; // jeden quest title prefab instanciate
-                foreach (Goal questGoal in quest.questGoals)
-                {
-                    GameObject.Instantiate(gDescriptionPrefab, layoutInProgress.transform).GetComponent<Text>().text = questGoal.goalDescription; // pro kazdej qGoal instance jeho popisu
-                }
-                GameObject.Instantiate(GameStateManager.Instance.acceptButtonPrefab, layoutInProgress.transform).GetComponent<AcceptQuestButton>().relatedQuest = quest; // udelam pro kazdej quest 1 accButon a pridam do nej ten quest
-
-                layoutInProgress.SetActive(false);
-
-                //if (index != 0)
-                //{
-                //    layoutInProgress.SetActive(false); // vypnout celkovej qLayout aby nebyl zadnej zaplej a zapnul se jenom kdyz zmacku button (mohl bych zapnout první) takhle
-                //}
-
-                index++; 
-            }
+            // instanciatnu pro kazdej quest jeho button a dám ho do Quest_Layoutu
+            GameObject tabButton = GameObject.Instantiate(tabButtonPrefab, tabButtonsLayoutGroup.gameObject.transform);
+            tabButton.GetComponent<UiTabButton>().quest = quest;
         }
+
+        menuTabGroup.OnTabSelected(menuTabGroup.tabButtons[0]);
     }
 
     public static void CloseQuestMenu()
     {
         questMenuOpen = false;
-
-        GameStateManager.Instance.FPS.GetComponentInChildren<Mouse>().enabled = true;
-
-        GameStateManager.Instance.questLayout.GetComponent<TabGroup>().UnsbscribeAll();
-        GameStateManager.Instance.questLayout.GetComponent<TabGroup>().objectsToSwap.Clear();
         GameStateManager.Instance.questSelectionMenu.SetActive(false);
+        GameStateManager.Instance.questLayout.GetComponent<TabGroup>().UnsbscribeAll();
         foreach (Transform child in GameStateManager.Instance.questLayout.transform)
         {
             GameObject.Destroy(child.gameObject);
         }
-        foreach (Transform child in GameStateManager.Instance.qDescriptionLayout.transform)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
+
+        // nejak lepe vyresit celkove vypnout ovladani playera
+        GameStateManager.Instance.FPS.GetComponentInChildren<Mouse>().enabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

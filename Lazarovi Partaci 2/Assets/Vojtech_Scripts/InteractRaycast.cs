@@ -34,7 +34,7 @@ public class InteractRaycast : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.E) && !QuestingSystem.questMenuOpen)
                 {
-                    QuestingSystem.OpenQuestMenu(hit.transform.GetComponent<QuestGiver>().qGiverQuests);
+                    QuestingSystem.OpenQuestMenu(hit.transform.GetComponent<QuestGiver>().GetAvailableQuests());
                     acceptQuestText.SetActive(false);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
@@ -43,7 +43,6 @@ public class InteractRaycast : MonoBehaviour
                 {
                     Cursor.lockState = CursorLockMode.Locked;
                     QuestingSystem.CloseQuestMenu();
-                    Cursor.visible = false;
                 }
 
                 #region zastarala logika

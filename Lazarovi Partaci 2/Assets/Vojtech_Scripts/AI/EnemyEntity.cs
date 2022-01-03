@@ -12,8 +12,6 @@ public class EnemyEntity : Entity
     {
         int random = Random.Range(0, 2);
 
-        Debug.Log(random);
-
         if (random == 0)
         {
             Instantiate(HealthKitPrefab, transform.position, Quaternion.identity);

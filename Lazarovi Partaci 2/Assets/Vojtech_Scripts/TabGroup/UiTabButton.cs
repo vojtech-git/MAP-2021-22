@@ -29,12 +29,20 @@ public class UiTabButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         tabGroup.OnTabExit(this);
     }
 
-    private void Start()
+    // presunul jsem logiku ze startu do awake protoze OpenQuestMenu jinak dela problemy protoze QuestMenu.tabButtons se nestihne naplnit predtim nez chci zvolit prvni button jako active
+    private void Awake()
     {
         tabGroup = this.GetComponentInParent<TabGroup>();
         tabGroup.Subscribe(this);
         uiText = GetComponent<Text>();
     }
+
+    //private void Start()
+    //{
+    //    tabGroup = this.GetComponentInParent<TabGroup>();
+    //    tabGroup.Subscribe(this);
+    //    uiText = GetComponent<Text>();
+    //}
 
     //public void Select()
     //{

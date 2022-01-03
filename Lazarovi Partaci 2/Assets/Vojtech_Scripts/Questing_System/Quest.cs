@@ -8,7 +8,9 @@ using UnityEngine.UI;
 public class Quest
 {
     public string title;
-    public bool isMainStoryLine;
+    public string details;
+    public bool isSideQuest;
+    public int unlocksWhen;
     public QuestStyle questStyle;
     public List<Goal> questGoals;
     List<Goal> completedGoals = new List<Goal>();
@@ -52,7 +54,6 @@ public class Quest
 
                 if (questGoals[0].IsComplete()) // pokud je po pøidani pointu completed  
                 {
-                    questGoals[0].Complete(); // spust jeho complete()
                     goalsToComplete.Add(questGoals[0]); // pøidej ho do goals to complete
 
                     if (questGoals.Count > 1) // pokud existuje dalsi questGoal
@@ -72,7 +73,6 @@ public class Quest
 
                     if (goal.IsComplete())
                     {
-                        goal.Complete();
                         goalsToComplete.Add(goal);
                     }
                 }
@@ -89,6 +89,8 @@ public class Quest
         GameObject.Destroy(descriptionsLayoutGroup);
         completed = true;
         QuestingSystem.OnQuestComplete(title);
+        if (!isSideQuest)
+            QuestingSystem.progressNumber++;
     }
 
     public bool IsComplete()

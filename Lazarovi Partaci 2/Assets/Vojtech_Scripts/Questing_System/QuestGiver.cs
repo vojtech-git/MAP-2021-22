@@ -4,5 +4,21 @@ using UnityEngine;
 
 public class QuestGiver : MonoBehaviour
 {
-    public List<Quest> qGiverQuests;
+    [SerializeField]
+    private List<Quest> qGiverQuests;
+
+    public List<Quest> GetAvailableQuests()
+    {
+        List<Quest> tempQuests = new List<Quest>();
+
+        foreach (Quest quest in qGiverQuests)
+        {
+            if (quest.unlocksWhen <= QuestingSystem.progressNumber)
+            {
+                tempQuests.Add(quest);
+            }
+        }
+
+        return tempQuests;
+    }
 }

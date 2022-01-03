@@ -71,7 +71,7 @@ public class GunScript : MonoBehaviour
         //RayCast
         if (Physics.Raycast(PlayerCam.transform.position, direction, out rayHit, range, whatIsEnemy))
         {
-            Debug.Log(rayHit.collider.name);
+            //Debug.Log(rayHit.collider.name);
 
             if (rayHit.collider.CompareTag("Enemy"))
             {

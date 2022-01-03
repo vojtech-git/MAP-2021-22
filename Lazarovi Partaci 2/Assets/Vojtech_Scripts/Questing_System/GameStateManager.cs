@@ -3,39 +3,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
+    [Header("Start Of Game Quest")]
+    public Quest startGameQuest;
+
     [Header("Player")]
     public GameObject FPS;
 
-    [Header("Other")]
+    [Header("In Scene Quest UI")]
+    public VerticalLayoutGroup questVerticalLayout;
     public GameObject questTitlePrefab;
     public GameObject goalDescriptionPrefab;
     public GameObject descriptionsLayoutPrefab;
-    public GameObject questTabButtonPrefab;
-    public GameObject acceptButtonPrefab;
-    public GameObject questSelectionMenu;
-    public VerticalLayoutGroup questVerticalLayout;
-    public HorizontalLayoutGroup questLayout;
-    public VerticalLayoutGroup qDescriptionLayout;
+
     public Text popupText;
     public Text secondaryPopupText;
     public Text acceptQuestText;
+    [Header("Quest Menu UI")]
+    public GameObject questSelectionMenu;
+    public HorizontalLayoutGroup questLayout;
+    public GameObject questTabButtonPrefab;
+    public Text NoQuestAvailable;
+    public GameObject QuestAcceptButton;
 
     private static GameStateManager _instance;
 
     public static GameStateManager Instance { get { return _instance; } }
 
-    internal void PlayAudioMethod(AudioSource[] audioSources)
-    {
-        Debug.Log("play audio method ");
-
-        StartCoroutine(PlayAudio(audioSources));
-    }
 
     private void Awake()
     {
+
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -43,7 +44,30 @@ public class GameStateManager : MonoBehaviour
         else
         {
             _instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
+    }
+
+    private void Start()
+    {
+        if (QuestingSystem.isStartOfGame && SceneManager.GetActiveScene().name != "splash screen" && SceneManager.GetActiveScene().name != "MainMenu" && SceneManager.GetActiveScene().name != "Main Menu")
+        {
+            QuestingSystem.AcceptQuest(startGameQuest);
+
+            QuestingSystem.isStartOfGame = false;
+        }
+        FPS = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        FPS = GameObject.FindGameObjectWithTag("Player");
+        Debug.Log(FPS);
+    }
+
+    public void PlayAudioMethod(AudioSource[] audioSources, int speakerID = -1)
+    {
+        StartCoroutine(PlayAudio(audioSources, speakerID));
     }
 
     public void ShowMessageFor5Sec(string message, int priority)
@@ -67,7 +91,7 @@ public class GameStateManager : MonoBehaviour
         popUpText.text = "";
     }
 
-    public IEnumerator PlayAudio(AudioSource[] audioSources)
+    public IEnumerator PlayAudio(AudioSource[] audioSources, int speakerID)
     {
         for (int i = 0; i < audioSources.Length; i++)
         {
@@ -82,6 +106,8 @@ public class GameStateManager : MonoBehaviour
                 yield return new WaitUntil(() => !audioSources[i].isPlaying); // wait untill musi pøijmout func jako parametr. proto vytvaøím anonym metodu
             }
         }
+
+        QuestingSystem.ProgressQuests(GoalType.Talk, speakerID);
     }
 }
 
