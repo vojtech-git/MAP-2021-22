@@ -99,4 +99,8 @@ public class WarpSelect : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+    private void OnTriggerExit(Collider other)
+    {
+        marker.SetActive(false);
+    }
 }
