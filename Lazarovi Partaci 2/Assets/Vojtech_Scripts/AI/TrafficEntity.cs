@@ -6,15 +6,5 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class TrafficEntity : MonoBehaviour
 {
-    NavMeshAgent agent;
 
-    void Start()
-    {
-        agent = GetComponent<NavMeshAgent>();
-    }
-
-    void Update()
-    {
-        
-    }
 }

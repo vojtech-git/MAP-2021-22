@@ -26,7 +26,6 @@ public class FollowerEntity : Entity
     bool readyToAttack = true;
     bool chasingTargetOutOfRange = false;
 
-    List<Transform> visibleTargets = new List<Transform>();
     public Transform currentTarget = null;
 
     Coroutine chaseTargetForSecondVariable;
@@ -76,24 +75,21 @@ public class FollowerEntity : Entity
 
     void FindTarget()
     {
-        visibleTargets.Clear();
-
         Collider[] targetsInSightDistance = Physics.OverlapSphere(transform.position, sightDistance, targetMask);
 
-        for (int i = 0; i < targetsInSightDistance.Length; i++)
+        for (int i = 0; i < targetsInSightDistance.Length; i++) // pro kazdej target v sight rangi
         {
-            Transform target = targetsInSightDistance[i].transform;
-            Vector3 dirToTarget = (target.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, dirToTarget) < sightAngle / 2)
+            Transform target = targetsInSightDistance[i].transform; // cashe si target
+            Vector3 dirToTarget = (target.position - transform.position).normalized; // uloz si vekor smeru k targetu
+            if (Vector3.Angle(transform.forward, dirToTarget) < sightAngle / 2) // jestli ze je v zornym poli
             {
-                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+                float distanceToTarget = Vector3.Distance(transform.position, target.position); // uloz vzdalenost od targetu
 
-                if (!Physics.Raycast(transform.position, dirToTarget, distanceToTarget, obstacleMask))
+                if (!Physics.Raycast(transform.position, dirToTarget, distanceToTarget, obstacleMask)) // kontroluje jestli cestou k targetu hitnul obstacle
                 {
                     if (currentTarget == null || Vector3.Distance(target.position, transform.position) < Vector3.Distance(currentTarget.position, transform.position))
                     {
                         currentTarget = target;
-                        visibleTargets.Add(target);
                     }
                 }
             }
@@ -139,8 +135,6 @@ public class FollowerEntity : Entity
 
     IEnumerator ChaseTargetForSeconds(float outOfRangeChaseTime)
     {
-        Debug.Log("Start of chase target corutine");
-
         chasingTargetOutOfRange = true;
         yield return new WaitForSeconds(outOfRangeChaseTime);
         currentTarget = null;
