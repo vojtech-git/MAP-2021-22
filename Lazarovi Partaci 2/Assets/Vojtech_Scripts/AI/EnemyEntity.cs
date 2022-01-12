@@ -5,21 +5,13 @@ using UnityEngine;
 public class EnemyEntity : Entity
 {
     public int enemyEntityId;
-    public GameObject HealthKitPrefab;
-    public GameObject[] MoneyPrefabs;
+    public GameObject[] ItemsToDropPrefabs;
  
     public void DropLoot()
     {
-        int random = Random.Range(0, 2);
-
-        if (random == 0)
-        {
-            Instantiate(HealthKitPrefab, transform.position, Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(MoneyPrefabs[Random.Range(0, MoneyPrefabs.Length)], transform.position, Quaternion.identity);
-        }
+        int random = Random.Range(0, ItemsToDropPrefabs.Length - 1);
+        Debug.Log(random);
+        Instantiate(ItemsToDropPrefabs[random], transform.position, Quaternion.identity);
     }
 
     public override void Die()

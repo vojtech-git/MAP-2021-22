@@ -5,32 +5,31 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
-public class TutorialAI : Entity
+public class EnemyShooterEntity : EnemyEntity
 {
     [Header("Stats Modification")]
-    public float damage;
-    public int attackDelayInSeconds;
+    public float damage = 10;
+    public int attackDelayInSeconds = 1;
 
     [Header("View Modifications")]
-    public float attackDistance;
-    public float sightDistance;
-    public float looseSightInstantlyDistance;
+    public float attackDistance = 3;
+    public float sightDistance = 20;
+    public float looseSightInstantlyDistance = 50;
     [Range(0, 360)]
-    public float sightAngle;
+    public float sightAngle = 100;
     public LayerMask targetMask;
     public LayerMask obstacleMask;
-    public float outOfRangeTimeToChase;
+    public float outOfRangeTimeToChase = 5;
 
     NavMeshAgent agent;
     Transform player;
     Animator anim;
 
     State currentState;
-
     private bool readyToAttack = true;
-    public bool ReadyToAttack 
-    { 
-        get { return readyToAttack; } 
+    public bool ReadyToAttack
+    {
+        get { return readyToAttack; }
         set
         {
             if (value == false)
@@ -45,18 +44,23 @@ public class TutorialAI : Entity
         }
     }
 
-    private void Start()
+    void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        currentState = new Idle(gameObject, agent, anim, player);
+        anim = GetComponent<Animator>(); 
+        currentState = new Idle(this.gameObject, agent, anim, player);
     }
 
-    private void Update()
+    void Update()
     {
         currentState = currentState.Process();
+    }
 
+    public override void Die()
+    {
+
+        base.Die();
     }
 
     IEnumerator ResetAttackAfterDelay(float delayBetweenAttacks)
