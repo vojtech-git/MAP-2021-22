@@ -49,6 +49,8 @@ public class PlaneHealth : MonoBehaviour
         if(health <=30 && DefeatScreen.jsiDead==false && health>0){
             StartBlink();
         }
+
+        updateHealth();
     }
 
 

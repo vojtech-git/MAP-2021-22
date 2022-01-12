@@ -20,6 +20,7 @@ public class mouseShooting : MonoBehaviour
      bool  readyToShoot, reloading;
      bool shooting;
     
+    public LayerMask PlayerLayerMask;
     private void Awake(){
          readyToShoot=true;
     }
@@ -55,12 +56,13 @@ public class mouseShooting : MonoBehaviour
             Physics.IgnoreLayerCollision(8,8, true);
             RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hit)){
-              
+        if(Physics.Raycast(ray, out hit, 250, PlayerLayerMask)){
+          
+          
               targetPoint = hit.point;
              // Debug.Log( "tvuj shootifrce" +shootForce);
-             Debug.Log("RAYCAST BYL TREFEN");
-        
+             Debug.Log("RAYCAST BYL TREFEN" + hit.transform.tag);
+            
              }
              else{
                   targetPoint = ray.GetPoint(250); //URCUJE VZDALENOST KDE SE NABOJE ROZUTIKAJI DO STRAN
