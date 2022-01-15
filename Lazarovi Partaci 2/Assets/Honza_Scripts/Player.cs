@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     [Header("Movement")]
     public float currentSpeed = 1f;
@@ -25,8 +25,6 @@ public class Player : MonoBehaviour
     [Header("Health")]
     public Slider healthBar;
     public Volume healthVolume;
-    public int maxHealth = 100;
-    public int currentHealth;
     public bool healthRegenerate = false;
     public WaitForSeconds healthTick = new WaitForSeconds(0.1f);
     private Coroutine healthWait;
@@ -59,9 +57,9 @@ public class Player : MonoBehaviour
         moneyText_Back.text = moneyText.text;
 
         //Health
-        currentHealth = maxHealth;
-        healthBar.maxValue = maxHealth;
-        healthBar.value = maxHealth;
+        Health = MaxHealth;
+        healthBar.maxValue = MaxHealth;
+        healthBar.value = MaxHealth;
 
         //Stamina
         currentStamina = maxStamina;
@@ -71,23 +69,20 @@ public class Player : MonoBehaviour
         staminaBar_Left.value = maxStamina;
 
 
-}
+    }
+
     void Update()
     {
         //PlaceHolders
         #region Placeholders
         if(Input.GetKeyDown(KeyCode.B))
         {
-            UseHealth(-10);
+            TakeDamage(10);
         }
         if(Input.GetKeyDown(KeyCode.N))
         {
-            UseHealth(10);
+            AddHealth(10);
         }
-        #endregion
-
-        #region Health
-        healthBar.value = currentHealth;
         #endregion
 
         #region Movement
@@ -222,56 +217,33 @@ public class Player : MonoBehaviour
         staminaWait = null;
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void UseHealth(int amount)
+    public override void TakeDamage(float howMuch)
     {
-        
-        // + odečítá
-        if(amount > 0)
-        {
-            if(currentHealth - amount >= 0)
-            {
-                currentHealth -= amount;
-                healthBar.value = currentHealth;
-            }
-        }
-        //- přičítá
-        if(amount < 0)
-        {
-            if(currentHealth - amount < maxHealth)
-            {
-                currentHealth -= amount;
-                healthBar.value = currentHealth;
-            }
-            else if(currentHealth - amount >= maxHealth)
-            {
-                currentHealth = maxHealth;
-                healthBar.value = maxHealth;
-            }
-            else
-            {
-
-            }
-        }
-        if(healthWait != null)
-        {
-            StopCoroutine(healthWait);
-        }
-        if(healthRegenerate == true)
+        if (healthWait == null)
         {
             healthWait = StartCoroutine(RegenHealth());
         }
 
+        healthBar.value = Health;
+
+        base.TakeDamage(howMuch);
     }
+    public override void AddHealth(float howMuch)
+    {
+        healthBar.value = Health;
+        base.AddHealth(howMuch);
+    }
+
     private IEnumerator RegenHealth()
     {
-        yield return new WaitForSeconds(3);
-
-        while(currentHealth < maxHealth)
+        while(Health < MaxHealth)
         {
-            currentHealth += maxHealth / 100;
-            healthBar.value = currentHealth;
+            yield return new WaitForSeconds(3); 
+
+            AddHealth(MaxHealth / 100);
             yield return healthTick;
         }
+
         healthWait = null;
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

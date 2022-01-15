@@ -12,13 +12,13 @@ public class HealthGain : MonoBehaviour
         Player a = hrac.GetComponent<Player>();
         if (other.gameObject.tag == "Player")
         {
-            if(a.currentHealth == a.maxHealth)
+            if(a.Health == a.MaxHealth)
             {
 
             }
-            if(a.currentHealth < a.maxHealth)
+            if(a.Health < a.MaxHealth)
             {
-            a.UseHealth(-gainHealth);
+            a.AddHealth(-gainHealth);
             DestroyObject();
             }
         }

@@ -6,19 +6,19 @@ using UnityEngine.AI;
 public class State
 {
     public StateType type;
-    protected StateStage stage;
+
     protected GameObject npc;
     protected NavMeshAgent agent;
     protected Animator anim;
-    protected Transform player;
+
+    protected StateStage stage;
     protected State nextState;
 
-    public State(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player)
+    public State( GameObject _npc, NavMeshAgent _agent, Animator _anim)
     {
         npc = _npc;
         agent = _agent;
         anim = _anim;
-        player = _player;
 
         stage = StateStage.ENTER;
     }
