@@ -247,4 +247,9 @@ public class Player : Entity
         healthWait = null;
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public override void Die()
+    {
+        Debug.Log("player umřel");
+    }
 }
