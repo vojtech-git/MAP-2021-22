@@ -26,30 +26,13 @@ public class WorkbenchCam : MonoBehaviour
 
     public Vector3 specialPos;
     public Quaternion specialRot;
-    public void Default()
+
+    Quaternion currentRot;
+    Vector3 currentPos;
+    private void Awake()
     {
-        workbenchCam.transform.position = Vector3.Lerp(workbenchCam.transform.position, defaultPos, lerpTime);
-        workbenchCam.transform.rotation = Quaternion.Lerp(workbenchCam.transform.rotation, defaultRot, lerpTime);
-    }
-    public void Mags()
-    {
-        workbenchCam.transform.position = Vector3.Lerp(workbenchCam.transform.position, magsPos, lerpTime);
-        workbenchCam.transform.rotation = Quaternion.Lerp(workbenchCam.transform.rotation, magsRot, lerpTime);
-    }
-    public void Scopes()
-    {
-        workbenchCam.transform.position = Vector3.Lerp(workbenchCam.transform.position, scopesPos, lerpTime);
-        workbenchCam.transform.rotation = Quaternion.Lerp(workbenchCam.transform.rotation, scopesRot, lerpTime);
-    }
-    public void Muzzles()
-    {
-        workbenchCam.transform.position = Vector3.Lerp(workbenchCam.transform.position, muzzlesPos, lerpTime);
-        workbenchCam.transform.rotation = Quaternion.Lerp(workbenchCam.transform.rotation, muzzlesRot, lerpTime);
-    }
-    public void Special()
-    {
-        workbenchCam.transform.position = Vector3.Lerp(workbenchCam.transform.position, specialPos, lerpTime);
-        workbenchCam.transform.rotation = Quaternion.Lerp(workbenchCam.transform.rotation, specialRot, lerpTime);
+        currentPos = defaultPos;
+        currentRot = defaultRot;
     }
 
     private void OnTriggerStay(Collider other)
@@ -75,6 +58,7 @@ public class WorkbenchCam : MonoBehaviour
     }
     void Update()
     {
+        ChangeCamera(currentPos,currentRot);
         if (Input.GetButtonDown("Cancel"))
         {
             ExitThisMenu();
@@ -90,5 +74,39 @@ public class WorkbenchCam : MonoBehaviour
         player.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+    //Cam pozice
+    void ChangeCamera(Vector3 targetPos, Quaternion targetRot)
+    {
+        if (workbenchCam.transform.position != targetPos)
+        {
+            workbenchCam.transform.position = Vector3.Lerp(workbenchCam.transform.position, targetPos, lerpTime);
+            workbenchCam.transform.rotation = Quaternion.Lerp(workbenchCam.transform.rotation, targetRot, lerpTime);
+        }
+    }
+    public void Default()
+    {
+        currentPos = defaultPos;
+        currentRot = defaultRot;
+    }
+    public void Mags()
+    {
+        currentPos = magsPos;
+        currentRot = magsRot;
+    }
+    public void Scopes()
+    {
+        currentPos = scopesPos;
+        currentRot = scopesRot;
+    }
+    public void Muzzles()
+    {
+        currentPos = muzzlesPos;
+        currentRot = muzzlesRot;
+    }
+    public void Special()
+    {
+        currentPos = specialPos;
+        currentRot = specialRot;
     }
 }

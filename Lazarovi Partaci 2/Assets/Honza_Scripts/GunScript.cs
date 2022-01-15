@@ -15,6 +15,7 @@ public class GunScript : MonoBehaviour
     public float basicTimeBetweenShots;
     public int basicMagazineSize;
     public int basicBulletsPerTap;
+    public bool basicAllowButtonHold;
 
     [Header ("Upgraded Weapon Stats")]
     public int damage;
