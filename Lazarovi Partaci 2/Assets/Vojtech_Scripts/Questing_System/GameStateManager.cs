@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class GameStateManager : MonoBehaviour
 {
+    public Quest firstQuest;
+    bool startOfGame = true;
+
     [Header("Player")]
     public GameObject FPS;
 
@@ -43,6 +46,12 @@ public class GameStateManager : MonoBehaviour
         else
         {
             _instance = this;
+        }
+
+        if (startOfGame)
+        {
+            QuestingSystem.AcceptQuest(firstQuest);
+            startOfGame = false;
         }
     }
 

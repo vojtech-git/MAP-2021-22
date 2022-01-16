@@ -109,8 +109,6 @@ public class Quest
             completedGoals.Add(questGoal);
             questGoal.Complete();
         }
-
-        questGoalsToComplete.Clear();
     }
 
     void InstatiateQuestUI()

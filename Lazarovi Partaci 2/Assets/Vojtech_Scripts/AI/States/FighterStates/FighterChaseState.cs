@@ -41,7 +41,8 @@ public class FighterChaseState : State
 
             float distanceToTarget = Vector3.Distance(npc.transform.position, target.transform.position);
 
-            if (distanceToTarget < fighterEntity.sightDistance)
+            Vector3 dirToTarget = (target.transform.position - npc.transform.position).normalized;
+            if (distanceToTarget < fighterEntity.sightDistance && !Physics.Raycast(npc.transform.position, dirToTarget, distanceToTarget, fighterEntity.obstacleMask))
             {
                 if (fighterEntity.chasingTarget != null)
                 {

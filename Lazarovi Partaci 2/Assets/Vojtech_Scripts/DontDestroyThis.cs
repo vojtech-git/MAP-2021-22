@@ -13,17 +13,6 @@ public class DontDestroyThis : MonoBehaviour
 
     void Start()
     {
-        foreach (DontDestroyThis dontDestroyInstance in Object.FindObjectsOfType<DontDestroyThis>())
-        {
-            if (dontDestroyInstance != this)
-            {
-                if (dontDestroyInstance.objID == objID)
-                {
-                    Destroy(gameObject);
-                }
-            }
-        }
-
         DontDestroyOnLoad(gameObject);
     }
 }
