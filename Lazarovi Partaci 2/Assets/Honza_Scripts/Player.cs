@@ -27,6 +27,7 @@ public class Player : Entity
     public bool healthRegenerate = false;
     public WaitForSeconds healthTick = new WaitForSeconds(0.1f);
     private Coroutine healthWait;
+    public GameObject defeatScreen;
 
     [Header("Stamina")]
     public Slider staminaBar_Left;
@@ -248,6 +249,14 @@ public class Player : Entity
 
     public override void Die()
     {
+
         Debug.Log("player umřel");
+        Cursor.lockState = CursorLockMode.None; //defeat screen
+        DefeatScreen.jsiDead = true;
+        //Time.timeScale = 0f;
+        // Debug.Log(Time.timeScale);
+        defeatScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
