@@ -17,9 +17,7 @@ public class FighterIdleState : State
     {
         //Debug.Log(npc.gameObject.name + " enetered shooter idle state");
 
-        agent.isStopped = true;
-        anim.SetBool("isRunning", false);
-        anim.SetBool("isAttacking", false);
+        fighterEntity.ReturnEntityToPost();
 
         base.Enter();
     }
@@ -36,6 +34,12 @@ public class FighterIdleState : State
         GameObject target = LookForClosestTarget();
         if (target != null)
         {
+            if (fighterEntity.runningToPost != null)
+            {
+                fighterEntity.StopCoroutine(fighterEntity.runningToPost);
+                fighterEntity.runningToPost = null;
+            }
+
             nextState = new FighterChaseState(npc, agent, anim, target, fighterEntity);
             stage = StateStage.EXIT;
         }

@@ -41,8 +41,6 @@ public class FighterChaseState : State
 
             float distanceToTarget = Vector3.Distance(npc.transform.position, target.transform.position);
 
-            // i v chase by mohl házet granát
-
             if (distanceToTarget < fighterEntity.sightDistance)
             {
                 if (fighterEntity.chasingTarget != null)
@@ -50,6 +48,11 @@ public class FighterChaseState : State
                     fighterEntity.StopCoroutine(fighterEntity.chasingTarget);
                     fighterEntity.chasingTarget = null;
                 }
+            }
+
+            if (fighterEntity.ReadyToThrowGranade && Vector3.Angle((target.transform.position - npc.transform.position).normalized, npc.transform.forward) < (fighterEntity.sightAngle / 2))
+            {
+                fighterEntity.ThrowGranade(target.transform);
             }
 
             if (distanceToTarget < fighterEntity.attackDistance)

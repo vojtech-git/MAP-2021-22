@@ -7,7 +7,8 @@ using UnityEngine.AI;
 public class RocketEntity : Entity
 {
     [Header("Stats Modification")]
-    public float damage = 10;
+    public float rocketDamage = 10;
+    public float rocketSpeed = 0.05f;
     public int attackDelayInSeconds = 1;
 
     [Header("View Modifications")]
@@ -20,29 +21,29 @@ public class RocketEntity : Entity
 
     [Header("Other")]
     public int entityId;
-    public GameObject RocketPrefab;
-    public GameObject[] ItemsToDropPrefabs;
-    public GameObject post;
+    public GameObject rocketPrefab;
+    public GameObject rocketSpawnPoint;
+    public GameObject[] itemsToDropPrefabs;
 
     private NavMeshAgent agent; // mohl bych pøiøadit v inspektoru uvnitø prefaby (agenta, animator)
     private Animator anim;
     private State currentState;
-    private bool readyToAttack = true;
-    public bool ReadyToAttack
+    private bool readyToShootRocket = true;
+    public bool ReadyToShootRocket
     {
-        get { return readyToAttack; }
+        get { return readyToShootRocket; }
         set
         {
             if (value == false)
             {
-                if (readyToAttack == true)
+                if (readyToShootRocket == true)
                     StartCoroutine(DelayAttack(attackDelayInSeconds));
 
-                readyToAttack = false;
+                readyToShootRocket = false;
             }
             else
             {
-                readyToAttack = value;
+                readyToShootRocket = value;
             }
         }
     }
@@ -69,16 +70,26 @@ public class RocketEntity : Entity
         }
     }
 
+    public void ShootRocket(Transform target)
+    {
+        rocketSpawnPoint.transform.LookAt(target);
+        Rocket rocket = Instantiate(rocketPrefab, rocketSpawnPoint.transform.position, rocketSpawnPoint.transform.rotation).GetComponent<Rocket>();
+        rocket.rocketDamage = rocketDamage;
+        rocket.rocketSpeed = rocketSpeed;
+
+        ReadyToShootRocket = false;
+    }
+
     void DropLoot()
     {
-        int random = Random.Range(0, ItemsToDropPrefabs.Length - 1);
-        GameObject droppedLoot = Instantiate(ItemsToDropPrefabs[random], transform.position, transform.rotation);
+        int random = Random.Range(0, itemsToDropPrefabs.Length - 1);
+        GameObject droppedLoot = Instantiate(itemsToDropPrefabs[random], transform.position, transform.rotation);
         droppedLoot.transform.Rotate(-90, 0, 0);
     }
 
     IEnumerator DelayAttack(float delayBetweenAttacks)
     {
         yield return new WaitForSeconds(delayBetweenAttacks);
-        ReadyToAttack = true;
+        ReadyToShootRocket = true;
     }
 }

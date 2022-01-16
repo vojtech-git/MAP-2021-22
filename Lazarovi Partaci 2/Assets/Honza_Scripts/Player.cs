@@ -23,7 +23,6 @@ public class Player : Entity
     public LayerMask groundMask;
 
     [Header("Health")]
-    public Slider healthBar;
     public Volume healthVolume;
     public bool healthRegenerate = false;
     public WaitForSeconds healthTick = new WaitForSeconds(0.1f);
@@ -180,9 +179,6 @@ public class Player : Entity
             }
 
             staminaCostWait = StartCoroutine(UseSprintStamina());
-
-
-
         }
     }
     private IEnumerator UseSprintStamina()
@@ -223,23 +219,25 @@ public class Player : Entity
         {
             healthWait = StartCoroutine(RegenHealth());
         }
-
-        healthBar.value = Health;
+        else if (healthWait != null)
+        {
+            StopCoroutine(healthWait);
+            healthWait = StartCoroutine(RegenHealth());
+        }
 
         base.TakeDamage(howMuch);
     }
     public override void AddHealth(float howMuch)
     {
-        healthBar.value = Health;
         base.AddHealth(howMuch);
     }
 
     private IEnumerator RegenHealth()
     {
-        while(Health < MaxHealth)
-        {
-            yield return new WaitForSeconds(3); 
+        yield return new WaitForSeconds(3);
 
+        while (Health < MaxHealth)
+        {
             AddHealth(MaxHealth / 100);
             yield return healthTick;
         }

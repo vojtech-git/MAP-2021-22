@@ -22,6 +22,7 @@ public class FollowerChaseState : State
         //Debug.Log(npc.gameObject.name + " enetered follower chase state");
 
         agent.isStopped = false;
+        agent.stoppingDistance = 1;
 
         anim.SetBool("isRunning", true);
         anim.SetBool("isAttacking", false);
@@ -43,8 +44,6 @@ public class FollowerChaseState : State
 
             float distanceToTarget = Vector3.Distance(npc.transform.position, target.transform.position);
 
-            // i v chase by mohl házet granát
-
             if (distanceToTarget < followerEntity.sightDistance)
             {
                 if (followerEntity.chasingTarget != null)
@@ -52,6 +51,11 @@ public class FollowerChaseState : State
                     followerEntity.StopCoroutine(followerEntity.chasingTarget);
                     followerEntity.chasingTarget = null;
                 }
+            }
+
+            if (followerEntity.ReadyToThrowGranade && Vector3.Angle((target.transform.position - npc.transform.position).normalized, npc.transform.forward) < (followerEntity.sightAngle / 2))
+            {
+                followerEntity.ThrowGranade(target.transform);
             }
 
             if (distanceToTarget < followerEntity.attackDistance)

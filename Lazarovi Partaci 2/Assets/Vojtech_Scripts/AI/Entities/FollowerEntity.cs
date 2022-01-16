@@ -25,6 +25,8 @@ public class FollowerEntity : Entity
 
     [Header("Other")]
     public GameObject granadePrefab;
+    public GameObject granadeSpawnPos;
+    public float speedOfGranade = 15;
 
     private NavMeshAgent agent; // mohl bych pøiøadit v inspektoru uvnitø prefaby (agenta, animator)
     private Animator anim;
@@ -76,6 +78,7 @@ public class FollowerEntity : Entity
         anim = GetComponent<Animator>();
 
         currentState = new FollowerIdleState(gameObject, agent, anim, this, GameObject.FindGameObjectWithTag("Player").transform);
+        Health = MaxHealth;
     }
 
     void Update()
@@ -89,6 +92,53 @@ public class FollowerEntity : Entity
         {
             base.Die();
         }        
+    }
+
+    public void ThrowGranade(Transform target)
+    {
+        granadeSpawnPos.transform.LookAt(target);
+        float? angle = RotateGranadeSpawnPoint(target);
+
+        if (angle != null)
+        {
+            GameObject granade = Instantiate(granadePrefab, granadeSpawnPos.transform.position, granadeSpawnPos.transform.rotation);
+            granade.GetComponent<Rigidbody>().velocity = speedOfGranade * granade.transform.forward;
+
+            ReadyToThrowGranade = false;
+        }
+    }
+
+    float? RotateGranadeSpawnPoint(Transform target)
+    {
+        transform.LookAt(target);
+        float? angle = CalculateAngle(target);
+
+        if (angle != null)
+        {
+            granadeSpawnPos.transform.localEulerAngles = new Vector3(360f - (float)angle, 0, 0);
+        }
+
+        return angle;
+    }
+    float? CalculateAngle(Transform target)
+    {
+        Vector3 targetDir = target.transform.position - granadeSpawnPos.transform.position;
+        float y = targetDir.y;
+        targetDir.y = 0;
+        float x = targetDir.magnitude;
+        float gravity = 9.81f;
+        float speedSqr = speedOfGranade * speedOfGranade;
+        float underSquareRoot = (speedSqr * speedSqr) - gravity * (gravity * x * x + 2 * y + speedSqr);
+
+        if (underSquareRoot >= 0f)
+        {
+            float root = Mathf.Sqrt(underSquareRoot);
+            float angle = speedSqr - root;
+
+            return (Mathf.Atan2(angle, gravity * x) * Mathf.Rad2Deg);
+        }
+
+        return null;
     }
 
     public void ChaseTargetOutOfRange(StoppedChasingDelegate stoppedChasingAction)

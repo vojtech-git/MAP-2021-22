@@ -15,8 +15,7 @@ public class RocketIdleState : State
     public override void Enter()
     {
         anim.SetBool("isRunning", false);
-        ReturnToPost();
-        
+        anim.SetBool("isAttacking", false);
 
         base.Enter();
     }
@@ -29,6 +28,7 @@ public class RocketIdleState : State
         if (tempTarget != null)
         {
             nextState = new RocketAttackState(npc, agent, anim, tempTarget, rocketEntity);
+            stage = StateStage.EXIT;
         }
     }
 
@@ -71,12 +71,5 @@ public class RocketIdleState : State
             return currerntTarget.gameObject;
         else
             return null;
-    }
-
-    IEnumerator ReturnToPost()
-    {
-        agent.SetDestination(rocketEntity.post.transform.position);
-        yield return new WaitUntil(() => agent.remainingDistance < 1);
-        rocketEntity.transform.rotation = rocketEntity.post.transform.rotation;
     }
 }

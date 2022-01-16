@@ -60,9 +60,9 @@ public class FighterAttackState : State
                 }
             }
 
-            if (fighterEntity.ReadyToThrowGranade && fighterEntity.isAGranadeThrower)
+            if (fighterEntity.ReadyToThrowGranade && fighterEntity.isAGranadeThrower && Vector3.Angle((target.transform.position - npc.transform.position).normalized, npc.transform.forward) < (fighterEntity.sightAngle / 2))
             {
-                ThrowGranade();
+                fighterEntity.ThrowGranade(target.transform);
                 fighterEntity.ReadyToThrowGranade = false;
             }
         }
@@ -76,14 +76,5 @@ public class FighterAttackState : State
     public override void Exit()
     {
         base.Exit();
-    }
-
-    void ThrowGranade()
-    {
-        // vymyslet kde se bude granat spawnovat
-        GameObject granade = GameObject.Instantiate(fighterEntity.granadePrefab, npc.transform.position + new Vector3(0, 2, 0), npc.transform.rotation);
-        Rigidbody rb = granade.GetComponent<Rigidbody>();
-
-        rb.AddForce(npc.transform.forward * 500); // balistická køivka
     }
 }

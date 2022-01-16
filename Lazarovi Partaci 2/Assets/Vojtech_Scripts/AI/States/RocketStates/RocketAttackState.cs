@@ -16,7 +16,7 @@ public class RocketAttackState : State
 
     public override void Enter()
     {
-        // animace na attack
+        anim.SetBool("isAttacking", true);
 
         base.Enter();
     }
@@ -34,10 +34,9 @@ public class RocketAttackState : State
 
         npc.transform.LookAt(target.transform.position);
 
-        if (rocketEntity.ReadyToAttack)
+        if (rocketEntity.ReadyToShootRocket)
         {
-            // instanciatne raketu
-            rocketEntity.ReadyToAttack = false;
+            rocketEntity.ShootRocket(target.transform);
         }
     }
 

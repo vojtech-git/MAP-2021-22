@@ -15,11 +15,15 @@ public class Granade : Entity
     public GameObject explosionEffect;
     public AudioSource exploadingSound;
 
+    [Header("Other")]
+    public Rigidbody rb;
+
     Coroutine granadeTimer;
+
 
     void Start()
     {
-        granadeTimer = StartCoroutine(GranadeTimer(granadeLifeTime));
+        granadeTimer = StartCoroutine(GranadeTimer());
     }
 
     public override void Die()
@@ -29,6 +33,7 @@ public class Granade : Entity
             //Debug.Log("granade exploading");
 
             isDead = true;
+            StopCoroutine(granadeTimer);
             AudioSource.PlayClipAtPoint(exploadingSound.clip, transform.position);
             Instantiate(explosionEffect, transform.position, transform.rotation);
             foreach (Collider target in Physics.OverlapSphere(transform.position, granadeExplosionRadius))
@@ -45,9 +50,9 @@ public class Granade : Entity
         }
     }
 
-    IEnumerator GranadeTimer(float lifetime)
+    IEnumerator GranadeTimer()
     {
-        yield return new WaitForSecondsRealtime(lifetime);
+        yield return new WaitForSecondsRealtime(granadeLifeTime);
         Die();
     }
 }
