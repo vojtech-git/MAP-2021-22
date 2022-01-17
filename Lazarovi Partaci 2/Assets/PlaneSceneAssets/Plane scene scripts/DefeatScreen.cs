@@ -83,8 +83,8 @@ public class DefeatScreen : MonoBehaviour
     {
         
        Debug.Log("restart");
-       
-        SceneManager.LoadScene("plane system");
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Vector2 cursorOffset = new Vector2(crosshair.width/2, crosshair.height/2);
         Cursor.SetCursor(crosshair, cursorOffset,CursorMode.Auto);
         defeat.SetActive(false);

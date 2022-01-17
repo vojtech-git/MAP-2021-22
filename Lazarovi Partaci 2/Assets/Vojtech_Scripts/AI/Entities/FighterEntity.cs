@@ -98,7 +98,7 @@ public class FighterEntity : Entity
     {
         if (!isDead)
         {
-            QuestingSystem.ProgressQuests(GoalType.Kill, entityId);
+            EventQuestingManager.OnPointGained(entityId, GoalType.Kill);
             DropLoot();
             base.Die();
         }

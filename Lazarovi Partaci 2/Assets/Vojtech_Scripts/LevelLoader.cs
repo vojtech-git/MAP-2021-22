@@ -26,16 +26,6 @@ public class LevelLoader : MonoBehaviour
     {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
-
-        if (levelIndex == 10)
-        {
-            GameStateManager.Instance.FPS?.SetActive(false);
-        }
-        else
-        {
-            GameStateManager.Instance.FPS?.SetActive(true);
-        }
-
         SceneManager.LoadScene(levelIndex);
     }
 }

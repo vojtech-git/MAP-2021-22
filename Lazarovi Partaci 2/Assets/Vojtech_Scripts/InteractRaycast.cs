@@ -14,9 +14,9 @@ public class InteractRaycast : MonoBehaviour
 
     private void Start()
     {
-        gameStateManager = GameStateManager.Instance;
+        //gameStateManager = GameStateManager.Instance;
 
-        acceptQuestText = GameStateManager.Instance.acceptQuestText.gameObject;
+        //acceptQuestText = GameStateManager.Instance.acceptQuestText.gameObject;
     }
 
     private void Update()
