@@ -32,17 +32,17 @@ public class InteractRaycast : MonoBehaviour
                     acceptQuestText.SetActive(true);
                 }
 
-                if (Input.GetKeyDown(KeyCode.E) && !QuestingSystem.questMenuOpen)
+                if (Input.GetKeyDown(KeyCode.E) && !QuestingManager.questMenuOpen)
                 {
-                    QuestingSystem.OpenQuestMenu(hit.transform.GetComponent<QuestGiver>().qGiverQuests);
+                    QuestingManager.OpenQuestMenu(hit.transform.GetComponent<QuestGiver>().qGiverQuests);
                     acceptQuestText.SetActive(false);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                 }
-                else if (Input.GetKeyDown(KeyCode.E) && QuestingSystem.questMenuOpen)
+                else if (Input.GetKeyDown(KeyCode.E) && QuestingManager.questMenuOpen)
                 {
                     Cursor.lockState = CursorLockMode.Locked;
-                    QuestingSystem.CloseQuestMenu();
+                    QuestingManager.CloseQuestMenu();
                     Cursor.visible = false;
                 }
 

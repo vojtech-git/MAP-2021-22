@@ -9,9 +9,9 @@ public abstract class QuestEvent : MonoBehaviour
 
     protected virtual void Start()
     {
-        QuestingSystem.onQuestAccept += OnQuestAccept;
-        QuestingSystem.onQuestComplete += OnQuestComplete;
-        QuestingSystem.onGoalComplete += OnGoalComplete;
+        QuestingManager.onQuestAccept += OnQuestAccept;
+        QuestingManager.onQuestComplete += OnQuestComplete;
+        QuestingManager.onGoalComplete += OnGoalComplete;
     }
 
     protected abstract void OnQuestAccept(string title);
@@ -22,9 +22,9 @@ public abstract class QuestEvent : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
-        QuestingSystem.onQuestAccept -= OnQuestAccept;
-        QuestingSystem.onQuestComplete -= OnQuestComplete;
-        QuestingSystem.onGoalComplete -= OnGoalComplete;
+        QuestingManager.onQuestAccept -= OnQuestAccept;
+        QuestingManager.onQuestComplete -= OnQuestComplete;
+        QuestingManager.onGoalComplete -= OnGoalComplete;
     }
 }
 public enum AtWhatStage

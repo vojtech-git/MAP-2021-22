@@ -10,9 +10,9 @@ public class QuestPlayAudio : MonoBehaviour
 
     void Start()
     {
-        QuestingSystem.onQuestAccept += OnQuestAccept;
-        QuestingSystem.onQuestComplete += OnQuestComplete;
-        QuestingSystem.onGoalComplete += OnGoalComplete;
+        QuestingManager.onQuestAccept += OnQuestAccept;
+        QuestingManager.onQuestComplete += OnQuestComplete;
+        QuestingManager.onGoalComplete += OnGoalComplete;
     }
 
     void OnQuestAccept(string title)
@@ -43,8 +43,8 @@ public class QuestPlayAudio : MonoBehaviour
 
     void OnDestroy()
     {
-        QuestingSystem.onQuestAccept -= OnQuestAccept;
-        QuestingSystem.onQuestComplete -= OnQuestComplete;
-        QuestingSystem.onGoalComplete -= OnGoalComplete;
+        QuestingManager.onQuestAccept -= OnQuestAccept;
+        QuestingManager.onQuestComplete -= OnQuestComplete;
+        QuestingManager.onGoalComplete -= OnGoalComplete;
     }
 }

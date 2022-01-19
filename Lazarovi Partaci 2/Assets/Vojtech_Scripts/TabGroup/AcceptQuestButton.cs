@@ -9,6 +9,6 @@ public class AcceptQuestButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        QuestingSystem.AcceptQuest(relatedQuest);
+        QuestingManager.AcceptQuest(relatedQuest);
     }
 }

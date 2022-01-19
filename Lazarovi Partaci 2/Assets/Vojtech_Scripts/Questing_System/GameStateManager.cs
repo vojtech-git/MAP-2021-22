@@ -50,7 +50,7 @@ public class GameStateManager : MonoBehaviour
 
         if (startOfGame)
         {
-            QuestingSystem.AcceptQuest(firstQuest);
+            QuestingManager.AcceptQuest(firstQuest);
             startOfGame = false;
         }
     }

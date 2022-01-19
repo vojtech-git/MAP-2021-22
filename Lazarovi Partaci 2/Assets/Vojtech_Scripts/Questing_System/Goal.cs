@@ -34,7 +34,7 @@ public class Goal
     {
         GameObject.Destroy(uiDescription.gameObject);
         GameStateManager.Instance.ShowMessageFor5Sec($"èast úkolu {goalDescription} byla splnìna", 2);
-        QuestingSystem.OnGoalComplete(goalDescription);
+        QuestingManager.OnGoalComplete(goalDescription);
     }
 
     public bool IsComplete()

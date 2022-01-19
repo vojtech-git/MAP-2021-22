@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class Quest
 {
     public string title;
-    public bool isMainStoryLine;
     public QuestStyle questStyle;
     public List<Goal> questGoals;
     List<Goal> completedGoals = new List<Goal>();
@@ -37,7 +36,7 @@ public class Quest
             }
         }
 
-        QuestingSystem.OnQuestAccept(title);
+        QuestingManager.OnQuestAccept(title);
     }
 
     public void AddPoint(GoalType _goalType, int _itemID)
@@ -88,7 +87,7 @@ public class Quest
         GameObject.Destroy(uiQuestTitle);
         GameObject.Destroy(descriptionsLayoutGroup);
         completed = true;
-        QuestingSystem.OnQuestComplete(title);
+        QuestingManager.OnQuestComplete(title);
     }
 
     public bool IsComplete()
