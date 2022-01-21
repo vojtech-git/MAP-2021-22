@@ -64,7 +64,7 @@ public class RocketEntity : Entity
     {
         if (!isDead)
         {
-            QuestingManager.ProgressQuests(GoalType.Kill, entityId);
+            QuestingManager.OnPointGain(GoalType.Kill, entityId);
             DropLoot();
             base.Die(); 
         }

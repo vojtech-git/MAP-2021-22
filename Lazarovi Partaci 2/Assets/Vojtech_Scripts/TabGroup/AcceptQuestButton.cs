@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class AcceptQuestButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        QuestingManager.AcceptQuest(relatedQuest);
+        //QuestingManager.AcceptQuest(relatedQuest);
+        throw new NotImplementedException();
     }
 }

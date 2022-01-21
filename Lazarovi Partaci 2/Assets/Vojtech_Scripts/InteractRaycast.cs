@@ -32,19 +32,19 @@ public class InteractRaycast : MonoBehaviour
                     acceptQuestText.SetActive(true);
                 }
 
-                if (Input.GetKeyDown(KeyCode.E) && !QuestingManager.questMenuOpen)
-                {
-                    QuestingManager.OpenQuestMenu(hit.transform.GetComponent<QuestGiver>().qGiverQuests);
-                    acceptQuestText.SetActive(false);
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                }
-                else if (Input.GetKeyDown(KeyCode.E) && QuestingManager.questMenuOpen)
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    QuestingManager.CloseQuestMenu();
-                    Cursor.visible = false;
-                }
+                //if (Input.GetKeyDown(KeyCode.E) && !QuestingManager.questMenuOpen)
+                //{
+                //    QuestingManager.OpenQuestMenu(hit.transform.GetComponent<QuestGiver>().qGiverQuests);
+                //    acceptQuestText.SetActive(false);
+                //    Cursor.lockState = CursorLockMode.None;
+                //    Cursor.visible = true;
+                //}
+                //else if (Input.GetKeyDown(KeyCode.E) && QuestingManager.questMenuOpen)
+                //{
+                //    Cursor.lockState = CursorLockMode.Locked;
+                //    QuestingManager.CloseQuestMenu();
+                //    Cursor.visible = false;
+                //}
 
                 #region zastarala logika
                 //// zbavit se geComponentu v updatu nejlepsi by bylo najit nejakou metoduc co se spusti jenom kdyz na to najedes onMouseOver??

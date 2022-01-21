@@ -5,19 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class SaveData
 {
-    private static SaveData instance;
-    public static SaveData Instance 
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new SaveData();
-            }
-
-            return instance;
-        }
-    }
-
-    List<Quest> quests;
+    public static List<Questline> activeQuestLines = new List<Questline>();
+    public static List<Questline> completedQuestLines = new List<Questline>();
 }

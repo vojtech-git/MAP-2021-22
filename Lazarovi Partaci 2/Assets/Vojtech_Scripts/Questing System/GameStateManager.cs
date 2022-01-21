@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class GameStateManager : MonoBehaviour
 {
-    public Quest firstQuest;
-    bool startOfGame = true;
+    public Questline storyQuestline;
+    public bool startOfGame;
 
     [Header("Player")]
     public GameObject FPS;
@@ -48,11 +48,13 @@ public class GameStateManager : MonoBehaviour
             _instance = this;
         }
 
-        if (startOfGame)
+        Debug.Log(startOfGame);
+        if (Instance.startOfGame)
         {
-            QuestingManager.AcceptQuest(firstQuest);
+            QuestingManager.StartQuestline(storyQuestline);
             startOfGame = false;
         }
+
     }
 
     public void ShowMessageFor5Sec(string message, int priority)
