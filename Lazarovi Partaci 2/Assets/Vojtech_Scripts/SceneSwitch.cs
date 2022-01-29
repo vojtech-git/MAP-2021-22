@@ -8,7 +8,7 @@ public class SceneSwitch : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameStateManager.Instance.ShowMessageFor5Sec("You can scene switch here", 1);
+            SceneStateManager.Instance.ShowMessageFor5Sec("You can scene switch here", 1);
         }        
     }
 

@@ -19,7 +19,7 @@ public class FighterAttackState : State
 
     public override void Enter()
     {
-        //Debug.Log(npc.gameObject.name +  " enetered shooter attack state");
+        //Debug.Log(npc.gameObject.name + " enetered shooter attack state");
 
         if (target != null)
         {

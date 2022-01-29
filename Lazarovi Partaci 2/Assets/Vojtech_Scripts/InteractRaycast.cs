@@ -10,7 +10,7 @@ public class InteractRaycast : MonoBehaviour
 
     public GameObject acceptQuestText;
     int hitGatherObjectID;
-    GameStateManager gameStateManager;
+    SceneStateManager gameStateManager;
 
     private void Start()
     {

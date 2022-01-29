@@ -30,7 +30,7 @@ public class RandomChanceConditional : BTNode
         {
             total += Random.Range(1,(numberOfSides+1));
         }
-        Debug.Log(total);
+        //Debug.Log(total);
 
         if (total > numberToBeat)
         {

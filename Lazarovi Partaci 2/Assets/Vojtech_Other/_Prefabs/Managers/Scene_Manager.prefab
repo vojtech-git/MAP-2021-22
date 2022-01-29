@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5594867468282242636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5594867468282242627}
+  - component: {fileID: 5594867468282242626}
+  m_Layer: 0
+  m_Name: Scene_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5594867468282242627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5594867468282242636}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 120.96007, y: 17.411388, z: -303.34564}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5594867468282242626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5594867468282242636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85cf15ca664510141bdbd5c9ac210907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storyQuestline: {fileID: 11400000, guid: 78923aa257699e54cb98d06dea8e107d, type: 2}
+  questTitlePrefab: {fileID: 5906278771753650237, guid: bb8af8237106afe4eafac2d2cb4e5df4, type: 3}
+  goalDescriptionPrefab: {fileID: 4075157072057276885, guid: 0d53409e57f88c04687a6c6e9a20cd86, type: 3}
+  descriptionsLayoutPrefab: {fileID: 2604719750015580742, guid: 824d8e423d5b1d14fb21b6900960dd18, type: 3}
+  questVerticalLayout: {fileID: 0}
+  questTabButtonPrefab: {fileID: 2301007451670037778, guid: e433128165d814443ac1974abff1ec6a, type: 3}
+  acceptButtonPrefab: {fileID: 7513048035924708067, guid: e40c45f5f2e21df42bad6e4c32ca4aea, type: 3}
+  questSelectionMenu: {fileID: 0}
+  questLayout: {fileID: 0}
+  qDescriptionLayout: {fileID: 0}
+  popupText: {fileID: 0}
+  secondaryPopupText: {fileID: 0}
+  acceptQuestText: {fileID: 0}

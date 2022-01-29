@@ -10,7 +10,7 @@ public class ReachTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("PlayerFaction"))
         {
-            QuestingManager.OnPointGain(GoalType.Reach, id);
+            QuestingManager.OnPointGained(GoalType.Reach, id);
         }
     }
 }

@@ -22,9 +22,9 @@ public class bulletCollisionDetection : MonoBehaviour
         Physics.IgnoreLayerCollision(2, 9, true); */
 
         //if (col.gameObject != null) {
-            Debug.Log("presele jsem pres prvni if");
+            //Debug.Log("presele jsem pres prvni if");
             if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "EnemyFaction" || col.gameObject.tag == "PlayerFaction") {
-                Debug.Log("TREFIL JSEM TĚ");
+                //Debug.Log("TREFIL JSEM TĚ");
                 if (col.gameObject.tag == "Enemy")
                 {
                 col.gameObject.GetComponent<HealthEnemy>().enemyHP -= 40;  //asteroidy
@@ -42,7 +42,7 @@ public class bulletCollisionDetection : MonoBehaviour
                     else 
                     {
                     col.gameObject.GetComponent<HealthEnemy>().enemyHP -=10;  // friendly ai
-                    Debug.Log("PRITEL HRACE BYL TREFEN NEPRITELEM");
+                    //Debug.Log("PRITEL HRACE BYL TREFEN NEPRITELEM");
                     }
                  
                 }
@@ -57,7 +57,7 @@ public class bulletCollisionDetection : MonoBehaviour
             if (col.gameObject.layer == 9)
             {
                 Physics.IgnoreCollision(this.gameObject.GetComponent<Collider>(), this.gameObject.GetComponent<Collider>());
-                Debug.Log("NABOJ NABOJ MYJE");
+                //Debug.Log("NABOJ NABOJ MYJE");
             }
 
             else {

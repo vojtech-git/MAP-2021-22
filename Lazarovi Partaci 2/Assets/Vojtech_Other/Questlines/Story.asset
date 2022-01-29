@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f191478adfbbf50479ca5c6cd60730c0, type: 3}
+  m_Name: Story
+  m_EditorClassIdentifier: 
+  questline:
+    title: Story
+    activeQuests:
+    - title: vraceni se domu
+      questStyle: 0
+      activeGoals:
+      - goalDescription: "Vra\u0165 se dom\u016F"
+        goalValue: 1
+        goalType: 0
+        itemId: 1
+      - goalDescription: "Dojdi na m\u016Fstek"
+        goalValue: 1
+        goalType: 0
+        itemId: 2
+      - goalDescription: "B\u011B\u017E do zbroj\xEDrny"
+        goalValue: 1
+        goalType: 0
+        itemId: 3
+      - goalDescription: "Vra\u0165 se na m\u016Fstek"
+        goalValue: 1
+        goalType: 0
+        itemId: 2
+      - goalDescription: "Jdi do hang\xE1ru"
+        goalValue: 1
+        goalType: 0
+        itemId: 1
+      - goalDescription: "Odle\u0165 do boje"
+        goalValue: 1
+        goalType: 0
+        itemId: 4
+      completedGoals: []
+    - title: "Odvra\u0165 nep\u0159\xE1telsk\xFD \xFAtok"
+      questStyle: 0
+      activeGoals:
+      - goalDescription: zabij male nepratelske lode
+        goalValue: 10
+        goalType: 2
+        itemId: 0
+      - goalDescription: Jdi do nepratelske mothershipy
+        goalValue: 1
+        goalType: 0
+        itemId: 5
+      completedGoals: []
+    - title: "Prove\u010F v\xE1le\u010Dn\xE9 zlo\u010Diny"
+      questStyle: 1
+      activeGoals:
+      - goalDescription: "Zabij sr\xE1\u017Ee"
+        goalValue: 14
+        goalType: 2
+        itemId: 0
+      - goalDescription: "Pod\xEDvej se do laborato\u0159e"
+        goalValue: 1
+        goalType: 0
+        itemId: 6
+      completedGoals: []
+    - title: "Prove\u010F v\xE1le\u010Dn\xE9 zlo\u010Diny \u010Dast 2."
+      questStyle: 0
+      activeGoals:
+      - goalDescription: "Dojdi na m\u016Fstek"
+        goalValue: 1
+        goalType: 0
+        itemId: 7
+      completedGoals: []
+    completedQuests: []
+    questToStartAt: 0

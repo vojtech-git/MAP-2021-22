@@ -70,7 +70,7 @@ public class PlaneHealth : MonoBehaviour
     void OnCollisionEnter(Collision col){
            health -= collisionDamage * col.relativeVelocity.magnitude ; 
            updateHealth();
-           Debug.Log(health);
+           //Debug.Log(health);
     }
 
     private void  updateHealth(){

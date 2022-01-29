@@ -8,7 +8,7 @@ public class GatherObject : MonoBehaviour
 
     public void PickupItem()
     {
-        QuestingManager.OnPointGain(GoalType.Gather, id);        
+        QuestingManager.OnPointGained(GoalType.Gather, id);        
 
         Destroy(gameObject);
     }

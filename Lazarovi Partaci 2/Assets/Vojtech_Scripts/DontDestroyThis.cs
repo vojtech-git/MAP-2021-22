@@ -6,9 +6,19 @@ public class DontDestroyThis : MonoBehaviour
 {
     string objID;
 
+    public static DontDestroyThis thisInstance;
+
+
     private void Awake()
     {
-        objID = name /*+ transform.position.ToString()*/;
+        if (thisInstance == null)
+        {
+            thisInstance = this;
+        }
+        else if (thisInstance != null && thisInstance != this)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void Start()

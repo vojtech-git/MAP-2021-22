@@ -4731,7 +4731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &391952069551573021
 Transform:
   m_ObjectHideFlags: 0
@@ -6672,8 +6672,8 @@ GameObject:
   - component: {fileID: 391952069773677732}
   - component: {fileID: 391952069773677731}
   - component: {fileID: 391952069773677730}
-  - component: {fileID: 391952069773677733}
   - component: {fileID: 1716502333074079293}
+  - component: {fileID: 5804757785667008241}
   m_Layer: 3
   m_Name: ----- FPS
   m_TagString: Player
@@ -6761,21 +6761,6 @@ MonoBehaviour:
   moneyText: {fileID: 391952070987140393}
   moneyText_Back: {fileID: 391952070917025764}
   currentMoney: 1000
---- !u!114 &391952069773677733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 391952069773677735}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f56e520733f2db84bb7997899a44a81e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCamera: {fileID: 391952071069118439}
-  interactionDistance: 3
-  acceptQuestText: {fileID: 0}
 --- !u!114 &1716502333074079293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6788,6 +6773,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84ffcb72269e4246a5f12f32902441d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5804757785667008241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391952069773677735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942070eed92f8cb449049c26d7eeec4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDistance: 5
+  mainCamera: {fileID: 391952071069118438}
 --- !u!1 &391952069778644557
 GameObject:
   m_ObjectHideFlags: 0
@@ -18192,6 +18191,7 @@ Transform:
   - {fileID: 391952070988635288}
   - {fileID: 391952069551573021}
   - {fileID: 391952070902853998}
+  - {fileID: 6177802205979110293}
   m_Father: {fileID: 391952069773677732}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -56083,6 +56083,58 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &6624090952419516414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6177802205979110293}
+  - component: {fileID: 1792865057103588528}
+  m_Layer: 3
+  m_Name: SimpleGun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6177802205979110293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6624090952419516414}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 391952071069118439}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1792865057103588528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6624090952419516414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7ad11c92f592644991f490f6a9d6452, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 15
+  magazineSize: 10
+  reloadTime: 1
+  timeBetweenShots: 0.2
+  isHittable:
+    serializedVersion: 2
+    m_Bits: 14401
+  mainCamera: {fileID: 391952071069118438}
+  bulletHoleGraphic: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
 --- !u!1 &6643111715779353476
 GameObject:
   m_ObjectHideFlags: 0

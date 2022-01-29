@@ -16,7 +16,7 @@ public class FireWeaponTask : BTNode
        if(fireWeaponEvent != null) 
        {
            fireWeaponEvent();
-           Debug.Log("FIRE WEAPON BYL USPESNE SPUSTEN");
+           //Debug.Log("FIRE WEAPON BYL USPESNE SPUSTEN");
            return BTNodeStates.SUCCESS;
           
        }

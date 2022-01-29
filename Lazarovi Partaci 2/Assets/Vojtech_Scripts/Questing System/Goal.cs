@@ -55,7 +55,11 @@ public class Goal
 
     public void StartGoal(Transform parentOfUI)
     {
+        QuestingManager.OnGoalStarted(this);    
+
         InstantiateUI(parentOfUI);
+
+        // aby se updatlo ui
         CurrentValue = 0;
     }
 
@@ -66,14 +70,14 @@ public class Goal
 
     public void CompleteGoal()
     {
-        QuestingManager.OnGoalComplete(this);
+        QuestingManager.OnGoalCompleted(this);
 
         GameObject.Destroy(uiDescription.gameObject);
     }
 
     void InstantiateUI(Transform parent)
     {
-        uiDescription = GameObject.Instantiate(GameStateManager.Instance.goalDescriptionPrefab, parent).GetComponent<Text>();
+        uiDescription = GameObject.Instantiate(SceneStateManager.Instance.goalDescriptionPrefab, parent).GetComponent<Text>();
     }
 }
 

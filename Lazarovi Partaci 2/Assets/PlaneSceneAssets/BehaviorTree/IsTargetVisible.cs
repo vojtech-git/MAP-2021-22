@@ -21,13 +21,13 @@ public class IsTargetVisible : BTNode
     {
         if(hit.collider.transform.root.gameObject == myAI.GetTarget())
         {
-            Debug.Log("TARGET IS VISIBLE");
+            //Debug.Log("TARGET IS VISIBLE");
             return BTNodeStates.SUCCESS;
         }
     }
         else 
         {
-            Debug.Log("TARGET IS NOT VISIBLE");
+            //Debug.Log("TARGET IS NOT VISIBLE");
             return BTNodeStates.FAILURE;
         }
 

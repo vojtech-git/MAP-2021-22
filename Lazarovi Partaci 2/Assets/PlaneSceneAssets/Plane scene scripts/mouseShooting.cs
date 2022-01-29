@@ -61,12 +61,12 @@ public class mouseShooting : MonoBehaviour
           
               targetPoint = hit.point;
              // Debug.Log( "tvuj shootifrce" +shootForce);
-             Debug.Log("RAYCAST BYL TREFEN" + hit.transform.tag);
+             //Debug.Log("RAYCAST BYL TREFEN" + hit.transform.tag);
             
              }
              else{
                   targetPoint = ray.GetPoint(250); //URCUJE VZDALENOST KDE SE NABOJE ROZUTIKAJI DO STRAN
-                  Debug.Log("RAYCAST NEBYL TREFEN");
+                  //Debug.Log("RAYCAST NEBYL TREFEN");
                  
              }
 

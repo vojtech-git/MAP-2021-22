@@ -5,26 +5,33 @@ using UnityEngine.UI;
 
 public static class QuestingManager
 {
-    public static Action<Quest> onQuestAccept;
-    public static Action<Quest> onQuestComplete;
-    public static Action<Goal> onGoalComplete;
-    public static Action<GoalType, int> onPointGain;
+    public static Action<Quest> onQuestStarted;
+    public static Action<Quest> onQuestCompleted;
+    public static Action<Goal> onGoalStarted;
+    public static Action<Goal> onGoalCompleted;
+    public static Action<GoalType, int> onPointGained;
 
-    public static void OnQuestAccept(Quest quest)
+    public static void OnQuestStart(Quest quest)
     {
-        onQuestAccept?.Invoke(quest);
+        onQuestStarted?.Invoke(quest);
+
+        Debug.Log("Invoking on queststarted " + quest.title);
     }
-    public static void OnQuestComplete(Quest quest)
+    public static void OnQuestCompleted(Quest quest)
     {
-        onQuestComplete?.Invoke(quest);
+        onQuestCompleted?.Invoke(quest);
     }
-    public static void OnGoalComplete(Goal goal)
+    public static void OnGoalStarted(Goal goal)
     {
-        onGoalComplete?.Invoke(goal);
+        onGoalStarted?.Invoke(goal);
     }
-    public static void OnPointGain(GoalType type, int id)
+    public static void OnGoalCompleted(Goal goal)
     {
-        onPointGain?.Invoke(type, id);
+        onGoalCompleted?.Invoke(goal);
+    }
+    public static void OnPointGained(GoalType type, int id)
+    {
+        onPointGained?.Invoke(type, id);
     }
 
     public static void StartQuestline(Questline questlineToStart)
@@ -37,7 +44,8 @@ public static class QuestingManager
 
     static Questline DeepCopyQuestline(Questline questlineToCopy)
     {
-        Questline questlineCopy = new Questline(questlineToCopy.title, new List<Quest>(), questlineToCopy.available);
+        Questline questlineCopy = new Questline(questlineToCopy.title, new List<Quest>());
+        questlineCopy.questToStartAt = questlineToCopy.questToStartAt;
         foreach (Quest quest in questlineToCopy.activeQuests)
         {
             Quest copiedQuest = new Quest(quest.title, quest.questStyle, new List<Goal>());

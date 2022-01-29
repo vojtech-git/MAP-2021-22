@@ -98,7 +98,7 @@ public class FighterEntity : Entity
     {
         if (!isDead)
         {
-            QuestingManager.OnPointGain(GoalType.Kill, entityId);
+            QuestingManager.OnPointGained(GoalType.Kill, entityId);
             DropLoot();
             base.Die();
         }
@@ -196,5 +196,11 @@ public class FighterEntity : Entity
         transform.rotation = post.transform.rotation;
         anim.SetBool("isRunning", false);
         anim.SetBool("isAttacking", false);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackDistance);
     }
 }

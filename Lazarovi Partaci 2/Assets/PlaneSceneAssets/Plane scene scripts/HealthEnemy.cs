@@ -8,6 +8,7 @@ public class HealthEnemy : MonoBehaviour
     public int enemyHP = 100;
     public GameObject explosionEffect;
     public AudioSource death;
+    public int id;
     void Start()
     {
         
@@ -20,6 +21,7 @@ public class HealthEnemy : MonoBehaviour
         if(enemyHP<=0){
             //death.Play();
             Instantiate(explosionEffect, transform.position, transform.rotation);
+            QuestingManager.onPointGained(GoalType.Kill, id);
             Destroy(this.gameObject);
         } //FUNGUJE
     }

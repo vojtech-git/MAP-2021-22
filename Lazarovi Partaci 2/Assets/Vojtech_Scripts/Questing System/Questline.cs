@@ -7,29 +7,27 @@ public class Questline
 {
     public string title;
     public List<Quest> activeQuests;
+    [HideInInspector]
     public List<Quest> completedQuests = new List<Quest>();
-    public bool available;
-    public bool accepted;
-    public bool completed;
 
-    public Questline(string _title, List<Quest> _activeQuests, bool _available)
+    [Header("Debug")]
+    public int questToStartAt;
+
+    public Questline(string _title, List<Quest> _activeQuests)
     {
         title = _title;
         activeQuests = _activeQuests;
-        available = _available;
     }
 
     public void StartQuestline()
     {
-        QuestingManager.onPointGain += OnPointGained;
+        QuestingManager.onPointGained += OnPointGained;
 
-        activeQuests[0].StartQuest();
-        accepted = true;
+        activeQuests[questToStartAt].StartQuest();
     }
     public void CompleteQuestline()
     {
-        QuestingManager.onPointGain -= OnPointGained;
-        completed = true;
+        QuestingManager.onPointGained -= OnPointGained;
         SaveData.activeQuestLines.Remove(this);
         SaveData.completedQuestLines.Add(this);
 
@@ -38,14 +36,14 @@ public class Questline
 
     public void OnPointGained(GoalType type, int id)
     {
-        activeQuests[0].ProgressQuest(type, id);
+        activeQuests[questToStartAt].ProgressQuest(type, id);
 
-        if (activeQuests[0].Completed)
+        if (activeQuests[questToStartAt].Completed)
         {
-            MoveToCompletedQuests(activeQuests[0]);
+            MoveToCompletedQuests(activeQuests[questToStartAt]);
             if (activeQuests.Count >= 1)
             {
-                activeQuests[0].StartQuest();
+                activeQuests[questToStartAt].StartQuest();
             }
             else
             {

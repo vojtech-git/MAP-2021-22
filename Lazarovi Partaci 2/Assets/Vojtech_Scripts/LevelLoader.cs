@@ -7,25 +7,28 @@ public class LevelLoader : MonoBehaviour
 {    
     public Animator transition;
     public float transitionTime;
-    public int targetSceneIndex;
+    public string targetSceneName;
+    public Vector3 targetPosition;
 
     private void OnTriggerStay(Collider other)
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            LoadNextScene(targetSceneIndex);
+            LoadNextScene(targetSceneName);
         }
     }
 
-    public void LoadNextScene(int sceneIndex)
+    public void LoadNextScene(string sceneName)
     {
-        StartCoroutine(LoadLevel(sceneIndex));
+        StartCoroutine(LoadLevel(sceneName));
     }
 
-    IEnumerator LoadLevel(int levelIndex)
+    IEnumerator LoadLevel(string sceneName)
     {
+        SaveData.loadPosition = targetPosition;
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(levelIndex);
+
+        SceneManager.LoadScene(sceneName);
     }
 }

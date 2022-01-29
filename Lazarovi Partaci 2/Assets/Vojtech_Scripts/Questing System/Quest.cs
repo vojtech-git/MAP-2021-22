@@ -40,7 +40,7 @@ public class Quest
 
     public void StartQuest()
     {
-        QuestingManager.OnQuestAccept(this);
+        QuestingManager.OnQuestStart(this);
 
         InstatiateQuestUI();
 
@@ -78,6 +78,8 @@ public class Quest
         }
         else if (questStyle == QuestStyle.AtTheSameTime)
         {
+            List<Goal> goalsToComplete = new List<Goal>();
+
             foreach (Goal goal in activeGoals)
             {
                 if (_goalType == goal.goalType && _itemID == goal.itemId)
@@ -85,9 +87,13 @@ public class Quest
                     goal.ProgressGoal();
 
                     if (goal.Completed)
-                        MoveGoalToCompleted(goal);
+                        goalsToComplete.Add(goal);
                 }
             }
+
+            // nemuzu odebírat goaly z kolekce kdyz tou kolekcí procházím foreachem
+            foreach (Goal goalToComplete in goalsToComplete)
+                MoveGoalToCompleted(goalToComplete);
         }
 
         if (Completed)
@@ -96,7 +102,7 @@ public class Quest
 
     public void CompleteQuest()
     {
-        QuestingManager.OnQuestComplete(this);
+        QuestingManager.OnQuestCompleted(this);
 
         GameObject.Destroy(uiTitle);
         GameObject.Destroy(uiParent);
@@ -109,9 +115,9 @@ public class Quest
     }
     void InstatiateQuestUI()
     {
-        uiParent = GameObject.Instantiate(GameStateManager.Instance.descriptionsLayoutPrefab, GameStateManager.Instance.questVerticalLayout.transform).GetComponentInChildren<VerticalLayoutGroup>();
+        uiParent = GameObject.Instantiate(SceneStateManager.Instance.descriptionsLayoutPrefab, SceneStateManager.Instance.questVerticalLayout.transform).GetComponentInChildren<VerticalLayoutGroup>();
 
-        uiTitle = GameObject.Instantiate(GameStateManager.Instance.questTitlePrefab, uiParent.transform).GetComponent<Text>();
+        uiTitle = GameObject.Instantiate(SceneStateManager.Instance.questTitlePrefab, uiParent.transform).GetComponent<Text>();
         uiTitle.text = title;
     }
 }
