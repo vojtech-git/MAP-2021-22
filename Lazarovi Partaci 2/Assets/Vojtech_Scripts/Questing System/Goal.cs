@@ -85,5 +85,7 @@ public enum GoalType
 {
     Reach,
     Gather,
-    Kill
+    Kill,
+    PressButton,
+    SystemChange
 }

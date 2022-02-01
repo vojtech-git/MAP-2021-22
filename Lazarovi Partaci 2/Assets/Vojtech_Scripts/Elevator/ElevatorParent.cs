@@ -30,6 +30,8 @@ public class ElevatorParent : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+
         bottomMarker = transform.Find("startMarker");
         topMarker = transform.Find("endMarker");
         elevator = transform.Find("elevator");

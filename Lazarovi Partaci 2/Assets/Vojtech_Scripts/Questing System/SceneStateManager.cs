@@ -55,7 +55,7 @@ public class SceneStateManager : MonoBehaviour
 
         if (startOfGame)
         {
-            Debug.Log("starting the game");
+            //Debug.Log("sceneStateManager starting the game");
 
             QuestingManager.StartQuestline(storyQuestline.questline);
             startOfGame = false;

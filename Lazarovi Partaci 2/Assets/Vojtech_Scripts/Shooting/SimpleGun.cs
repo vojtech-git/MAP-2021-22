@@ -44,7 +44,7 @@ public class SimpleGun : MonoBehaviour
 
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, 10000, isHittable))
             {
-                Debug.Log(hit.collider.name);
+                //Debug.Log(hit.collider.name);
 
                 if (hit.collider.CompareTag("Enemy"))
                 {
@@ -52,11 +52,14 @@ public class SimpleGun : MonoBehaviour
                     hit.collider.gameObject.TryGetComponent<Entity>(out hitTarget);
                     hitTarget.TakeDamage(damage);
                 }
-            }
 
-            GameObject bullethole =  Instantiate(bulletHoleGraphic, hit.point, Quaternion.LookRotation(hit.normal));
-            bullethole.transform.parent = hit.transform;
-            bullethole.transform.position += bullethole.transform.forward / 1000;
+                if (!hit.transform.TryGetComponent<Entity>(out Entity entity))
+                {
+                    GameObject bullethole = Instantiate(bulletHoleGraphic, hit.point, Quaternion.LookRotation(hit.normal));
+                    bullethole.transform.parent = hit.transform;
+                    bullethole.transform.position += bullethole.transform.forward / 1000;
+                }
+            }
 
             bulletsInMagazine--;
 

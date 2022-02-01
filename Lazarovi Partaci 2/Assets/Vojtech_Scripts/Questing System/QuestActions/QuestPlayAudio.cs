@@ -15,6 +15,11 @@ public class QuestPlayAudio : MonoBehaviour
 
         Debug.Log("Adding audio listener " + gameObject.name);
     }
+    private void OnDestroy()
+    {
+        QuestingManager.onQuestStarted -= OnQuestStarted;
+        QuestingManager.onQuestCompleted -= OnQuestCompleted;
+    }
 
     public void OnQuestStarted(Quest questSender)
     {

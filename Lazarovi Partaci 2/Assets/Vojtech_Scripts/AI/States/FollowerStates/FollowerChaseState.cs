@@ -32,6 +32,13 @@ public class FollowerChaseState : State
 
     public override void Update()
     {
+        if (followerEntity.shouldGoto)
+        {
+            nextState = new FollowerGotoState(npc, agent, anim, followerEntity);
+            stage = StateStage.EXIT;
+            return;
+        }
+
         if (target != null)
         {
             base.Update();
@@ -88,18 +95,19 @@ public class FollowerChaseState : State
         // v radiusu kolem sebe zjisti kazdýho potential target
         foreach (Collider target in Physics.OverlapSphere(npc.transform.position, followerEntity.sightDistance, followerEntity.targetMask))
         {
-            // najdi vzdalenost k targetu a ke currentTargetu
+            // najdi vzdalenost k targetu a smìr ke currentTargetu
             float distanceToTarget = Vector3.Distance(npc.transform.position, target.transform.position);
+            Vector3 dirToTarget = (target.transform.position - npc.transform.position).normalized;
 
             // pokud je vzdálenost kratší než attack distance a je blíž než currentTarget tak ho setni jako currentTarget
-            if (distanceToTarget < followerEntity.attackDistance && (currerntTarget == null || distanceToTarget < Vector3.Distance(currerntTarget.transform.position, target.transform.position)))
+            if (distanceToTarget < followerEntity.autoDetectRange && (currerntTarget == null || distanceToTarget < Vector3.Distance(currerntTarget.transform.position, target.transform.position)) && !Physics.Raycast(npc.transform.position, dirToTarget, distanceToTarget, followerEntity.obstacleMask))
                 currerntTarget = target;
 
             // pokud je target blíž než currentTarget
             if (currerntTarget == null || distanceToTarget < Vector3.Distance(npc.transform.position, currerntTarget.transform.position))
             {
                 // a je v sightAnglu npcka
-                Vector3 dirToTarget = (target.transform.position - npc.transform.position).normalized;
+
                 if (Vector3.Angle(npc.transform.forward, dirToTarget) < followerEntity.sightAngle / 2)
                 {
                     // a není za obstaclem tak ho nastav jako currentTarget

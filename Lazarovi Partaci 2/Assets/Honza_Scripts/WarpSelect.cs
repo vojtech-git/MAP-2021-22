@@ -21,6 +21,9 @@ public class WarpSelect : MonoBehaviour
     public bool warping = false;
     public bool change = false;
 
+    [Header("level loader")]
+    public GameObject[] levelLoaders;
+
     private void OnTriggerStay(Collider other)
     {
         if (warping == false)
@@ -58,6 +61,19 @@ public class WarpSelect : MonoBehaviour
         system3 = false;
         directorBridge.Play();
         ExitThisMenu();
+
+        QuestingManager.OnPointGained(GoalType.SystemChange, 1);
+        for (int i = 0; i < levelLoaders.Length - 1; i++)
+        {
+            if (i == 1)
+            {
+                levelLoaders[i].SetActive(true);
+            }
+            else
+            {
+                levelLoaders[i].SetActive(false);
+            }
+        }
     }
     public void WarpToSystem2()
     {
@@ -66,6 +82,19 @@ public class WarpSelect : MonoBehaviour
         system3 = false;
         directorBridge.Play();
         ExitThisMenu();
+
+        QuestingManager.OnPointGained(GoalType.SystemChange, 2);
+        for (int i = 0; i < levelLoaders.Length - 1; i++)
+        {
+            if (i == 2)
+            {
+                levelLoaders[i].SetActive(true);
+            }
+            else
+            {
+                levelLoaders[i].SetActive(false);
+            }
+        }
     }
     public void WarpToSystem3()
     {
@@ -75,6 +104,18 @@ public class WarpSelect : MonoBehaviour
         directorBridge.Play();
         ExitThisMenu();
 
+        QuestingManager.OnPointGained(GoalType.SystemChange, 3);
+        for (int i = 0; i < levelLoaders.Length - 1; i++)
+        {
+            if (i == 3)
+            {
+                levelLoaders[i].SetActive(true);
+            }
+            else
+            {
+                levelLoaders[i].SetActive(false);
+            }
+        }
     }
 
     public void ChangeSkybox()

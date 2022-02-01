@@ -959,6 +959,7 @@ Transform:
   - {fileID: 1975766795744376133}
   - {fileID: 468271325421792624}
   - {fileID: 8415578497027091160}
+  - {fileID: 147086190189627404}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1010,6 +1011,8 @@ MonoBehaviour:
   granadePrefab: {fileID: 8977893650340401099, guid: d50fab8c375efc846acf99539aabe129, type: 3}
   granadeSpawnPos: {fileID: 1626584166266186651}
   speedOfGranade: 15
+  gotoPosition: {fileID: 6084367228522515620}
+  shouldGoto: 0
 --- !u!95 &5594959458259268019
 Animator:
   serializedVersion: 3
@@ -1284,6 +1287,36 @@ Transform:
   - {fileID: 515706859708978515}
   m_Father: {fileID: 6057593499952125383}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6084367228522515620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 147086190189627404}
+  m_Layer: 11
+  m_Name: Goto_Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &147086190189627404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6084367228522515620}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5345755743738531300}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6087765855248853088
 GameObject:

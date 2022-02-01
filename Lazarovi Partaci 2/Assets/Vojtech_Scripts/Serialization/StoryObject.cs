@@ -29,6 +29,8 @@ public class StoryObject : MonoBehaviour
         {
             SaveData.ObjectEnabledStates[currentSceneName][gameObject.name] = gameObject.activeSelf;
         }
+
+        Debug.Log("OnDestory " + gameObject.name + " triggered");
     }
 
     public void ApplySaveData()
@@ -36,6 +38,8 @@ public class StoryObject : MonoBehaviour
         if (SaveData.ObjectEnabledStates.ContainsKey(currentSceneName) && SaveData.ObjectEnabledStates[currentSceneName].ContainsKey(gameObject.name))
         {
             gameObject.SetActive(SaveData.ObjectEnabledStates[currentSceneName][gameObject.name]);
+
+            Debug.Log("Applied data on " + gameObject.name);
         }
     }
 }

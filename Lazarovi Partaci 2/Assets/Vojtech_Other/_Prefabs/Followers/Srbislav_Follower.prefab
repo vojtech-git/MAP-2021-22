@@ -650,6 +650,7 @@ GameObject:
   - component: {fileID: 4959011331436939531}
   - component: {fileID: 2766159709228753560}
   - component: {fileID: 2533488409171379200}
+  - component: {fileID: 1609424333976786741}
   m_Layer: 11
   m_Name: Srbislav_Follower
   m_TagString: Untagged
@@ -671,6 +672,7 @@ Transform:
   - {fileID: 7906548705481735553}
   - {fileID: 6065030049650318167}
   - {fileID: 5202219277496769726}
+  - {fileID: 5021232868295854597}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -722,6 +724,8 @@ MonoBehaviour:
   granadePrefab: {fileID: 8977893650340401099, guid: d50fab8c375efc846acf99539aabe129, type: 3}
   granadeSpawnPos: {fileID: 8298367901411115398}
   speedOfGranade: 15
+  gotoPosition: {fileID: 3983834423959151253}
+  shouldGoto: 0
 --- !u!95 &2766159709228753560
 Animator:
   serializedVersion: 3
@@ -763,6 +767,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &1609424333976786741
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3072077578902570927}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3736352128700241477
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +875,36 @@ Transform:
   - {fileID: 3042848017164017248}
   m_Father: {fileID: 5478307285832259254}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3983834423959151253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5021232868295854597}
+  m_Layer: 11
+  m_Name: Goto_Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5021232868295854597
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3983834423959151253}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2443738142274903317}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4591983492854216849
 GameObject:

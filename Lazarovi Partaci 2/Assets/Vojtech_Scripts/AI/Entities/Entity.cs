@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class Entity : MonoBehaviour
 {
-    [Header("Health")]
     [SerializeField]
     protected float maxHealth;
     public Slider healthBar;

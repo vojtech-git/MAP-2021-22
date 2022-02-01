@@ -6,39 +6,43 @@ public class GoalChangeState : MonoBehaviour
 {
     public string whichGoal;
     public bool atTheEnd;
-    public ChageStateStructure[] objects;
+    public ChangeStateStructure[] objects;
 
     private void Awake()
     {
         QuestingManager.onGoalStarted += OnGoalStarted;
         QuestingManager.onGoalCompleted += OnGoalCompleted;
 
-        Debug.Log("Adding listener change obj state " + gameObject.name);
+        //Debug.Log("Adding listener change obj state " + gameObject.name);
+    }
+    private void OnDestroy()
+    {
+        QuestingManager.onGoalStarted -= OnGoalStarted;
+        QuestingManager.onGoalCompleted -= OnGoalCompleted;
     }
 
     public void OnGoalStarted(Goal goalSender)
     {
         if (goalSender.goalDescription == whichGoal && !atTheEnd)
         {
-            foreach (ChageStateStructure item in objects)
-            {
-                if (item.objectToChange != null)
-                {
-                    item.objectToChange.SetActive(item.targetState);
-                }
-            }
+            ChangeObjState();
         }
     }
     public void OnGoalCompleted(Goal goalSender)
     {
         if (goalSender.goalDescription == whichGoal && atTheEnd)
         {
-            foreach (ChageStateStructure item in objects)
+            ChangeObjState();
+        }
+    }
+
+    public virtual void ChangeObjState()
+    {
+        foreach (ChangeStateStructure item in objects)
+        {
+            if (item.objectToChange != null)
             {
-                if (item.objectToChange != null)
-                {
-                    item.objectToChange.SetActive(item.targetState);
-                }
+                item.objectToChange.SetActive(item.targetState);
             }
         }
     }

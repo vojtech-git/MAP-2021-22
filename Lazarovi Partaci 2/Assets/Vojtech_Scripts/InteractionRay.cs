@@ -15,7 +15,15 @@ public class InteractionRay : MonoBehaviour
             {
                 if (hit.transform.TryGetComponent(out ElevatorSwitch elevatorSwitch))
                 {
+                    //Debug.Log("Hit a switch");
+
                     elevatorSwitch.StartElevator();
+                }
+                if (hit.transform.TryGetComponent(out QuestButtonMothership questButton))
+                {
+                    //Debug.Log("Hit a button");
+
+                    questButton.PressButton();
                 }
             }
         }

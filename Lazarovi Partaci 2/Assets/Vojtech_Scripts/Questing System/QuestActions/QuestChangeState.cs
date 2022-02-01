@@ -6,7 +6,7 @@ public class QuestChangeState : MonoBehaviour
 {
     public string whichQuest;
     public bool atTheEnd;
-    public ChageStateStructure[] objects;
+    public ChangeStateStructure[] objects;
 
     private void Awake()
     {
@@ -15,12 +15,16 @@ public class QuestChangeState : MonoBehaviour
 
         Debug.Log("Adding listener change obj state " + gameObject.name);
     }
-
+    private void OnDestroy()
+    {
+        QuestingManager.onQuestStarted -= OnQuestStarted;
+        QuestingManager.onQuestCompleted -= OnQuestCompleted;
+    }
     public void OnQuestStarted(Quest questSender)
     {
         if (questSender.title == whichQuest && !atTheEnd)
         {
-            foreach (ChageStateStructure item in objects)
+            foreach (ChangeStateStructure item in objects)
             {
                 if (item.objectToChange != null)
                 {
@@ -33,7 +37,7 @@ public class QuestChangeState : MonoBehaviour
     {
         if (questSender.title == whichQuest && atTheEnd)
         {
-            foreach (ChageStateStructure item in objects)
+            foreach (ChangeStateStructure item in objects)
             {
                 if (item.objectToChange != null)
                 {

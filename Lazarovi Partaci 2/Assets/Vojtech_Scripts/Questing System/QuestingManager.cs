@@ -14,8 +14,6 @@ public static class QuestingManager
     public static void OnQuestStart(Quest quest)
     {
         onQuestStarted?.Invoke(quest);
-
-        Debug.Log("Invoking on queststarted " + quest.title);
     }
     public static void OnQuestCompleted(Quest quest)
     {

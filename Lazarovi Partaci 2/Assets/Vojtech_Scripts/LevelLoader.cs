@@ -12,7 +12,7 @@ public class LevelLoader : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.U))
         {
             LoadNextScene(targetSceneName);
         }

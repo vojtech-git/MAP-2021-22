@@ -8,6 +8,6 @@ public class ElevatorSwitch : MonoBehaviour
 
     public void StartElevator()
     {
-        elevator.StartJourney();
+        elevator.UpdateStartJourney();
     }
 }

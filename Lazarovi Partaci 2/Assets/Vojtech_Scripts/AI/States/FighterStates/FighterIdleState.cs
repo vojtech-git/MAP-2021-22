@@ -20,11 +20,6 @@ public class FighterIdleState : State
         fighterEntity.ReturnEntityToPost();
 
         base.Enter();
-
-        agent.isStopped = true;
-
-        anim.SetBool("isAttacking", false);
-        anim.SetBool("isRunning", false);
     }
 
     public override void Update()

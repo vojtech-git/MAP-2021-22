@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class FollowerGotoState : MonoBehaviour
+public class FollowerGotoState : State
 {
-    // Start is called before the first frame update
-    void Start()
+    FollowerEntity followerEntity;
+
+    public FollowerGotoState(GameObject _npc, NavMeshAgent _agent, Animator _anim, FollowerEntity _followerEntity) : base(_npc, _agent, _anim)
     {
-        
+        followerEntity = _followerEntity;
+
+        Debug.Log("enetering folower gotostate" + followerEntity.gameObject.name);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
     {
-        
+        followerEntity.MoveEntityToPosition();
+
+        base.Enter();
+    }
+
+    public override void Update()
+    {
+        base.Update();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
     }
 }

@@ -173,7 +173,6 @@ public class FighterEntity : Entity
         yield return new WaitForSeconds(delayBetweenAttacks);
         ReadyToAttack = true;
     }
-
     IEnumerator DelayGranade(float delayBetweenGranade)
     {
         yield return new WaitForSeconds(delayBetweenGranade);

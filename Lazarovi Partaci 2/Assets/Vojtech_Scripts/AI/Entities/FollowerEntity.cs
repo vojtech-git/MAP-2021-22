@@ -27,7 +27,10 @@ public class FollowerEntity : Entity
     public GameObject granadePrefab;
     public GameObject granadeSpawnPos;
     public float speedOfGranade = 15;
+    public GameObject gotoPosition;
+    public bool shouldGoto = false;
 
+    private Coroutine goingToPosition;
     private NavMeshAgent agent; // mohl bych pøiøadit v inspektoru uvnitø prefaby (agenta, animator)
     private Animator anim;
     private State currentState;
@@ -77,7 +80,7 @@ public class FollowerEntity : Entity
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
-        currentState = new FollowerIdleState(gameObject, agent, anim, this, GameObject.FindGameObjectWithTag("Player").transform);
+        currentState = new FollowerChasePlayerState(gameObject, agent, anim, this, GameObject.FindGameObjectWithTag("Player").transform);
         Health = MaxHealth;
     }
 
@@ -145,6 +148,10 @@ public class FollowerEntity : Entity
     {
         chasingTarget = StartCoroutine(ChaseTargetOutOfRange(outOfRangeTimeToChase, stoppedChasingAction));
     }
+    public void MoveEntityToPosition()
+    {
+        goingToPosition = StartCoroutine(GotoPosition());
+    }
 
     IEnumerator DelayAttack(float delayBetweenAttacks)
     {
@@ -161,5 +168,23 @@ public class FollowerEntity : Entity
     {
         yield return new WaitForSeconds(timeToChase);
         stoppedChasingAction();
+    }
+    IEnumerator GotoPosition()
+    {
+        Debug.Log("going to position " + gameObject.name);
+
+        agent.isStopped = false;
+        agent.SetDestination(gotoPosition.transform.position);
+        anim.SetBool("isRunning", true);
+        anim.SetBool("isAttacking", false);
+
+        yield return new WaitUntil(() => agent.remainingDistance < agent.stoppingDistance + 1);
+
+        agent.isStopped = true;
+        transform.rotation = gotoPosition.transform.rotation;
+        anim.SetBool("isRunning", false);
+        anim.SetBool("isAttacking", false);
+
+        Debug.Log("at position " + gameObject.name);
     }
 }

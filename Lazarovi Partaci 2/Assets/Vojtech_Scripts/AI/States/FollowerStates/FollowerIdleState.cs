@@ -30,6 +30,13 @@ public class FollowerIdleState : State
     {
         base.Update();
 
+        if (followerEntity.shouldGoto)
+        {
+            nextState = new FollowerGotoState(npc, agent, anim, followerEntity);
+            stage = StateStage.EXIT;
+            return;
+        }
+
         // chase když:
         // vidím target (done)
         // mì nìkdo støelí
@@ -48,7 +55,7 @@ public class FollowerIdleState : State
         }
         else
         {
-            nextState = new FollowerChasePlayerState(npc, agent, anim, target, followerEntity, player);
+            nextState = new FollowerChasePlayerState(npc, agent, anim, followerEntity, player);
             stage = StateStage.EXIT;
         }
     }

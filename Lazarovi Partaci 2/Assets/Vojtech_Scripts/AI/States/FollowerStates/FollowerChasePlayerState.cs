@@ -9,7 +9,7 @@ public class FollowerChasePlayerState : State
     FollowerEntity followerEntity;
     Transform player;
 
-    public FollowerChasePlayerState(GameObject _npc, NavMeshAgent _agent, Animator _anim, GameObject _target, FollowerEntity _followerEntity, Transform _player) : base(_npc, _agent, _anim)
+    public FollowerChasePlayerState(GameObject _npc, NavMeshAgent _agent, Animator _anim, FollowerEntity _followerEntity, Transform _player) : base(_npc, _agent, _anim)
     {
         player = _player;
         followerEntity = _followerEntity;
@@ -31,6 +31,13 @@ public class FollowerChasePlayerState : State
 
     public override void Update()
     {
+        if (followerEntity.shouldGoto)
+        {
+            nextState = new FollowerGotoState(npc, agent, anim, followerEntity);
+            stage = StateStage.EXIT;
+            return;
+        }
+
         base.Update();
 
         GameObject target = LookForClosestTarget();
@@ -64,16 +71,17 @@ public class FollowerChasePlayerState : State
         {
             // najdi vzdalenost k targetu a ke currentTargetu
             float distanceToTarget = Vector3.Distance(npc.transform.position, target.transform.position);
+            Vector3 dirToTarget = (target.transform.position - npc.transform.position).normalized;
 
-            // pokud je vzdálenost kratší než auto detect a je blíž než currentTarget tak ho setni jako currentTarget
-            if (distanceToTarget < followerEntity.autoDetectRange && (currerntTarget == null || distanceToTarget < Vector3.Distance(currerntTarget.transform.position, target.transform.position)))
+            // pokud je vzdálenost kratší než attack distance a je blíž než currentTarget tak ho setni jako currentTarget
+            if (distanceToTarget < followerEntity.autoDetectRange && (currerntTarget == null || distanceToTarget < Vector3.Distance(currerntTarget.transform.position, target.transform.position)) && !Physics.Raycast(npc.transform.position, dirToTarget, distanceToTarget, followerEntity.obstacleMask))
                 currerntTarget = target;
 
             // pokud je target blíž než currentTarget
             if (currerntTarget == null || distanceToTarget < Vector3.Distance(npc.transform.position, currerntTarget.transform.position))
             {
                 // a je v sightAnglu npcka
-                Vector3 dirToTarget = (target.transform.position - npc.transform.position).normalized;
+
                 if (Vector3.Angle(npc.transform.forward, dirToTarget) < followerEntity.sightAngle / 2)
                 {
                     // a není za obstaclem tak ho nastav jako currentTarget
@@ -94,5 +102,4 @@ public class FollowerChasePlayerState : State
             return null;
         }
     }
-
 }
