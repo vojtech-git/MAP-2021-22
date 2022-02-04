@@ -91,7 +91,10 @@ public class FighterEntity : Entity
 
     void Update()
     {
-        currentState = currentState.Process();
+        if (enabled)
+        {
+            currentState = currentState.Process();
+        }    
     }
 
     public override void Die()

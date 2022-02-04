@@ -2,21 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Medkit : MonoBehaviour
+public class Medkit : Pickable
 {
     public float healValue;
 
-    private void OnTriggerEnter(Collider other)
+    protected override void Pickup(Player player)
     {
-        if (other.CompareTag("Player"))
+        if (player.Health != player.MaxHealth)
         {
-            Player player = other.GetComponent<Player>();
-
-            if (player.Health != player.MaxHealth)
-            {
-                player.AddHealth(healValue);
-                Destroy(this.gameObject);
-            }
+            player.AddHealth(healValue);
+            Destroy(this.gameObject);
         }
     }
 }

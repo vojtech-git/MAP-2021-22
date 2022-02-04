@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
-{    
+{
+    public bool instant;
+
     public Animator transition;
     public float transitionTime;
     public string targetSceneName;
@@ -12,9 +14,17 @@ public class LevelLoader : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.U))
+        if (other.CompareTag("Player") || other.CompareTag("PlayerFaction"))
         {
-            LoadNextScene(targetSceneName);
+            if (instant)
+            {
+                LoadNextScene(targetSceneName);
+            }
+
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                LoadNextScene(targetSceneName);
+            }
         }
     }
 

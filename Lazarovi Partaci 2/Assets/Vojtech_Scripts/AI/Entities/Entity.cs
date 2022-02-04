@@ -39,6 +39,7 @@ public class Entity : MonoBehaviour
             }
         } 
     }
+    [HideInInspector]
     public bool isDead = false;
 
     private void Start()
@@ -58,6 +59,7 @@ public class Entity : MonoBehaviour
     public virtual void Die()
     {
         isDead = true;
+
         Destroy(this.gameObject);
     }
 }

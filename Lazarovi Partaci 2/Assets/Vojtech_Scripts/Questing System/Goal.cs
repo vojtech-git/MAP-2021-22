@@ -86,6 +86,6 @@ public enum GoalType
     Reach,
     Gather,
     Kill,
-    PressButton,
+    Interact,
     SystemChange
 }

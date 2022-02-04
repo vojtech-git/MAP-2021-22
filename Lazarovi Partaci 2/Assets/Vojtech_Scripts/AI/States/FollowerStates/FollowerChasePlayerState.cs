@@ -48,7 +48,10 @@ public class FollowerChasePlayerState : State
         }
         else
         {
-            agent.SetDestination(player.position);
+            if (agent.enabled)
+            {
+                agent.SetDestination(player.position);
+            }
 
             if (Vector3.Distance(npc.transform.position, player.position) < agent.stoppingDistance)
             {

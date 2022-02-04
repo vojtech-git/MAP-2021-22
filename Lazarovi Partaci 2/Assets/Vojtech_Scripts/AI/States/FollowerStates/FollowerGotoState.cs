@@ -11,7 +11,7 @@ public class FollowerGotoState : State
     {
         followerEntity = _followerEntity;
 
-        Debug.Log("enetering folower gotostate" + followerEntity.gameObject.name);
+        //Debug.Log("enetering folower gotostate" + followerEntity.gameObject.name);
     }
 
     public override void Enter()

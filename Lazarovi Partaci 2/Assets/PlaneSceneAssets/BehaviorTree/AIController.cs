@@ -22,7 +22,8 @@ public class AIController : MonoBehaviour, IController ,IBehaviorAI
    GameObject target = null;
    public string enemyFaction = "PlayerFaction";  //urcuje tym, zda jsou na strane nepratel nebo na strane playera
     void Start()         //CHEKCUJEME ZDA JSME V CILI NEBO NE  tohle ridi ai a jeho chovani
-    {   
+    {
+        Player = GameObject.FindGameObjectWithTag("PlayerFaction");
         
         DecideToAttack = new Sequence(new List<BTNode>
         {

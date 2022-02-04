@@ -7,14 +7,17 @@ using UnityEngine.Playables;
 public class AdvancedGoalActionStructure
 {
     public GoalActionType actionType;
-    public ChangeStateStructure[] changeStateStructures;
+    [Header("objects to affect")]
     public AudioSource[] audioToPlay;
-    public FollowerEntity followerToSend;
+    public ChangeStateStructure[] changeStateStructures;
+    public InstanciateObjectsSructure[] instanciateObjectsSructures;
+    public ChangeScriptStateStructure[] changeScriptStateStructures;
+    public SendFollowerStructure[] followersToSend;
     public PlayableDirector timelineToStart;
     public float delayLength;
 }
 
 public enum GoalActionType
 {
-    PlayAudio, ChangeObjState, StartTimeline, SendFollowerToPoint, DelayNextAction
+    PlayAudio, ChangeObjState, StartTimeline, SendFollowerToPoint, DelayNextAction, InstanciateObjects, ChangeScriptState
 }

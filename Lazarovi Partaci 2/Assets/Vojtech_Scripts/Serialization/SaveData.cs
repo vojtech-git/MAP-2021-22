@@ -8,7 +8,8 @@ public class SaveData
     public static List<Questline> activeQuestLines = new List<Questline>();
     public static List<Questline> completedQuestLines = new List<Questline>();
 
-    public static Dictionary<string, Dictionary<string, bool>> ObjectEnabledStates = new Dictionary<string, Dictionary<string, bool>>();
+    public static Dictionary<string, Dictionary<string, bool>> objectEnabledStates = new Dictionary<string, Dictionary<string, bool>>();
+    public static Dictionary<string, Dictionary<string, Vector3>> objectPositions = new Dictionary<string, Dictionary<string, Vector3>>();
 
     public static int playerMoney;
 

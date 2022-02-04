@@ -145,12 +145,17 @@ public class Player : Entity
         #endregion
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void UseMoney(int amount)
+    public bool UseMoney(int amount)
     {
         if(currentMoney - amount >= 0)
         {
             currentMoney -= amount;
             moneyText.text = currentMoney.ToString() + " ¤";
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

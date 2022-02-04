@@ -84,18 +84,18 @@ public class DefeatScreen : MonoBehaviour
         
        Debug.Log("restart");
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Vector2 cursorOffset = new Vector2(crosshair.width/2, crosshair.height/2);
-        Cursor.SetCursor(crosshair, cursorOffset,CursorMode.Auto);
-        defeat.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
-        jsiDead=false;
-        Time.timeScale=1f;
-        Debug.Log(Time.timeScale);
-        //Debug.Log(jsiDead);
-      
-  
-       
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //Vector2 cursorOffset = new Vector2(crosshair.width/2, crosshair.height/2);
+        //Cursor.SetCursor(crosshair, cursorOffset,CursorMode.Auto);
+        //defeat.SetActive(false);
+        //Cursor.lockState = CursorLockMode.None;
+        //jsiDead=false;
+        //Time.timeScale=1f;
+        //Debug.Log(Time.timeScale);
+        ////Debug.Log(jsiDead);
+
+
+        SceneStateManager.Instance.RestartGame();
     }
 
     private void StopTalkingSound(){

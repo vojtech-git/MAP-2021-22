@@ -93,7 +93,10 @@ public class FollowerEntity : Entity
     {
         if (!isDead)
         {
-            base.Die();
+            isDead = true;
+            currentState.Exit();
+            currentState = new FollowerRecoverState(gameObject, agent, anim, this, GameObject.FindGameObjectWithTag("Player").transform);
+            StartCoroutine(RecoverHealth());
         }        
     }
 
@@ -186,5 +189,15 @@ public class FollowerEntity : Entity
         anim.SetBool("isAttacking", false);
 
         Debug.Log("at position " + gameObject.name);
+    }
+    IEnumerator RecoverHealth()
+    {
+        while (Health < MaxHealth)
+        {
+            AddHealth(MaxHealth / 100);
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        isDead = false;
     }
 }

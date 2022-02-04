@@ -6,12 +6,29 @@ using UnityEngine.UI;
 public class Door : MonoBehaviour
 {
     public Animator doorAnim;
+
+    List<Collider> collidersOpeningDoors = new List<Collider>();
+
     void OnTriggerEnter(Collider other)
     {
-        doorAnim.SetTrigger("OpenClose");
+        if (enabled)
+        { 
+            collidersOpeningDoors.Add(other);
+
+            doorAnim.SetTrigger("CloseOpen");
+        }
     }
+
     void OnTriggerExit(Collider other)
     {
-        doorAnim.SetTrigger("OpenClose");
+        collidersOpeningDoors.Remove(other);
+
+        if (enabled)
+        {
+            if (collidersOpeningDoors.Count == 0)
+            {
+                doorAnim.SetTrigger("OpenClose");
+            } 
+        }
     }
 }

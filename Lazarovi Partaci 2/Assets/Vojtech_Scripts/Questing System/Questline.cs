@@ -10,7 +10,8 @@ public class Questline
     [HideInInspector]
     public List<Quest> completedQuests = new List<Quest>();
 
-    [Header("Debug")]
+    [Header("debug")]
+    // Vlastì zastupuje nulu. Proto ho odèítám pøi zakonèování questlinky. Když questlinka konèí poøád v active questech zbýva tìch posledních [questToStartAt] questù.
     public int questToStartAt;
 
     public Questline(string _title, List<Quest> _activeQuests)
@@ -39,9 +40,10 @@ public class Questline
         activeQuests[questToStartAt].ProgressQuest(type, id);
 
         if (activeQuests[questToStartAt].Completed)
-        {
+        { 
             MoveToCompletedQuests(activeQuests[questToStartAt]);
-            if (activeQuests.Count >= 1)
+                
+            if ((activeQuests.Count - questToStartAt) >= 1)
             {
                 activeQuests[questToStartAt].StartQuest();
             }

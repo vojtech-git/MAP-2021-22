@@ -13,17 +13,11 @@ public class InteractionRay : MonoBehaviour
         {
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out RaycastHit hit, interactionDistance))
             {
-                if (hit.transform.TryGetComponent(out ElevatorSwitch elevatorSwitch))
+                if (hit.transform.TryGetComponent(out Interactable interactable))
                 {
-                    //Debug.Log("Hit a switch");
+                    //Debug.Log("Interact ray hit an interactable " + interactable.gameObject.name);
 
-                    elevatorSwitch.StartElevator();
-                }
-                if (hit.transform.TryGetComponent(out QuestButtonMothership questButton))
-                {
-                    //Debug.Log("Hit a button");
-
-                    questButton.PressButton();
+                    interactable.Interact();
                 }
             }
         }

@@ -21,7 +21,7 @@ public class FollowerIdleState : State
 
         agent.isStopped = true;
         anim.SetBool("isRunning", false);
-        anim.SetBool("isRunning", false);
+        anim.SetBool("isAttacking", false);
 
         base.Enter();
     }
@@ -46,8 +46,11 @@ public class FollowerIdleState : State
 
         if (target != null)
         {
-            nextState = new FollowerChaseState(npc, agent, anim, target, followerEntity, player);
-            stage = StateStage.EXIT;
+            if (agent.enabled)
+            {
+                nextState = new FollowerChaseState(npc, agent, anim, target, followerEntity, player);
+                stage = StateStage.EXIT; 
+            }
         }
         else if (Vector3.Distance(npc.transform.position, player.position) < agent.stoppingDistance + 1f)
         {
@@ -55,8 +58,11 @@ public class FollowerIdleState : State
         }
         else
         {
-            nextState = new FollowerChasePlayerState(npc, agent, anim, followerEntity, player);
-            stage = StateStage.EXIT;
+            if (agent.enabled)
+            {
+                nextState = new FollowerChasePlayerState(npc, agent, anim, followerEntity, player);
+                stage = StateStage.EXIT; 
+            }
         }
     }
 

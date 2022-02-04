@@ -73,12 +73,31 @@ public class AdvancedGoalAction : MonoBehaviour
             }
             else if (structure.actionType == GoalActionType.SendFollowerToPoint)
             {
-                structure.followerToSend.shouldGoto = true;
-                Debug.Log("sending follower " + structure.followerToSend.gameObject.name + " to his point");
+                foreach (SendFollowerStructure followerStructure in structure.followersToSend)
+                {
+                    followerStructure.followerToSend.shouldGoto = followerStructure.shouldGo;
+                }
             }
             else if (structure.actionType == GoalActionType.DelayNextAction)
             {
                 yield return new WaitForSeconds(structure.delayLength);
+            }
+            else if (structure.actionType == GoalActionType.InstanciateObjects)
+            {
+                foreach (InstanciateObjectsSructure instanciateStructure in structure.instanciateObjectsSructures)
+                {
+                    foreach (Vector3 objectsPosition in instanciateStructure.positions)
+                    {
+                        Instantiate(instanciateStructure.objectToInstanciate, objectsPosition, Quaternion.identity);
+                    }
+                }
+            }
+            else if (structure.actionType == GoalActionType.ChangeScriptState)
+            {
+                foreach (ChangeScriptStateStructure scriptChangeStruct in structure.changeScriptStateStructures)
+                {
+                    scriptChangeStruct.componentToSwitch.enabled = scriptChangeStruct.desiredState;
+                }
             }
         }
     }
