@@ -71,10 +71,12 @@ public class StoryObject : MonoBehaviour
         if (SaveData.objectPositions.ContainsKey(SceneManager.GetActiveScene().name) && SaveData.objectPositions[SceneManager.GetActiveScene().name].ContainsKey(gameObject.name))
         {
             transform.position = SaveData.objectPositions[SceneManager.GetActiveScene().name][gameObject.name];
+            Debug.Log("position applyied for + " + gameObject.name + " position: " + SaveData.objectPositions[SceneManager.GetActiveScene().name][gameObject.name]);
+
         }
         else
         {
-            //Debug.Log("No position log found for:" + gameObject.name);
+            Debug.Log("No position log found for: " + gameObject.name);
         }
     }
 }
