@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &26151155 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 391952070902853999, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
+  m_PrefabInstance: {fileID: 1329673633}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fbd978c3f70e1e45b1f995a460758a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &145743756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1144,6 +1155,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066163003}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1114488507 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 391952070373934689, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
+  m_PrefabInstance: {fileID: 1329673633}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae57c68ff2acd54aacca83fb88c8780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1172917537 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 34a3fb84d16924d41985588f52c02f55, type: 3}
@@ -1243,6 +1265,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 391952069244366091, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 391952069278798458, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1294,6 +1320,18 @@ PrefabInstance:
     - target: {fileID: 391952070272116441, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 391952070373934689, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
+      propertyPath: phoneOnOff
+      value: 
+      objectReference: {fileID: 26151155}
+    - target: {fileID: 391952070902853999, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
+      propertyPath: phoneGettingCalled
+      value: 
+      objectReference: {fileID: 1114488507}
+    - target: {fileID: 391952070965671065, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8536456234279135366, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1843,6 +1881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8823c0f91047800448572b16e4821a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startTurnedOn: 0
 --- !u!1001 &1706855101
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ public class phoneOnOff : MonoBehaviour
 
     private bool OnOff;
 
+    public phoneGettingCalled phoneGettingCalled;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,9 +37,32 @@ public class phoneOnOff : MonoBehaviour
             turnOff();
             StartCoroutine(wait());
         }
+        if (Input.GetKeyDown(KeyCode.Alpha6) && OnOff == false)
+        {
+            phoneUI.SetActive(true);
+            Debug.Log("zapnutí");
+            turnOn();
+
+            StartCoroutine(test());
+
+            Debug.Log("story zvoní telefon");
+            phoneGettingCalled.storyGettingCalled();
+        }
     }
 
-    void turnOff()
+    public void Volani()
+    {
+        phoneUI.SetActive(true);
+        Debug.Log("zapnutí");
+        turnOn();
+
+        StartCoroutine(test());
+
+        Debug.Log("story zvoní telefon");
+        phoneGettingCalled.storyGettingCalled();
+    }
+
+    public void turnOff()
     {
         if (animator != null)
         {
@@ -61,9 +86,19 @@ public class phoneOnOff : MonoBehaviour
         OnOff = true;
     }
 
+    public void xdLmaoJanProchazka()
+    {
+        StartCoroutine(wait());
+    }
+    
     IEnumerator wait()
     {
         yield return new WaitForSecondsRealtime(time);
         phoneUI.SetActive(false);
+    }
+
+    IEnumerator test()
+    {
+        yield return new WaitForSecondsRealtime(1f);
     }
 }
