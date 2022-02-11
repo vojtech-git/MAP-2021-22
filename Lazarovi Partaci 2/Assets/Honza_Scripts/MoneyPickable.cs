@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MoneyGain : Pickable
+public class MoneyPickable : Pickable
 {
-    public int gainMoney = 0;
+    public int moneyGainAmount = 0;
 
     protected override void Pickup(Player player)
     {
-        player.UseMoney(-gainMoney);
+        player.UseMoney(-moneyGainAmount);
         Destroy(gameObject);
     }
 }

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pickable : MonoBehaviour
+public class Pickable : Interactable
 {
-    public int id;
+    public int itemId;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,7 +22,7 @@ public class Pickable : MonoBehaviour
     /// <param name="player"></param>
     protected virtual void Pickup(Player player)
     {
-        QuestingManager.OnPointGained(GoalType.Gather, id);
+        QuestingManager.OnPointGained(GoalType.Gather, itemId);
         Destroy(gameObject);
     }
 }

@@ -32,7 +32,7 @@ public class FighterEntity : Entity
     public GameObject granadePrefab;
     public GameObject granadeSpawnPos;
     public GameObject[] ItemsToDropPrefabs;
-    public GameObject post;
+    Vector3 postPosition;
 
     public Coroutine runningToPost;
     private NavMeshAgent agent; // mohl bych pøiøadit v inspektoru uvnitø prefaby (agenta, animator)
@@ -81,6 +81,9 @@ public class FighterEntity : Entity
 
     void Start()
     {
+        // mohlo by se nastavit špatnì kdyby se mu naèetla pozice ze saveloadu pred tímhle
+        postPosition = transform.position;
+
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
@@ -188,14 +191,13 @@ public class FighterEntity : Entity
     }
     IEnumerator ReturnToPost()
     {
-        agent.SetDestination(post.transform.position);
+        agent.SetDestination(postPosition);
         anim.SetBool("isRunning", true);
         anim.SetBool("isAttacking", false);
 
         yield return new WaitUntil(() => agent.remainingDistance < agent.stoppingDistance + 1);
 
         agent.isStopped = true;
-        transform.rotation = post.transform.rotation;
         anim.SetBool("isRunning", false);
         anim.SetBool("isAttacking", false);
     }
@@ -204,5 +206,7 @@ public class FighterEntity : Entity
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackDistance);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, sightDistance);
     }
 }

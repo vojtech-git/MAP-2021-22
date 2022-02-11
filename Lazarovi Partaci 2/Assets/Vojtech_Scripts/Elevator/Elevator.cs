@@ -61,22 +61,25 @@ public class Elevator : MonoBehaviour
 
     public void UpdateStartJourney()
     {
-        traveling = true;
-        foreach (NavMeshAgent navMeshAgent in agentsOnElevator)
+        if (enabled)
         {
-            navMeshAgent.enabled = false;
+            traveling = true;
+            foreach (NavMeshAgent navMeshAgent in agentsOnElevator)
+            {
+                navMeshAgent.enabled = false;
+            }
+
+            startPosition = transform.position;
+            if (goingUp)
+                endPosition = topMarker.transform.position;
+            else
+                endPosition = bottomMarker.transform.position;
+            journeyLength = (startPosition - endPosition).magnitude;
+
+            startTime = Time.time;
+
+            goingUp = !goingUp;  
         }
-
-        startPosition = transform.position;
-        if (goingUp)
-            endPosition = topMarker.transform.position;
-        else
-            endPosition = bottomMarker.transform.position;
-        journeyLength = (startPosition - endPosition).magnitude;
-
-        startTime = Time.time;
-
-        goingUp = !goingUp; 
     }
 
     void StopJourney()
