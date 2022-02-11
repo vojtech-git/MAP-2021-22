@@ -12,6 +12,7 @@ public class Elevator : MonoBehaviour
 
     [Header("Specifications")]
     public float speed;
+    public Door[] doorsToLockWhenMoving;
 
     List<NavMeshAgent> agentsOnElevator = new List<NavMeshAgent>();
     bool traveling;
@@ -68,6 +69,11 @@ public class Elevator : MonoBehaviour
             {
                 navMeshAgent.enabled = false;
             }
+            foreach (Door door in doorsToLockWhenMoving)
+            {
+                door.enabled = false;
+                door.CloseDoor();
+            }
 
             startPosition = transform.position;
             if (goingUp)
@@ -89,6 +95,10 @@ public class Elevator : MonoBehaviour
         foreach (NavMeshAgent navMeshAgent in agentsOnElevator)
         {
             navMeshAgent.enabled = true;
+        }
+        foreach (Door door in doorsToLockWhenMoving)
+        {
+            door.enabled = true;
         }
     }
 

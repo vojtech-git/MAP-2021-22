@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ElevatorSwitch : Interactable
 {
+    [Header("Elevator")]
     public Elevator elevator;
 
     public override void Interact()

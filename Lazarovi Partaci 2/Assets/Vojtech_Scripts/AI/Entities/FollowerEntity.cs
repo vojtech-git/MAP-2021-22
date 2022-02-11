@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
 public class FollowerEntity : Entity
 {
@@ -28,7 +29,7 @@ public class FollowerEntity : Entity
     public GameObject granadeSpawnPos;
     public float speedOfGranade = 15;
     public GameObject gotoPosition;
-    public bool shouldGoto = false;
+    [HideInInspector] public bool shouldGoto = false;
 
     private Coroutine goingToPosition;
     private NavMeshAgent agent; // mohl bych pøiøadit v inspektoru uvnitø prefaby (agenta, animator)
@@ -80,7 +81,7 @@ public class FollowerEntity : Entity
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
-        currentState = new FollowerChasePlayerState(gameObject, agent, anim, this, GameObject.FindGameObjectWithTag("Player").transform);
+        currentState = new FollowerFollowPlayerState(gameObject, agent, anim, this, GameObject.FindGameObjectWithTag("Player").transform);
         Health = MaxHealth;
     }
 

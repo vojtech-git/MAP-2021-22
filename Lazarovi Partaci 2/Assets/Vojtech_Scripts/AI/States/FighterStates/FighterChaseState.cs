@@ -21,6 +21,7 @@ public class FighterChaseState : State
         //Debug.Log(npc.gameObject.name + " enetered shooter chase state");
 
         agent.isStopped = false;
+        agent.stoppingDistance = fighterEntity.attackDistance;
 
         anim.SetBool("isRunning", true);
         anim.SetBool("isAttacking", false);

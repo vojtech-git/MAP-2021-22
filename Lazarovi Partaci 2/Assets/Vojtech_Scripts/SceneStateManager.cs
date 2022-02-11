@@ -62,8 +62,7 @@ public class SceneStateManager : MonoBehaviour
     {
         startOfGame = true;
         SceneManager.LoadScene("System 0");
-        SaveData.activeQuestLines.Clear();
-        SaveData.completedQuestLines.Clear();
+        SaveData.WipeSaveData();
         QuestCanvas.Instance.ClearUI();
     }
 

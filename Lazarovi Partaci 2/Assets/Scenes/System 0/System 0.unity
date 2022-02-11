@@ -3801,7 +3801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3a7aa59dd146ade45b93e6ec231fa654, type: 3}
       propertyPath: m_Name
-      value: raketka - aktivni
+      value: ----- Player raketa
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3a7aa59dd146ade45b93e6ec231fa654, type: 3}
       propertyPath: m_Layer
@@ -14984,7 +14984,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1194431680}
     m_Modifications:
     - target: {fileID: 4994703162478280173, guid: 2d73150d640f21741b6e4f35bacfddef, type: 3}
       propertyPath: m_Name
@@ -14992,19 +14992,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5628110562001545047, guid: 2d73150d640f21741b6e4f35bacfddef, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5628110562001545047, guid: 2d73150d640f21741b6e4f35bacfddef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1244
+      value: -1175
       objectReference: {fileID: 0}
     - target: {fileID: 5628110562001545047, guid: 2d73150d640f21741b6e4f35bacfddef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19
+      value: -180.43547
       objectReference: {fileID: 0}
     - target: {fileID: 5628110562001545047, guid: 2d73150d640f21741b6e4f35bacfddef, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 488
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5628110562001545047, guid: 2d73150d640f21741b6e4f35bacfddef, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20606,6 +20606,38 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1194431679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1194431680}
+  m_Layer: 0
+  m_Name: ----- Scenes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1194431680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194431679}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -55.96704, y: 161.43547, z: 622.44}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1062648439}
+  - {fileID: 1392556721}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1208739788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6435341876760637939, guid: c3278c1dd76231a4294695d48fc0859a, type: 3}
@@ -21595,12 +21627,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392556716}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -703, y: 0, z: 524}
+  m_LocalPosition: {x: -647.03296, y: -161.43547, z: -98.44}
   m_LocalScale: {x: 365.90097, y: 132.66896, z: 132.66896}
   m_Children:
   - {fileID: 1451239568}
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 1194431680}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1400180654
 GameObject:

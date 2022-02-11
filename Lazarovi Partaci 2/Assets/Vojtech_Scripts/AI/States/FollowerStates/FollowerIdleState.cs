@@ -60,7 +60,7 @@ public class FollowerIdleState : State
         {
             if (agent.enabled)
             {
-                nextState = new FollowerChasePlayerState(npc, agent, anim, followerEntity, player);
+                nextState = new FollowerFollowPlayerState(npc, agent, anim, followerEntity, player);
                 stage = StateStage.EXIT; 
             }
         }

@@ -11,11 +11,11 @@ public class Door : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (enabled)
-        { 
-            collidersOpeningDoors.Add(other);
+        collidersOpeningDoors.Add(other);
 
-            doorAnim.SetTrigger("CloseOpen");
+        if (enabled)
+        {
+            OpenDoor();
         }
     }
 
@@ -23,12 +23,21 @@ public class Door : MonoBehaviour
     {
         collidersOpeningDoors.Remove(other);
 
-        if (enabled)
+        if (enabled && collidersOpeningDoors.Count == 0)
         {
-            if (collidersOpeningDoors.Count == 0)
-            {
-                doorAnim.SetTrigger("OpenClose");
-            } 
+            CloseDoor();
         }
+    }
+
+    public void CloseDoor()
+    {
+        //Debug.Log("closing doors");
+        doorAnim.SetBool("open", false);
+    }
+
+    public void OpenDoor()
+    {
+        //Debug.Log("opening doors");
+        doorAnim.SetBool("open", true);
     }
 }

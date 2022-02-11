@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PayMoneyInteractable : Interactable
+public class PayMoneyInteractable : QuestInteractable
 {
-    Player player;
+    [Header("Pay Money")]
     public int cost;
+
+    Player player;
 
     private void Start()
     {

@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class FollowerChasePlayerState : State
+public class FollowerFollowPlayerState : State
 {
     FollowerEntity followerEntity;
     Transform player;
 
-    public FollowerChasePlayerState(GameObject _npc, NavMeshAgent _agent, Animator _anim, FollowerEntity _followerEntity, Transform _player) : base(_npc, _agent, _anim)
+    public FollowerFollowPlayerState(GameObject _npc, NavMeshAgent _agent, Animator _anim, FollowerEntity _followerEntity, Transform _player) : base(_npc, _agent, _anim)
     {
         player = _player;
         followerEntity = _followerEntity;
@@ -20,7 +20,7 @@ public class FollowerChasePlayerState : State
         //Debug.Log(npc.gameObject.name + " entered follower chase player state");
 
         agent.isStopped = false;
-        agent.stoppingDistance = 3;
+        agent.stoppingDistance = 4;
 
         anim.SetBool("isRunning", true);
         anim.SetBool("isAttacking", false);

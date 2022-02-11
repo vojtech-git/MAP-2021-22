@@ -25,7 +25,10 @@ public class FighterAttackState : State
         {
             targetEntity = target.GetComponent<Entity>(); 
         }
+
         agent.isStopped = true;
+        agent.stoppingDistance = fighterEntity.attackDistance;
+
         anim.SetBool("isAttacking", true); 
         anim.SetBool("isRunning", false);
 

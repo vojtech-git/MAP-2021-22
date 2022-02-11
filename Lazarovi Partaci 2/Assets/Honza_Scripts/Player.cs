@@ -256,14 +256,17 @@ public class Player : Entity
 
     public override void Die()
     {
-
-        Debug.Log("player umřel");
-        Cursor.lockState = CursorLockMode.None; //defeat screen
-        DefeatScreen.jsiDead = true;
-        //Time.timeScale = 0f;
-        // Debug.Log(Time.timeScale);
-        defeatScreen.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        if (!isDead)
+        {
+            isDead = true;
+            Debug.Log("player umřel");
+            Cursor.lockState = CursorLockMode.None; //defeat screen
+            DefeatScreen.jsiDead = true;
+            //Time.timeScale = 0f;
+            // Debug.Log(Time.timeScale);
+            defeatScreen.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true; 
+        }
     }
 }

@@ -28,7 +28,7 @@ public class FollowerAttackState : State
         }
 
         agent.isStopped = true;
-        agent.stoppingDistance = 1;
+        agent.stoppingDistance = followerEntity.attackDistance;
 
         anim.SetBool("isAttacking", true);
         anim.SetBool("isRunning", false);
