@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(CapsuleCollider))]
 public class RocketEntity : Entity
 {
     [Header("Stats Modification")]
@@ -48,13 +49,22 @@ public class RocketEntity : Entity
         }
     }
 
+    private void Awake()
+    {
+        if (sightDistance < autoDetectDistance)
+        {
+            sightDistance = autoDetectDistance;
+        }
+    }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
 
         currentState = new RocketIdleState(gameObject, agent, anim, this);
     }
+
     void Update()
     {
         currentState = currentState.Process();

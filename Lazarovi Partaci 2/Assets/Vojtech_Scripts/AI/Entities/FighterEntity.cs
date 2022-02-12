@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(NavMeshAgent))]
 public class FighterEntity : Entity
 {
@@ -18,7 +18,7 @@ public class FighterEntity : Entity
 
     [Header("View Modifications")]
     public float attackDistance = 3f;
-    public float autoDetectRange = 10f;
+    public float autoDetectDistance = 10f;
     public float sightDistance = 20f;
     public float outOfRangeTimeToChase = 5f;
     public float looseSightInstantlyDistance = 50f;
@@ -79,13 +79,22 @@ public class FighterEntity : Entity
         }
     }
 
-    void Start()
+    private void Awake()
     {
+        // sight distance by nemela byt mensi nez autoDetect protoze CheckSphere vzdy probíhá na vzdálenost sightDistance.
+        if (sightDistance < autoDetectDistance)
+        {
+            sightDistance = autoDetectDistance;
+        }
+
         // mohlo by se nastavit špatnì kdyby se mu naèetla pozice ze saveloadu pred tímhle
         postPosition = transform.position;
+    }
 
+    void Start()
+    {
         agent = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
 
         currentState = new FighterIdleState(gameObject, agent, anim, this);
 
@@ -207,6 +216,8 @@ public class FighterEntity : Entity
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackDistance);
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, sightDistance);
+        Gizmos.DrawWireSphere(transform.position, sightDistance); 
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, autoDetectDistance);
     }
 }

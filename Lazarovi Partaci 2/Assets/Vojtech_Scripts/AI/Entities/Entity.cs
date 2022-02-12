@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Entity : MonoBehaviour
 {
     [SerializeField]
-    protected float maxHealth;
+    protected float maxHealth = 100;
     public Slider healthBar;
 
     public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }

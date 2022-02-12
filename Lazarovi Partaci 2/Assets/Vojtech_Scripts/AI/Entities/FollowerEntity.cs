@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(CapsuleCollider))]
 public class FollowerEntity : Entity
 {
     [Header("Stats Modification")]
@@ -28,11 +28,9 @@ public class FollowerEntity : Entity
     public GameObject granadePrefab;
     public GameObject granadeSpawnPos;
     public float speedOfGranade = 15;
-    public GameObject gotoPosition;
-    [HideInInspector] public bool shouldGoto = false;
 
-    private Coroutine goingToPosition;
-    private NavMeshAgent agent; // mohl bych pøiøadit v inspektoru uvnitø prefaby (agenta, animator)
+    [HideInInspector] public bool scriptedSequencePlaying;
+    public NavMeshAgent agent; // mohl bych pøiøadit v inspektoru uvnitø prefaby (agenta, animator)
     private Animator anim;
     private State currentState;
     public delegate void StoppedChasingDelegate();
@@ -76,18 +74,33 @@ public class FollowerEntity : Entity
         }
     }
 
-    void Start()
+    private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
+    }
 
-        currentState = new FollowerFollowPlayerState(gameObject, agent, anim, this, GameObject.FindGameObjectWithTag("Player").transform);
-        Health = MaxHealth;
+    void Start()
+    {
+        if (!scriptedSequencePlaying)
+        {
+            currentState = new FollowerFollowPlayerState(gameObject, agent, anim, this, GameObject.FindGameObjectWithTag("Player").transform);
+            Health = MaxHealth;
+
+            Debug.Log("start went tru");
+        }
     }
 
     void Update()
     {
-        currentState = currentState.Process();
+        if (enabled && !scriptedSequencePlaying)
+        {
+            currentState = currentState.Process();
+        }
+        else
+        {
+            Debug.Log("Follower not enabled or scripted sequence playing " + gameObject.name);
+        }
     }
 
     public override void Die()
@@ -100,7 +113,17 @@ public class FollowerEntity : Entity
             StartCoroutine(RecoverHealth());
         }        
     }
+    // co se má stát když umøe follower pøes sequenci (GoalAction)
+    public void StoryDie()
+    {
+        Destroy(gameObject);
+    }
+    public void ReturnToFollowerState()
+    {
+        currentState = new FollowerFollowPlayerState(gameObject, agent, anim, this, GameObject.FindGameObjectWithTag("Player").transform);
+    }
 
+    #region Granade Throwing
     public void ThrowGranade(Transform target)
     {
         granadeSpawnPos.transform.LookAt(target);
@@ -146,23 +169,21 @@ public class FollowerEntity : Entity
         }
 
         return null;
-    }
+    } 
+    #endregion
 
+    // corutine call methods
     public void ChaseTargetOutOfRange(StoppedChasingDelegate stoppedChasingAction)
     {
         chasingTarget = StartCoroutine(ChaseTargetOutOfRange(outOfRangeTimeToChase, stoppedChasingAction));
     }
-    public void MoveEntityToPosition()
-    {
-        goingToPosition = StartCoroutine(GotoPosition());
-    }
 
+    #region Corutines
     IEnumerator DelayAttack(float delayBetweenAttacks)
     {
         yield return new WaitForSeconds(delayBetweenAttacks);
         ReadyToAttack = true;
     }
-
     IEnumerator DelayGranade(float delayBetweenGranade)
     {
         yield return new WaitForSeconds(delayBetweenGranade);
@@ -173,23 +194,26 @@ public class FollowerEntity : Entity
         yield return new WaitForSeconds(timeToChase);
         stoppedChasingAction();
     }
-    IEnumerator GotoPosition()
+    public IEnumerator GoToPosition(Vector3 gotoPosition)
     {
-        Debug.Log("going to position " + gameObject.name);
+        Debug.Log("agent going to pos " + gotoPosition);
 
         agent.isStopped = false;
-        agent.SetDestination(gotoPosition.transform.position);
+        agent.stoppingDistance = 1f;
+        if (!agent.SetDestination(gotoPosition))
+        {
+            Debug.Log("destination not set succesfully");
+        }
         anim.SetBool("isRunning", true);
         anim.SetBool("isAttacking", false);
 
-        yield return new WaitUntil(() => agent.remainingDistance < agent.stoppingDistance + 1);
+        yield return new WaitUntil(() => (transform.position - gotoPosition).magnitude < agent.stoppingDistance);
 
         agent.isStopped = true;
-        transform.rotation = gotoPosition.transform.rotation;
         anim.SetBool("isRunning", false);
         anim.SetBool("isAttacking", false);
 
-        Debug.Log("at position " + gameObject.name);
+        Debug.Log("at pos" + gameObject.name);
     }
     IEnumerator RecoverHealth()
     {
@@ -201,4 +225,5 @@ public class FollowerEntity : Entity
 
         isDead = false;
     }
+    #endregion
 }

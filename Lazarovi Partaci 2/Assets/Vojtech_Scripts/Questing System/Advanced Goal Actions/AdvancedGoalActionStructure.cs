@@ -12,12 +12,12 @@ public class AdvancedGoalActionStructure
     public ChangeStateStructure[] changeStateStructures;
     public InstanciateObjectsSructure[] instanciateObjectsSructures;
     public ChangeScriptStateStructure[] changeScriptStateStructures;
-    public SendFollowerStructure[] followersToSend;
+    public ScriptedSequenceStructure[] followerStartScriptedSequences;
     public PlayableDirector timelineToStart;
     public float delayLength;
 }
 
 public enum GoalActionType
 {
-    PlayAudio, ChangeObjState, StartTimeline, SendFollowerToPoint, DelayNextAction, InstanciateObjects, ChangeScriptState
+    PlayAudio, ChangeObjState, StartTimeline, PlayFollowerScriptedSequence, DelayNextAction, InstanciateObjects, ChangeScriptState
 }

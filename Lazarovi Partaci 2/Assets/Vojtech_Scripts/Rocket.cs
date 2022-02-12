@@ -12,6 +12,7 @@ public class Rocket : Entity
     public float rocketExplosionRadius = 7;
     public float explosionForce = 700;
     public float rocketSpeed = 0.1f;
+    public LayerMask targetMask;
 
     [Header("Explosion prefab and sound")]
     public GameObject explosionEffect;
@@ -44,7 +45,7 @@ public class Rocket : Entity
             StopCoroutine(rocketTimer);
             AudioSource.PlayClipAtPoint(exploadingSound.clip, transform.position);
             Instantiate(explosionEffect, transform.position, transform.rotation);
-            foreach (Collider target in Physics.OverlapSphere(transform.position, rocketExplosionRadius))
+            foreach (Collider target in Physics.OverlapSphere(transform.position, rocketExplosionRadius, targetMask))
             {
                 Entity hitObject = target.GetComponent<Entity>();
                 Rigidbody hitObjectRigidbody = target.GetComponent<Rigidbody>();

@@ -1,0 +1,207 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3032107411391984537
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8186929900222478275}
+  m_Layer: 0
+  m_Name: Grenade_Spawn_Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8186929900222478275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3032107411391984537}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.036, y: 0.867, z: 0.505}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1350041022009338623}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7004370818776180107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1350041022009338623}
+  - component: {fileID: 6364389798928172081}
+  - component: {fileID: 7570539956726312614}
+  - component: {fileID: 3993736054885306103}
+  m_Layer: 0
+  m_Name: Fighter_Entity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1350041022009338623
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7004370818776180107}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1786766, y: -0, z: -51.5478}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1721422769547893984}
+  - {fileID: 8186929900222478275}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6364389798928172081
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7004370818776180107}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &7570539956726312614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7004370818776180107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f48fc0ceb37fdd479f71651ac66858c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthBar: {fileID: 0}
+  isDead: 0
+  damage: 10
+  granadeDamage: 20
+  speedOfGranade: 15
+  granadeBlastRadius: 5
+  attackDelayInSeconds: 1
+  isAGranadeThrower: 0
+  granadeDelayInSeconds: 5
+  attackDistance: 1.5
+  autoDetectDistance: 10
+  sightDistance: 20
+  outOfRangeTimeToChase: 5
+  looseSightInstantlyDistance: 50
+  sightAngle: 100
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 73793
+  entityId: 0
+  granadePrefab: {fileID: 0}
+  granadeSpawnPos: {fileID: 3032107411391984537}
+  ItemsToDropPrefabs:
+  - {fileID: 7245574384338636739, guid: 4a435525ce0aac74e8ff170b4f1cb8c2, type: 3}
+  - {fileID: 7885541093232100322, guid: 2dcf54e14b0c0b343a7e68a159ec2ca3, type: 3}
+  - {fileID: 9150924913237513736, guid: 683d68d4be13e1a48b60bda72b0415e6, type: 3}
+  - {fileID: 6353354841768609947, guid: cbe2121d56032984b98c8f279d0d11a4, type: 3}
+--- !u!195 &3993736054885306103
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7004370818776180107}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!1001 &4660764434196965014
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1350041022009338623}
+    m_Modifications:
+    - target: {fileID: 6290935408309992054, guid: 953ece203923e2b409bf7996ff8e64f5, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290935408309992054, guid: 953ece203923e2b409bf7996ff8e64f5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290935408309992054, guid: 953ece203923e2b409bf7996ff8e64f5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290935408309992054, guid: 953ece203923e2b409bf7996ff8e64f5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290935408309992054, guid: 953ece203923e2b409bf7996ff8e64f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290935408309992054, guid: 953ece203923e2b409bf7996ff8e64f5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290935408309992054, guid: 953ece203923e2b409bf7996ff8e64f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290935408309992054, guid: 953ece203923e2b409bf7996ff8e64f5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290935408309992054, guid: 953ece203923e2b409bf7996ff8e64f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290935408309992054, guid: 953ece203923e2b409bf7996ff8e64f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290935408309992054, guid: 953ece203923e2b409bf7996ff8e64f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631045504204415180, guid: 953ece203923e2b409bf7996ff8e64f5, type: 3}
+      propertyPath: m_Name
+      value: "Spytihn\u011Bv_Rigged"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 953ece203923e2b409bf7996ff8e64f5, type: 3}
+--- !u!4 &1721422769547893984 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6290935408309992054, guid: 953ece203923e2b409bf7996ff8e64f5, type: 3}
+  m_PrefabInstance: {fileID: 4660764434196965014}
+  m_PrefabAsset: {fileID: 0}

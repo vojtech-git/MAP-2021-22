@@ -71,11 +71,43 @@ public class AdvancedGoalAction : MonoBehaviour
             {
                 Debug.Log("starting hyperdrive");
             }
-            else if (structure.actionType == GoalActionType.SendFollowerToPoint)
+            else if (structure.actionType == GoalActionType.PlayFollowerScriptedSequence)
             {
-                foreach (SendFollowerStructure followerStructure in structure.followersToSend)
+                foreach (ScriptedSequenceStructure sequence in structure.followerStartScriptedSequences)
                 {
-                    followerStructure.followerToSend.shouldGoto = followerStructure.shouldGo;
+                    sequence.follower.scriptedSequencePlaying = true;
+
+                    foreach (ScriptedSequencePart part in sequence.scriptedSequenceParts)
+                    {
+                        if (part.sequencePartType == SequencePartType.Delay)
+                        {
+                            Debug.Log("sequence delaying for " + part.delay);
+                            yield return new WaitForSeconds(part.delay);
+                            Debug.Log("sequence delayed for " + part.delay);
+                        }
+                        else if (part.sequencePartType == SequencePartType.Move)
+                        {
+                            sequence.follower.StartCoroutine(sequence.follower.GoToPosition(part.position));
+                            yield return new WaitUntil(() => (sequence.follower.transform.position - part.position).magnitude < sequence.follower.agent.stoppingDistance);
+
+                            Debug.Log("sequence follower at point");
+                        }
+                        else if (part.sequencePartType == SequencePartType.Rotate)
+                        {
+                            sequence.follower.gameObject.transform.rotation = part.rotation;
+                            Debug.Log("sequence rotated follower");
+                        }
+                        else if (part.sequencePartType == SequencePartType.Suicide)
+                        {
+                            sequence.follower.StoryDie();
+                            Debug.Log("sequence follower story death");
+                        }
+                        else if (part.sequencePartType == SequencePartType.ReturnToFollowerState)
+                        {
+                            sequence.follower.ReturnToFollowerState();
+                            Debug.Log("sequence follower returned to followerstate");
+                        }
+                    }
                 }
             }
             else if (structure.actionType == GoalActionType.DelayNextAction)

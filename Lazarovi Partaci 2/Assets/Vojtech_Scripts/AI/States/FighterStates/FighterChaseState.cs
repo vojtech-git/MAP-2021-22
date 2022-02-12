@@ -53,7 +53,7 @@ public class FighterChaseState : State
                 }
             }
 
-            if (fighterEntity.ReadyToThrowGranade && Vector3.Angle((target.transform.position - npc.transform.position).normalized, npc.transform.forward) < (fighterEntity.sightAngle / 2))
+            if (fighterEntity.isAGranadeThrower && fighterEntity.ReadyToThrowGranade && Vector3.Angle((target.transform.position - npc.transform.position).normalized, npc.transform.forward) < (fighterEntity.sightAngle / 2))
             {
                 fighterEntity.ThrowGranade(target.transform);
             }
@@ -93,7 +93,7 @@ public class FighterChaseState : State
             Vector3 dirToTarget = (target.transform.position - npc.transform.position).normalized;
 
             // pokud je vzdálenost kratší než attack distance a je blíž než currentTarget tak ho setni jako currentTarget
-            if (distanceToTarget < fighterEntity.autoDetectRange && (currerntTarget == null || distanceToTarget < Vector3.Distance(currerntTarget.transform.position, target.transform.position)) && !Physics.Raycast(npc.transform.position, dirToTarget, distanceToTarget, fighterEntity.obstacleMask))
+            if (distanceToTarget < fighterEntity.autoDetectDistance && (currerntTarget == null || distanceToTarget < Vector3.Distance(currerntTarget.transform.position, target.transform.position)) && !Physics.Raycast(npc.transform.position, dirToTarget, distanceToTarget, fighterEntity.obstacleMask))
                 currerntTarget = target;
 
             // pokud je target blíž než currentTarget

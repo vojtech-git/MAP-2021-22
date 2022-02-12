@@ -31,13 +31,6 @@ public class FollowerFollowPlayerState : State
 
     public override void Update()
     {
-        if (followerEntity.shouldGoto)
-        {
-            nextState = new FollowerGotoState(npc, agent, anim, followerEntity);
-            stage = StateStage.EXIT;
-            return;
-        }
-
         base.Update();
 
         GameObject target = LookForClosestTarget();

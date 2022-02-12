@@ -11,6 +11,7 @@ public class Granade : Entity
     public float granadeDamage = 5;
     public float granadeExplosionRadius = 7;
     public float explosionForce = 700;
+    public LayerMask targetMask;
 
     [Header("Explosion prefab and sound")]
     public GameObject explosionEffect;
@@ -37,7 +38,7 @@ public class Granade : Entity
             StopCoroutine(granadeTimer);
             AudioSource.PlayClipAtPoint(exploadingSound.clip, transform.position);
             Instantiate(explosionEffect, transform.position, transform.rotation);
-            foreach (Collider target in Physics.OverlapSphere(transform.position, granadeExplosionRadius))
+            foreach (Collider target in Physics.OverlapSphere(transform.position, granadeExplosionRadius, targetMask))
             {
                 Entity hitObject = target.GetComponent<Entity>();
                 Rigidbody hitObjectRigidbody = target.GetComponent<Rigidbody>();

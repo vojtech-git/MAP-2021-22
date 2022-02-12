@@ -97,8 +97,9 @@ public class Elevator : MonoBehaviour
             navMeshAgent.enabled = true;
         }
         foreach (Door door in doorsToLockWhenMoving)
-        {
+        {            
             door.enabled = true;
+            door.OpenDoor();
         }
     }
 

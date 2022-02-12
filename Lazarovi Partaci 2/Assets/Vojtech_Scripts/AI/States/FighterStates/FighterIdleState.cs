@@ -32,6 +32,7 @@ public class FighterIdleState : State
         // target vedle mì vystøelí
 
         GameObject target = LookForClosestTarget();
+
         if (target != null)
         {
             if (fighterEntity.runningToPost != null)
@@ -61,7 +62,7 @@ public class FighterIdleState : State
             Vector3 dirToTarget = (target.transform.position - npc.transform.position).normalized;
 
             // pokud je vzdálenost kratší než attack distance a je blíž než currentTarget tak ho setni jako currentTarget
-            if (distanceToTarget < fighterEntity.autoDetectRange && (currerntTarget == null || distanceToTarget < Vector3.Distance(currerntTarget.transform.position, target.transform.position)) && !Physics.Raycast(npc.transform.position, dirToTarget, distanceToTarget, fighterEntity.obstacleMask))
+            if (distanceToTarget < fighterEntity.autoDetectDistance && (currerntTarget == null || distanceToTarget < Vector3.Distance(currerntTarget.transform.position, target.transform.position)) && !Physics.Raycast(npc.transform.position, dirToTarget, distanceToTarget, fighterEntity.obstacleMask))
                 currerntTarget = target;
 
             // pokud je target blíž než currentTarget

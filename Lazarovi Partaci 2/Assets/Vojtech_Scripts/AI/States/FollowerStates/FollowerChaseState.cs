@@ -32,13 +32,6 @@ public class FollowerChaseState : State
 
     public override void Update()
     {
-        if (followerEntity.shouldGoto)
-        {
-            nextState = new FollowerGotoState(npc, agent, anim, followerEntity);
-            stage = StateStage.EXIT;
-            return;
-        }
-
         if (target != null)
         {
             base.Update();
