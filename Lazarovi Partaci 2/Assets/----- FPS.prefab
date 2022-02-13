@@ -6732,8 +6732,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273b345b775840d4699ef5c4d1653087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   healthBar: {fileID: 391952069003135629}
+  maxHealth: 100
   isDead: 0
   currentSpeed: 1
   controller: {fileID: 391952069773677731}
@@ -6786,6 +6786,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionDistance: 5
+  interactLayer:
+    serializedVersion: 2
+    m_Bits: 131072
   mainCamera: {fileID: 391952071069118438}
 --- !u!1 &391952069778644557
 GameObject:
@@ -12515,6 +12518,7 @@ MonoBehaviour:
   caller: {fileID: 391952070211373811}
   calledPerson: {fileID: 391952069879428435}
   home: {fileID: 391952069467901197}
+  voicline: {fileID: 0}
   phoneOnOff: {fileID: 391952070902853999}
   callTimer: {fileID: 391952069596429959}
 --- !u!114 &391952070373934688
@@ -18228,7 +18232,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 114399
+    m_Bits: 245471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

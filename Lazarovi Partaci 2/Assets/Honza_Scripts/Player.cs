@@ -68,9 +68,12 @@ public class Player : Entity
         staminaBar_Right.maxValue = maxStamina;
         staminaBar_Left.value = maxStamina;
 
-        GetComponent<CharacterController>().enabled = false;
-        transform.position = SaveData.loadPosition;
-        GetComponent<CharacterController>().enabled = true;
+        if (SaveData.loadPosition != new Vector3(0, 0, 0))
+        {
+            GetComponent<CharacterController>().enabled = false;
+            transform.position = SaveData.loadPosition;
+            GetComponent<CharacterController>().enabled = true; 
+        }
     }
 
     void Update()

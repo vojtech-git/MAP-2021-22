@@ -77,7 +77,7 @@ public class Goal
 
     void InstantiateUI(Transform parent)
     {
-        uiDescription = GameObject.Instantiate(SceneStateManager.Instance.goalDescriptionPrefab, parent).GetComponent<Text>();
+        uiDescription = GameObject.Instantiate(QuestCanvas.Instance.goalDescriptionPrefab, parent).GetComponent<Text>();
     }
 }
 

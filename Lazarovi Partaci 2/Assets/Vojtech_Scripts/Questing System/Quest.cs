@@ -115,9 +115,9 @@ public class Quest
     }
     void InstatiateQuestUI()
     {
-        uiParent = GameObject.Instantiate(SceneStateManager.Instance.descriptionsLayoutPrefab, SceneStateManager.Instance.questVerticalLayout.transform).GetComponentInChildren<VerticalLayoutGroup>();
+        uiParent = GameObject.Instantiate(QuestCanvas.Instance.descriptionsLayoutPrefab, QuestCanvas.Instance.questVerticalLayout.transform).GetComponentInChildren<VerticalLayoutGroup>();
 
-        uiTitle = GameObject.Instantiate(SceneStateManager.Instance.questTitlePrefab, uiParent.transform).GetComponent<Text>();
+        uiTitle = GameObject.Instantiate(QuestCanvas.Instance.questTitlePrefab, uiParent.transform).GetComponent<Text>();
         uiTitle.text = title;
     }
 }

@@ -86,8 +86,6 @@ public class FollowerEntity : Entity
         {
             currentState = new FollowerFollowPlayerState(gameObject, agent, anim, this, GameObject.FindGameObjectWithTag("Player").transform);
             Health = MaxHealth;
-
-            Debug.Log("start went tru");
         }
     }
 
@@ -96,10 +94,6 @@ public class FollowerEntity : Entity
         if (enabled && !scriptedSequencePlaying)
         {
             currentState = currentState.Process();
-        }
-        else
-        {
-            Debug.Log("Follower not enabled or scripted sequence playing " + gameObject.name);
         }
     }
 

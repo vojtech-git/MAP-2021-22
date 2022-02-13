@@ -12,8 +12,6 @@ public class LevelLoader : MonoBehaviour
     public string targetSceneName;
     public Vector3 targetPosition;
 
-
-
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") || other.CompareTag("PlayerFaction"))

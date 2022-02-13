@@ -9,6 +9,11 @@ public class Door : MonoBehaviour
 
     List<Collider> collidersOpeningDoors = new List<Collider>();
 
+    private void Start()
+    {
+        
+    }
+
     void OnTriggerEnter(Collider other)
     {
         collidersOpeningDoors.Add(other);

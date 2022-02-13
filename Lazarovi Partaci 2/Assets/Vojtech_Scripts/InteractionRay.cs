@@ -5,18 +5,42 @@ using UnityEngine;
 public class InteractionRay : MonoBehaviour
 {
     public float interactionDistance;
+    public LayerMask interactLayer;
     public GameObject mainCamera;
+
+    private bool displayingInteractMsg = false;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, interactionDistance, interactLayer))
         {
-            if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out RaycastHit hit, interactionDistance))
+            if (!displayingInteractMsg)
             {
                 if (hit.transform.TryGetComponent(out Interactable interactable))
                 {
-                    //Debug.Log("Interact ray hit an interactable " + interactable.gameObject.name);
+                    QuestCanvas.Instance.interactionMessage.text = interactable.interactionMessage;
 
+                    displayingInteractMsg = true;
+                } 
+            }
+        }
+        else
+        {
+            if (displayingInteractMsg)
+            {
+                QuestCanvas.Instance.interactionMessage.text = "";
+                displayingInteractMsg = false; 
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, interactionDistance, interactLayer))
+            {
+                if (raycastHit.transform.TryGetComponent(out Interactable interactable))
+                {
                     interactable.Interact();
                 }
             }

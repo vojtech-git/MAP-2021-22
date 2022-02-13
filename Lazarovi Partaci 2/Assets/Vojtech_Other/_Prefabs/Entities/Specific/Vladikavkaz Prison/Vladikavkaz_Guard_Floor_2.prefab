@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3282144318763328827
+--- !u!1001 &2931611105760291947
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -13,15 +13,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1350041022009338623, guid: e2f9d09e44e6edf40afa08b77ed68fa9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.4523473
       objectReference: {fileID: 0}
     - target: {fileID: 1350041022009338623, guid: e2f9d09e44e6edf40afa08b77ed68fa9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0.00000047683716
       objectReference: {fileID: 0}
     - target: {fileID: 1350041022009338623, guid: e2f9d09e44e6edf40afa08b77ed68fa9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5.1538982
       objectReference: {fileID: 0}
     - target: {fileID: 1350041022009338623, guid: e2f9d09e44e6edf40afa08b77ed68fa9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -53,35 +53,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7004370818776180107, guid: e2f9d09e44e6edf40afa08b77ed68fa9, type: 3}
       propertyPath: m_Name
-      value: Instantly_Attacking_Enemy_Fighter
+      value: Vladikavkaz_Guard_Floor_2
       objectReference: {fileID: 0}
     - target: {fileID: 7004370818776180107, guid: e2f9d09e44e6edf40afa08b77ed68fa9, type: 3}
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7570539956726312614, guid: e2f9d09e44e6edf40afa08b77ed68fa9, type: 3}
+      propertyPath: entityId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7570539956726312614, guid: e2f9d09e44e6edf40afa08b77ed68fa9, type: 3}
+      propertyPath: maxHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7570539956726312614, guid: e2f9d09e44e6edf40afa08b77ed68fa9, type: 3}
       propertyPath: granadePrefab
       value: 
       objectReference: {fileID: 1898193970670972767, guid: f63d5380ecf2b5e47b5c371cacf79585, type: 3}
-    - target: {fileID: 7570539956726312614, guid: e2f9d09e44e6edf40afa08b77ed68fa9, type: 3}
-      propertyPath: autoDetectRange
-      value: 9999
-      objectReference: {fileID: 0}
-    - target: {fileID: 7570539956726312614, guid: e2f9d09e44e6edf40afa08b77ed68fa9, type: 3}
-      propertyPath: isAGranadeThrower
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7570539956726312614, guid: e2f9d09e44e6edf40afa08b77ed68fa9, type: 3}
       propertyPath: targetMask.m_Bits
       value: 2056
       objectReference: {fileID: 0}
     - target: {fileID: 7570539956726312614, guid: e2f9d09e44e6edf40afa08b77ed68fa9, type: 3}
-      propertyPath: autoDetectDistance
-      value: 9999
-      objectReference: {fileID: 0}
-    - target: {fileID: 8186929900222478275, guid: e2f9d09e44e6edf40afa08b77ed68fa9, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
+      propertyPath: obstacleMask.m_Bits
+      value: 73793
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2f9d09e44e6edf40afa08b77ed68fa9, type: 3}

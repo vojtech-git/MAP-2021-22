@@ -16,7 +16,7 @@ public class Elevator : MonoBehaviour
 
     List<NavMeshAgent> agentsOnElevator = new List<NavMeshAgent>();
     bool traveling;
-    bool goingUp;
+    bool goingDown;
     Coroutine travelingCorutine;
 
     float startTime;
@@ -76,15 +76,14 @@ public class Elevator : MonoBehaviour
             }
 
             startPosition = transform.position;
-            if (goingUp)
-                endPosition = topMarker.transform.position;
-            else
+            if (goingDown)
                 endPosition = bottomMarker.transform.position;
+            else
+                endPosition = topMarker.transform.position;
+
             journeyLength = (startPosition - endPosition).magnitude;
-
             startTime = Time.time;
-
-            goingUp = !goingUp;  
+            goingDown = !goingDown;
         }
     }
 
@@ -135,7 +134,7 @@ public class Elevator : MonoBehaviour
 
         Vector3 startPosition = transform.position;
         Vector3 endPosition;
-        if (goingUp)
+        if (goingDown)
             endPosition = topMarker.transform.position;
         else
             endPosition = bottomMarker.transform.position;
@@ -143,9 +142,9 @@ public class Elevator : MonoBehaviour
 
         StartCoroutine(Travel(startPosition, endPosition, journeyLength, Time.time));
 
-        Debug.Log("starting elevator" + startPosition + endPosition + journeyLength + Time.time + goingUp);
+        Debug.Log("starting elevator" + startPosition + endPosition + journeyLength + Time.time + goingDown);
 
-        goingUp = !goingUp;
+        goingDown = !goingDown;
     }
     #endregion
 }

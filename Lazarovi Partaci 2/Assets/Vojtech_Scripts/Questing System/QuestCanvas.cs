@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestCanvas : MonoBehaviour
 {
-    public Transform QuestVerticalLayout;
+    public Transform questVerticalLayout;
+    public Text interactionMessage;
+
+    [Header("Quest prefabs")]
+    public GameObject questTitlePrefab;
+    public GameObject goalDescriptionPrefab;
+    public GameObject descriptionsLayoutPrefab;
 
     private static QuestCanvas instance;
     public static QuestCanvas Instance { get { return instance; } }
@@ -28,7 +35,7 @@ public class QuestCanvas : MonoBehaviour
 
     public void ClearUI()
     {
-        foreach (Transform item in QuestVerticalLayout)
+        foreach (Transform item in questVerticalLayout)
         {
             Destroy(item.gameObject);
         }
