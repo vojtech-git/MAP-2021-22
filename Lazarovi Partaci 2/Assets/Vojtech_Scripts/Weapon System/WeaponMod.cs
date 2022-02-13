@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewWeaponMod", menuName = "Weapons/Mod")]
-public class WeaponMod : ScriptableObject
+[System.Serializable]
+public class WeaponMod
 {
-    public string ModName;
+    public string weaponModName;
     public WeaponModType weaponModType;
-    public GameObject modModel;
+    public GameObject weaponModModel;
+    public bool unlocked;
 
     public void EquipMod(Weapon weaponToEquipTo)
     {
-        Debug.Log("Equiping mod " + name + " into the slot " + (int)weaponModType + " to the " + weaponToEquipTo.weaponName);
+        Debug.Log("Equiping mod " + weaponModName + " into the slot " + (int)weaponModType + " to the " + weaponToEquipTo.weaponName);
 
-        weaponToEquipTo.weaponMods[(int)weaponModType] = this;
+        weaponToEquipTo.equipedMods[(int)weaponModType] = this;
     }
 
     public void ApplyGraphics()

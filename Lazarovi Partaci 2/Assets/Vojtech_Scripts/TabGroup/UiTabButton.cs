@@ -32,7 +32,10 @@ public class UiTabButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     private void Start()
     {
         tabGroup = this.GetComponentInParent<TabGroup>();
-        tabGroup.Subscribe(this);
+        if (tabGroup != null)
+        {
+            tabGroup.Subscribe(this);
+        }        
         uiText = GetComponent<Text>();
     }
 

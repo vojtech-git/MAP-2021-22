@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+[CreateAssetMenu(fileName = "NewWeapon", menuName = "Weapons/Weapon")]
+public class Weapon : ScriptableObject
 {
     public string weaponName;
-    public List<WeaponMod> weaponMods;
+    public WeaponMod[] muzzleMods;
+    public WeaponMod[] scopeMods;
+    public WeaponMod[] magazineMods;
+    public WeaponMod[] specialMods;
 
-
+    [HideInInspector] public List<WeaponMod> unlockedMods = new List<WeaponMod>();
+    public WeaponMod[] equipedMods { get; private set; }
 }
