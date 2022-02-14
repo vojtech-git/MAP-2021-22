@@ -16,7 +16,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject border;
     [SerializeField] GameObject health;
 
-
+    public AudioSource openSound;
     void Start() {
         pauseMenuUI.SetActive(false);  // pri startu je vyply pause
         GameIsPaused = false; // FIX BUGU, kdyz dame main menu a pak dame new game tak muzeme normalne hrat, jinak jsme nemohli strilet. FIXED
@@ -30,7 +30,10 @@ public class PauseMenu : MonoBehaviour
                 Resume();
             }
             else {
+
+
                 Pause();
+                openSound.Play();
             }
         }
          }

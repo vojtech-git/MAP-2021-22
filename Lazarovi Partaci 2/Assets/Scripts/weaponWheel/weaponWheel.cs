@@ -40,8 +40,13 @@ public class weaponWheel : MonoBehaviour
     private Vector2 start, end;
     private Vector2 mousePos;
 
-
-
+    // ------------------------------AUDIO-------------------
+    public AudioSource openWheel;
+    public AudioSource hoverWheel;
+    public AudioSource hoverWheel2;
+    public AudioSource hoverWheel3;
+    public AudioSource hoverWheel4;
+    public AudioSource hoverWheel5;
      private void OnDrawGizmos()
     {
         for (int i = 0; i < dots.Length; i++)
@@ -105,19 +110,22 @@ public class weaponWheel : MonoBehaviour
 
      private void EnableAllHighlight(int index)
     {
+       
         for (int i = 0; i < wheels.Length; i++)
         {
             if (wheels[i].wheela != null && wheels[i].highlightSprite != null)
-            {
+            { 
                 if (i == index)
                 {
                     wheels[i].wheela.material = wheels[i].highlightSprite;
-                   // zvuk.Play();
+                 
+                    
 
                 }
                 else
                 {
-                    wheels[i].wheela.material = wheels[i].NormalSprite;  //metoda na zoranzoveni wheelu
+                    wheels[i].wheela.material = wheels[i].NormalSprite;
+                      //metoda na zoranzoveni wheelu
                 }
             }  //honza je píča
 
@@ -140,6 +148,7 @@ public class weaponWheel : MonoBehaviour
         if (wheelParent != null)
             wheelParent.SetActive(true);
         WheelEnabled = true;
+       
         Time.timeScale = 0.1f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true; 
@@ -162,7 +171,7 @@ public class weaponWheel : MonoBehaviour
     {
         if(Input.GetKey(wheelKey) && PauseMenu.GameIsPaused == false)
         { //HONZO TO JE MÍSTO PRO TEBE KURVA
-
+           
             EnableWheel();
             CheckForCurrentWeapon();
         }
@@ -170,12 +179,16 @@ public class weaponWheel : MonoBehaviour
         {
             DisableWheel();
         }
+        if( Input.GetKeyDown(wheelKey)){
+            openWheel.Play();
+        }
+      
     }
 
 
 
      private void CheckForCurrentWeapon()
-    {
+    { 
         //if (PauseMenu.GameIsPaused == false && GameObject.Find("WeaponHolder") != null && defeatscreen.jsiDead==false) {  //podminka hlida aby jsme nemohli dat wheel kdyz mame pauslou hru
             if (mojeKamera == null)
                 return;
@@ -187,45 +200,47 @@ public class weaponWheel : MonoBehaviour
             }
 
             mousePos = Input.mousePosition;
-
+           
             if (IsInside(v1: pos[0], v2: pos[1], v3: pos[2], v: mousePos))  //tyto podminky nam rikaji co se ma stat kdyz jsme v urcitem okruhu trojuhelniku
-            {
+            {   
                 EnableAllHighlight(index: 0);   //vyber ktery se ma zvyrznit kdyz jsme v urcitem trojuhelniku
-                                                //pepa.selectedWeapon=1;
+                 hoverWheel.Play();                         //pepa.selectedWeapon=1;
                                                 //TADY DOPLNIT UNLOCK ZBRANI
                 /*WeaponSwitching pepa = GameObject.Find("WeaponHolder").transform.GetComponent<WeaponSwitching>(); //reference na wepaonswitch
                 pepa.selectedWeapon = 0;
-               */
+               */ 
                GunTop.SetActive(true);
                GunRightTop.SetActive(false);
                GunRightBot.SetActive(false);
                GunLeftBot.SetActive(false);
                GunLeftTop.SetActive(false);
             
-       
+      
 
 
             }
 
             if (IsInside(pos[0], pos[2], pos[3], mousePos)) {
-
+                  
                 EnableAllHighlight(1);
               /*  WeaponSwitching pepa = GameObject.Find("WeaponHolder").transform.GetComponent<WeaponSwitching>();
                 pepa.selectedWeapon = 1;
                 */
+               hoverWheel2.Play();
+                
                GunTop.SetActive(false);
                GunRightTop.SetActive(true);
                GunRightBot.SetActive(false);
                GunLeftBot.SetActive(false);
                GunLeftTop.SetActive(false);
-    
+     
             }
             if (IsInside(pos[0], pos[3], pos[4], mousePos)) {
-
+               
                 EnableAllHighlight(2);
               /*  WeaponSwitching pepa = GameObject.Find("WeaponHolder").transform.GetComponent<WeaponSwitching>();
                 pepa.selectedWeapon = 2;
-               */
+               */   hoverWheel3.Play();
                GunTop.SetActive(false);
                GunRightTop.SetActive(false);
                GunRightBot.SetActive(true);
@@ -234,11 +249,11 @@ public class weaponWheel : MonoBehaviour
   
             }
             if (IsInside(pos[0], pos[4], pos[5], mousePos)) {
-
+                
                 EnableAllHighlight(3);
                /* WeaponSwitching pepa = GameObject.Find("WeaponHolder").transform.GetComponent<WeaponSwitching>();
                 pepa.selectedWeapon = 3;
-              */
+              */  hoverWheel4.Play();  
                GunTop.SetActive(false);
                GunRightTop.SetActive(false);
                GunRightBot.SetActive(false);
@@ -247,12 +262,12 @@ public class weaponWheel : MonoBehaviour
                  
             }
             if (IsInside(pos[0], pos[5], pos[1], mousePos)) {
-
+                
                 EnableAllHighlight(4);
                 /*WeaponSwitching pepa = GameObject.Find("WeaponHolder").transform.GetComponent<WeaponSwitching>();
                 //pepa.selectedWeapon = 0;
                 pepa.selectedWeapon = 4;
-             */
+             */ hoverWheel5.Play();
                GunTop.SetActive(false);
                GunRightTop.SetActive(false);
                GunRightBot.SetActive(false);
