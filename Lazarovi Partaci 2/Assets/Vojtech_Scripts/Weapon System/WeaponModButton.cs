@@ -7,34 +7,46 @@ using UnityEngine.UI;
 
 public class WeaponModButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public Text text;
+    [HideInInspector] public WeaponMod mod;
 
-    WeaponMod mod;
-    
+    private Text text;
+
+    private void Start()
+    {
+        text = GetComponentInChildren<Text>();
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("clicked mod button " + mod.weaponModName);
+        Weapon selectedWeapon = WeaponsCanvas.Instance.selectedWeapon;
+
+        if (selectedWeapon.boughtMods.Contains(mod))
+        {
+            selectedWeapon.EquipMod(mod);
+        }
+        else
+        {
+            selectedWeapon.BuyMod(mod);
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        text.text = "hovering";
+        text.text = "hovering " + mod.name;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        text.text = "exit";
+        text.text = mod.name;
     }
 
     public void BuyMod()
     {
-        Debug.Log("Buying mod " + mod.weaponModName);        
+        Debug.Log("Buying mod " + mod.name);        
     }
 
     public void ShowLockedMessage()
     {
-        Debug.Log(mod.weaponModName + " mod locked");
+        Debug.Log(mod.name + " mod locked");
     }
-
-
 }

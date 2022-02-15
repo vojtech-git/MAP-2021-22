@@ -14,16 +14,88 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Pistol
   muzzleMods:
-  - weaponModName: muzzle mod 1
-    weaponModType: 0
-    weaponModModel: {fileID: 0}
-  - weaponModName: muzzle mod 2
-    weaponModType: 0
-    weaponModModel: {fileID: 0}
-  - weaponModName: muzzle mod 3
-    weaponModType: 0
-    weaponModModel: {fileID: 0}
-  scopeMods: []
-  magazineMods: []
-  specialMods: []
-  unlockedMods: []
+  - name: pistol muzzle1
+    type: 0
+    cost: 250
+    model: {fileID: 0}
+    ui: {fileID: 0}
+  - name: pistol muzzle2
+    type: 0
+    cost: 300
+    model: {fileID: 0}
+    ui: {fileID: 0}
+  - name: pistol muzzle3
+    type: 0
+    cost: 350
+    model: {fileID: 0}
+    ui: {fileID: 0}
+  scopeMods:
+  - name: pistol scope1
+    type: 0
+    cost: 150
+    model: {fileID: 0}
+    ui: {fileID: 0}
+  magazineMods:
+  - name: pistol magazine 1
+    type: 0
+    cost: 200
+    model: {fileID: 0}
+    ui: {fileID: 0}
+  - name: pistol magazine 2
+    type: 2
+    cost: 0
+    model: {fileID: 0}
+    ui: {fileID: 0}
+  specialMods:
+  - name: pistol special 1
+    type: 0
+    cost: 175
+    model: {fileID: 0}
+    ui: {fileID: 0}
+  - name: pistol special 2
+    type: 3
+    cost: 200
+    model: {fileID: 0}
+    ui: {fileID: 0}
+  boughtMods:
+  - name: pistol muzzle1
+    type: 0
+    cost: 250
+    model: {fileID: 0}
+    ui: {fileID: 0}
+  - name: pistol scope1
+    type: 0
+    cost: 150
+    model: {fileID: 0}
+    ui: {fileID: 0}
+  - name: pistol magazine 1
+    type: 0
+    cost: 200
+    model: {fileID: 0}
+    ui: {fileID: 0}
+  - name: pistol special 1
+    type: 0
+    cost: 175
+    model: {fileID: 0}
+    ui: {fileID: 0}
+  equippedMods:
+  - name: pistol special 1
+    type: 0
+    cost: 175
+    model: {fileID: 0}
+    ui: {fileID: 0}
+  - name: 
+    type: 0
+    cost: 0
+    model: {fileID: 0}
+    ui: {fileID: 0}
+  - name: 
+    type: 0
+    cost: 0
+    model: {fileID: 0}
+    ui: {fileID: 0}
+  - name: 
+    type: 0
+    cost: 0
+    model: {fileID: 0}
+    ui: {fileID: 0}

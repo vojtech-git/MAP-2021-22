@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TestTestTest : MonoBehaviour
 {
-    bool weaponMenuActive;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -17,16 +15,14 @@ public class TestTestTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (weaponMenuActive)
+            if (!WeaponsCanvas.Instance.menuOpen)
             {
-                WeaponsCanvas.Instance.WeaponsMenu.SetActive(false); 
+                WeaponsCanvas.Instance.OpenWeaponsMenu();
             }
             else
             {
-                WeaponsCanvas.Instance.WeaponsMenu.SetActive(true);
+                WeaponsCanvas.Instance.CloseMenu();
             }
-
-            weaponMenuActive = !weaponMenuActive;
         }
     }
 }
