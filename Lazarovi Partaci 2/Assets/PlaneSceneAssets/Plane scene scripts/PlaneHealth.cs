@@ -67,7 +67,7 @@ public class PlaneHealth : MonoBehaviour
              Cursor.visible=true;
     } */
 
-    void OnCollisionEnter(Collision col){
+    void OnCollisionEnter(Collision col){ //zvuk
            health -= collisionDamage * col.relativeVelocity.magnitude ; 
            updateHealth();
            //Debug.Log(health);
