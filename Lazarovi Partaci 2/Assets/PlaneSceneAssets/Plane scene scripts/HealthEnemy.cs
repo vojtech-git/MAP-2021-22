@@ -8,10 +8,12 @@ public class HealthEnemy : MonoBehaviour
     public int enemyHP = 100;
     public GameObject explosionEffect;
     public AudioSource death;
+    public AudioController audiocontroller;
     public int id;
+    
     void Start()
     {
-        
+        var audio = gameObject.GetComponent<AudioController>();
     }
 
     // Update is called once per frame
@@ -22,6 +24,7 @@ public class HealthEnemy : MonoBehaviour
             //death.Play();
             Instantiate(explosionEffect, transform.position, transform.rotation);
             QuestingManager.onPointGained(GoalType.Kill, id);
+            audiocontroller.explosion.Play();
             Destroy(this.gameObject);
         } //FUNGUJE
     }

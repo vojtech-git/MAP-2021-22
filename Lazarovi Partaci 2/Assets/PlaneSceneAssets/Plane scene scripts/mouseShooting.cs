@@ -19,6 +19,8 @@ public class mouseShooting : MonoBehaviour
     public float spread, reloadTime, timeBetweenShots;
      bool  readyToShoot, reloading;
      bool shooting;
+
+     public AudioSource weaponShoot;
     
     public LayerMask PlayerLayerMask;
     private void Awake(){
@@ -38,7 +40,7 @@ public class mouseShooting : MonoBehaviour
     //   }
 
       myInput();
-
+  
     }
 
     private void myInput(){
@@ -48,6 +50,7 @@ public class mouseShooting : MonoBehaviour
 
         if(readyToShoot && shooting && !reloading && PauseMenu.GameIsPaused==false){
             Shoot();
+             weaponShoot.Play();
         }
     }
 

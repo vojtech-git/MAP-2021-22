@@ -23,6 +23,8 @@ public class PlaneHealth : MonoBehaviour
      public bool currentState = true;
      public bool defaultState = true;
      bool isBlinking = false;
+     public AudioSource collisionSound;
+     
     void Start()
     {
         warning.enabled = isBlinking;
@@ -69,6 +71,8 @@ public class PlaneHealth : MonoBehaviour
 
     void OnCollisionEnter(Collision col){ //zvuk
            health -= collisionDamage * col.relativeVelocity.magnitude ; 
+            collisionSound.Play();
+        
            updateHealth();
            //Debug.Log(health);
     }
