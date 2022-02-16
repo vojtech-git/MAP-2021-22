@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Audio;
 
 public class Player : Entity
 {
@@ -21,6 +22,7 @@ public class Player : Entity
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public AudioSource walking;
 
     [Header("Health")]
     public Volume healthVolume;
@@ -78,9 +80,21 @@ public class Player : Entity
 
     void Update()
     {
+        if (PauseMenu.GameIsPaused == false)
+        {
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+            {
+                walking.Play();
+            }
+            if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+            {
+                walking.Stop();
+            }
+        }
+
         //PlaceHolders
         #region Placeholders
-        if(Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.B))
         {
             TakeDamage(10);
         }
@@ -103,6 +117,10 @@ public class Player : Entity
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * currentSpeed * Time.deltaTime);
         currentSpeed = movementSpeed;
+        if (isGrounded == false)
+        {
+            walking.Stop();
+        }
         if(isGrounded)
         {
             if(Input.GetButtonDown("Jump"))
@@ -119,26 +137,35 @@ public class Player : Entity
             }
             if(Input.GetKey(KeyCode.LeftShift))
             {
+                walking.pitch = 1.3f;
                 currentSpeed = sprintSpeed;
                 if (currentStamina > 0 && enterSprint == true)
                 {
                     SprintStaminaUse();
                 }
             }
+            else
+            {
+                walking.pitch = 1f;
+            }
         }
         if(Input.GetKey(KeyCode.LeftControl))
         {
             currentSpeed = crouchSpeed;
             controller.height = 0.9f;
+            walking.pitch = 0.8f;
         }
         else
         {
             controller.height = 1.8f;
+            walking.pitch = 1f;
         }
 
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        
         #endregion
         #region stamina
         staminaBar_Right.value = currentStamina;
