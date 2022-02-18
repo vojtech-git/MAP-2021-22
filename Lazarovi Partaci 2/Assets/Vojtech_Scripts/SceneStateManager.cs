@@ -33,7 +33,7 @@ public class SceneStateManager : MonoBehaviour
 
             if (startOfGame)
             {
-                Debug.Log("starting the game");
+                //Debug.Log("starting the game");
 
                 startOfGame = false;
                 QuestCanvas.Instance.ClearUI();

@@ -13,13 +13,16 @@ public class Weapon : ScriptableObject
 
     public List<WeaponMod> boughtMods;
     public WeaponMod[] equippedMods;
+    public SkinnedMeshRenderer[] currentMeshes;
     List<WeaponMod[]> allWeaponMods;
 
     private void OnEnable()
     {
         allWeaponMods = new List<WeaponMod[]>();
-        equippedMods = new WeaponMod[4];
-        boughtMods = new List<WeaponMod>();
+        int numOfSlots = System.Enum.GetNames(typeof(WeaponModType)).Length;
+        equippedMods = new WeaponMod[numOfSlots];
+        currentMeshes = new SkinnedMeshRenderer[numOfSlots];
+        boughtMods = new List<WeaponMod>();        
     }
 
     /// <summary>

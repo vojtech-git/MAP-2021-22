@@ -34,7 +34,7 @@ public class GunScript : MonoBehaviour
 
     [Header("Mod Parents")]
     public Transform WeaponWheelParent;
-    public Transform ModelParent;
+    public Transform[] modModelParents; // kazdej typ modu musi mit svuj parent 
 
     [Header("Assignebles")]
     public Camera PlayerCam;
@@ -211,11 +211,17 @@ public class GunScript : MonoBehaviour
 
         for (int i = 0; i < weaponScriptableObj.equippedMods.Length; i++)
         {
-            Instantiate(weaponScriptableObj.equippedMods[i].model, ModelParent);
-            Instantiate(weaponScriptableObj.equippedMods[i].ui, WeaponWheelParent);
-        }
+            if (weaponScriptableObj.equippedMods[i].model != null)
+            {
+                Instantiate(weaponScriptableObj.equippedMods[i].model, modModelParents[i]);
 
-        // ye... to je asi vsechno
+                Debug.Log("Applying " + weaponScriptableObj.equippedMods[i].name + " to parent: " + modModelParents[i].gameObject.name + " on gun: " + gameObject.name); 
+            }
+            else
+            {
+                Debug.Log("No " + (WeaponModType)i + " to create graphics for");
+            }
+        }
     }
 
     private void Awake()
@@ -229,12 +235,13 @@ public class GunScript : MonoBehaviour
     private void Start()
     {
         ApplyUpgradedStats();
+        ApplyModGraphics();
 
         for (int i = 0; i < weaponScriptableObj.equippedMods.Length; i++)
         {
             if (weaponScriptableObj.equippedMods[i] != null)
             {
-                Debug.Log(weaponScriptableObj.equippedMods[i].name);
+                Debug.Log(gameObject.name + " " + (WeaponModType)i + " equppied: " + weaponScriptableObj.equippedMods[i].name);
             }
             else
             {
@@ -263,6 +270,7 @@ public class GunScript : MonoBehaviour
         if (weapon == this.weaponScriptableObj)
         {
             ApplyUpgradedStats();
+            ApplyModGraphics();
         }
     }
 

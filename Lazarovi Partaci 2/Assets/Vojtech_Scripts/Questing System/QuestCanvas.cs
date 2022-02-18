@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class QuestCanvas : MonoBehaviour
 {
     public Transform questVerticalLayout;
-    public Text interactionMessage;
+
+    public Text interactionMessageUi;
 
     [Header("Quest prefabs")]
     public GameObject questTitlePrefab;
