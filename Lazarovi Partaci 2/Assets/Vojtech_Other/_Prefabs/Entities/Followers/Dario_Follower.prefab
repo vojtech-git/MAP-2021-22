@@ -61,7 +61,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8259798816342524259}
+  - {fileID: 5457718201741250527}
   - {fileID: 6693351300271677410}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7732762068b4c344b95b6dc9204012ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 400
   healthBar: {fileID: 0}
+  maxHealth: 400
   isDead: 0
   damage: 1
   attackDelayInSeconds: 1
@@ -114,8 +114,8 @@ MonoBehaviour:
   granadePrefab: {fileID: 1898193970670972767, guid: 01d9b5b5c3864cf48b6bf798f8abd68e, type: 3}
   granadeSpawnPos: {fileID: 2457776362302504683}
   speedOfGranade: 15
-  gotoPosition: {fileID: 0}
-  shouldGoto: 0
+  scriptedSequencePlaying: 0
+  agent: {fileID: 0}
 --- !u!195 &8442571721340340562
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -154,101 +154,77 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!95 &8442571720932915181
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8785225373160414169}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5b61207ac2c10f949a62e57fd9c029bc, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1001 &8442571719892575880
+--- !u!1001 &5808831945076558517
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 8442571721340340567}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 60630aa61c528554993897836cd07539, type: 3}
+    - target: {fileID: 1183171843875545040, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
+      propertyPath: m_Name
+      value: Dario_With_Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954747134150591850, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 60630aa61c528554993897836cd07539, type: 3}
+    - target: {fileID: 1954747134150591850, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.14
+      value: 0.1405614
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 60630aa61c528554993897836cd07539, type: 3}
+    - target: {fileID: 1954747134150591850, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.14
+      value: 0.1405614
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 60630aa61c528554993897836cd07539, type: 3}
+    - target: {fileID: 1954747134150591850, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.14
+      value: 0.1405614
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 60630aa61c528554993897836cd07539, type: 3}
+    - target: {fileID: 1954747134150591850, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 60630aa61c528554993897836cd07539, type: 3}
+    - target: {fileID: 1954747134150591850, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 60630aa61c528554993897836cd07539, type: 3}
+    - target: {fileID: 1954747134150591850, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 60630aa61c528554993897836cd07539, type: 3}
+    - target: {fileID: 1954747134150591850, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 60630aa61c528554993897836cd07539, type: 3}
+    - target: {fileID: 1954747134150591850, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 60630aa61c528554993897836cd07539, type: 3}
+    - target: {fileID: 1954747134150591850, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 60630aa61c528554993897836cd07539, type: 3}
+    - target: {fileID: 1954747134150591850, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 60630aa61c528554993897836cd07539, type: 3}
+    - target: {fileID: 1954747134150591850, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 60630aa61c528554993897836cd07539, type: 3}
+    - target: {fileID: 1954747134150591850, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 60630aa61c528554993897836cd07539, type: 3}
+    - target: {fileID: 1954747134150591850, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 60630aa61c528554993897836cd07539, type: 3}
-      propertyPath: m_Name
-      value: Dario_Rigged
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 60630aa61c528554993897836cd07539, type: 3}
---- !u!1 &8785225373160414169 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 60630aa61c528554993897836cd07539, type: 3}
-  m_PrefabInstance: {fileID: 8442571719892575880}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8259798816342524259 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
+--- !u!4 &5457718201741250527 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 60630aa61c528554993897836cd07539, type: 3}
-  m_PrefabInstance: {fileID: 8442571719892575880}
+  m_CorrespondingSourceObject: {fileID: 1954747134150591850, guid: 8be9a896b6a4a0644b2c254aa5f9609e, type: 3}
+  m_PrefabInstance: {fileID: 5808831945076558517}
   m_PrefabAsset: {fileID: 0}
