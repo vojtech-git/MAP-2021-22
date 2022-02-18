@@ -87,5 +87,6 @@ public enum GoalType
     Gather,
     Kill,
     Interact,
-    SystemChange
+    SystemChange,
+    PhoneCall
 }

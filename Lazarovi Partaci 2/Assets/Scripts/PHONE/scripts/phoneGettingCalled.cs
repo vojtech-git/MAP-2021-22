@@ -15,7 +15,10 @@ public class phoneGettingCalled : MonoBehaviour
     GameObject wallpaper;
     GameObject ringtone;
 
-    public GameObject voicline;
+    //public GameObject voicline;
+
+    public AudioSource[] voicelines;
+
     public phoneOnOff phoneOnOff;
 
     public callTimer callTimer;
@@ -95,13 +98,32 @@ public class phoneGettingCalled : MonoBehaviour
 
         ringtone.GetComponent<AudioSource>().Play();
         ringtone.GetComponent<AudioSource>().loop = true;
+
+
     }
 
     IEnumerator test()
     {
         yield return new WaitForSecondsRealtime(1f);
 
-        voicline.GetComponent<AudioSource>().Play();
+        //voicline.GetComponent<AudioSource>().Play();
+
+        for (int i = 0; i < voicelines.Length; i++)
+        {
+            if (voicelines[i] != null)
+            {
+                if (voicelines[i].isPlaying)
+                {
+                    voicelines[i].Stop();
+                }
+
+                voicelines[i].Play();
+                yield return new WaitUntil(() => !voicelines[i].isPlaying); // wait untill musi pøijmout func jako parametr. proto vytvaøím anonym metodu
+            }
+        }
+
+        // vojtech quest logika, tuhle metodu spustit az potom co se prehrajou hlasky
+        QuestingManager.OnPointGained(GoalType.PhoneCall, 0);
 
         yield return new WaitForSecondsRealtime(5f);
         

@@ -15,51 +15,54 @@ public class StoryObject : MonoBehaviour
     
     private void OnDestroy()
     {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
         // pokuid neexistuje dictionary této scény tak ho vytvoø
-        if (!SaveData.objectEnabledStates.ContainsKey(SceneManager.GetActiveScene().name))
+        if (!SaveData.objectEnabledStates.ContainsKey(currentSceneName))
         {
-            SaveData.objectEnabledStates.Add(SceneManager.GetActiveScene().name, new Dictionary<string, bool>());
+            SaveData.objectEnabledStates.Add(currentSceneName, new Dictionary<string, bool>());
 
             //Debug.Log("Creating log for a SCENE: " + SceneManager.GetActiveScene().name);
         }
 
         // pokud neexistuje log v dictionary týhle scénu o tomhle gameobjectu tak ho vytvoø
-        if (!SaveData.objectEnabledStates[SceneManager.GetActiveScene().name].ContainsKey(gameObject.name))
+        if (!SaveData.objectEnabledStates[currentSceneName].ContainsKey(gameObject.name))
         {
-            SaveData.objectEnabledStates[SceneManager.GetActiveScene().name].Add(gameObject.name, gameObject.activeSelf);
+            SaveData.objectEnabledStates[currentSceneName].Add(gameObject.name, gameObject.activeSelf);
 
             //Debug.Log("Creating log for OBJECT: " + gameObject.name);
         }
         // pokud exituje log tak na nìj zapiš
         else
         {
-            SaveData.objectEnabledStates[SceneManager.GetActiveScene().name][gameObject.name] = gameObject.activeSelf;
+            SaveData.objectEnabledStates[currentSceneName][gameObject.name] = gameObject.activeSelf;
 
             //Debug.Log("Rewriting data for OBJECT: " + gameObject.name);
         }
 
 
-        if (!SaveData.objectPositions.ContainsKey(SceneManager.GetActiveScene().name))
+        if (!SaveData.objectPositions.ContainsKey(currentSceneName))
         {
-            SaveData.objectPositions.Add(SceneManager.GetActiveScene().name, new Dictionary<string, Vector3>());
+            SaveData.objectPositions.Add(currentSceneName, new Dictionary<string, Vector3>());
         }
 
-        if (!SaveData.objectPositions[SceneManager.GetActiveScene().name].ContainsKey(gameObject.name))
+        if (!SaveData.objectPositions[currentSceneName].ContainsKey(gameObject.name))
         {
-            SaveData.objectPositions[SceneManager.GetActiveScene().name].Add(gameObject.name, gameObject.transform.position);
+            SaveData.objectPositions[currentSceneName].Add(gameObject.name, gameObject.transform.position);
         }
         else
         {
-            SaveData.objectPositions[SceneManager.GetActiveScene().name][gameObject.name] = gameObject.transform.position;
+            SaveData.objectPositions[currentSceneName][gameObject.name] = gameObject.transform.position;
         }
     }
 
     public void TryApplySaveData()
     {
-        if (SaveData.objectEnabledStates.ContainsKey(SceneManager.GetActiveScene().name) && SaveData.objectEnabledStates[SceneManager.GetActiveScene().name].ContainsKey(gameObject.name))
-        {
-            gameObject.SetActive(SaveData.objectEnabledStates[SceneManager.GetActiveScene().name][gameObject.name]);
+        string currentSceneName = SceneManager.GetActiveScene().name;
 
+        if (SaveData.objectEnabledStates.ContainsKey(currentSceneName) && SaveData.objectEnabledStates[currentSceneName].ContainsKey(gameObject.name))
+        {
+            gameObject.SetActive(SaveData.objectEnabledStates[currentSceneName][gameObject.name]);
 
             //Debug.Log("Applied enabled data on " + gameObject.name);
         }
@@ -68,11 +71,10 @@ public class StoryObject : MonoBehaviour
             //Debug.Log("No enabled log found for: " + gameObject.name);
         }
 
-        if (SaveData.objectPositions.ContainsKey(SceneManager.GetActiveScene().name) && SaveData.objectPositions[SceneManager.GetActiveScene().name].ContainsKey(gameObject.name))
+        if (SaveData.objectPositions.ContainsKey(currentSceneName) && SaveData.objectPositions[currentSceneName].ContainsKey(gameObject.name))
         {
-            transform.position = SaveData.objectPositions[SceneManager.GetActiveScene().name][gameObject.name];
+            transform.position = SaveData.objectPositions[currentSceneName][gameObject.name];
             //Debug.Log("position applyied for + " + gameObject.name + " position: " + SaveData.objectPositions[SceneManager.GetActiveScene().name][gameObject.name]);
-
         }
         else
         {

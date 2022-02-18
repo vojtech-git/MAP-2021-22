@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class WeaponManager : MonoBehaviour
+public static class WeaponManager
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static Action<Weapon, WeaponMod> onModEquipped;
 
-    // Update is called once per frame
-    void Update()
+    public static void OnModEquipped(Weapon weaponSender, WeaponMod equippedMod)
     {
-        
+        onModEquipped?.Invoke(weaponSender, equippedMod);
     }
 }

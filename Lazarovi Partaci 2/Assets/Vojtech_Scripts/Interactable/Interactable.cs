@@ -17,6 +17,6 @@ public class Interactable : MonoBehaviour
     /// </summary>
     public virtual void Interact()
     {
-        
+        Debug.Log("Interacting with " + gameObject.name);
     }
 }

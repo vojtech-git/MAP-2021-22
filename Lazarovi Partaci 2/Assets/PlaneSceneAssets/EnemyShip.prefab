@@ -186,6 +186,7 @@ MonoBehaviour:
   spread: 0
   reloadTime: 1.5
   timeBetweenShots: 0.5
+  weaponShoot: {fileID: 0}
   PlayerLayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -380,8 +381,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 100
   explosionEffect: {fileID: 2520000266315048491, guid: 4ceeba6809af64a48acbad6ada633b61, type: 3}
-  death: {fileID: 0}
+  audiocontroller: {fileID: 0}
   id: 0
+  deathSound: {fileID: 8300000, guid: ddc4dc57f1371ea43bf8f60ff11512fd, type: 3}
+  spaceAudioSource: {fileID: 8832776042978879427, guid: 251abd06377a8184996c30c34fea2fb2, type: 3}
 --- !u!1 &8928677960813738739
 GameObject:
   m_ObjectHideFlags: 0

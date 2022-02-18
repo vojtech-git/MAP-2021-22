@@ -73,7 +73,7 @@ public class phoneOnOff : MonoBehaviour
         OnOff = false;
     }
 
-    void turnOn()
+    public void turnOn()
     {
         Start();
 

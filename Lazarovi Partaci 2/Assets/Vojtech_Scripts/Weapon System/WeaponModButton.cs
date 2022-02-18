@@ -42,7 +42,7 @@ public class WeaponModButton : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     public void BuyMod()
     {
-        Debug.Log("Buying mod " + mod.name);        
+        Debug.Log("Buying mod " + mod.name);
     }
 
     public void ShowLockedMessage()

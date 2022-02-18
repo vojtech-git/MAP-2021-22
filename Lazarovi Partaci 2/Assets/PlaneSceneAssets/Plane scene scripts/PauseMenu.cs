@@ -24,19 +24,21 @@ public class PauseMenu : MonoBehaviour
     }
     void Update()
     {
-         if (DefeatScreen.jsiDead==false) {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (GameIsPaused) {
-                Resume();
+        if (DefeatScreen.jsiDead == false)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (GameIsPaused)
+                {
+                    Resume();
+                }
+                else
+                {
+                    Pause();
+                    openSound.Play();
+                }
             }
-            else {
-
-
-                Pause();
-                openSound.Play();
-            }
-        }
-         }
+        } 
 
 
 

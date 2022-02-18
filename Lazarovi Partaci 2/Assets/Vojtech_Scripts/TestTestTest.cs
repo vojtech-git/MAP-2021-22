@@ -17,7 +17,7 @@ public class TestTestTest : MonoBehaviour
         {
             if (!WeaponsCanvas.Instance.menuOpen)
             {
-                WeaponsCanvas.Instance.OpenWeaponsMenu();
+                WeaponsCanvas.Instance.OpenMenu();
             }
             else
             {

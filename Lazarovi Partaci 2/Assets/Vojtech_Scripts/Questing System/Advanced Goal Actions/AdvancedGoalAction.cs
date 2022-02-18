@@ -131,6 +131,13 @@ public class AdvancedGoalAction : MonoBehaviour
                     scriptChangeStruct.componentToSwitch.enabled = scriptChangeStruct.desiredState;
                 }
             }
+            else if (structure.actionType == GoalActionType.PhoneCall)
+            {
+                if (structure.phoneActionStructure.whichQuest == 0)
+                {
+                    structure.phoneActionStructure.phone.GetComponent<phoneOnOff>().Volani();
+                }
+            }
         }
     }
 }

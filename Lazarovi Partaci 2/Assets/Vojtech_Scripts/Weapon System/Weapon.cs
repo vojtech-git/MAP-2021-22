@@ -31,6 +31,8 @@ public class Weapon : ScriptableObject
         //Debug.Log("Equiping mod " + modToEquip.name + " on " + weaponName);
 
         equippedMods[(int)modToEquip.type] = modToEquip;
+
+        WeaponManager.OnModEquipped(this, modToEquip);
     }
     /// <summary>
     /// Koupí a automaticky vybaví mod.

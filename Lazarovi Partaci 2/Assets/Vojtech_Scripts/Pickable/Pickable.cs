@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pickable : Interactable
+public class Pickable : MonoBehaviour
 {
     public int itemId;
 

@@ -15,9 +15,10 @@ public class AdvancedGoalActionStructure
     public ScriptedSequenceStructure[] followerStartScriptedSequences;
     public PlayableDirector timelineToStart;
     public float delayLength;
+    public PhoneActionStructure phoneActionStructure;
 }
 
 public enum GoalActionType
 {
-    PlayAudio, ChangeObjState, StartTimeline, PlayFollowerScriptedSequence, DelayNextAction, InstanciateObjects, ChangeScriptState
+    PlayAudio, ChangeObjState, StartTimeline, PlayFollowerScriptedSequence, DelayNextAction, InstanciateObjects, ChangeScriptState, PhoneCall
 }

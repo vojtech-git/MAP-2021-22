@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.ParticleSystemJobs;
 
 public class GunScript : MonoBehaviour
 {
+    public Weapon weaponScriptableObj;
+
     [Header("Basic Weapon Stats")]
     public int basicDamage;
     public float basicTimeBetweenShooting;
@@ -17,20 +16,25 @@ public class GunScript : MonoBehaviour
     public int basicBulletsPerTap;
     public bool basicAllowButtonHold;
 
-    [Header ("Upgraded Weapon Stats")]
-    public int damage;
-    public float timeBetweenShooting;
-    public float spread;
-    public float range;
-    public float reloadTime;
-    public float timeBetweenShots;
-    public int magazineSize;
-    public int bulletsPerTap;
-    public bool allowButtonHold;
-    public int bulletsLeft, bulletsShot;
-    public int bulletsMags;
+    [Header("Upgraded Weapon Stats")]
+    [HideInInspector] public int damage;
+    [HideInInspector] public float timeBetweenShooting;
+    [HideInInspector] public float spread;
+    [HideInInspector] public float range;
+    [HideInInspector] public float reloadTime;
+    [HideInInspector] public float timeBetweenShots;
+    [HideInInspector] public int magazineSize;
+    [HideInInspector] public int bulletsPerTap;
+    [HideInInspector] public int bulletsShot;
+    [HideInInspector] public int bulletsMags;
+    [HideInInspector] public bool allowButtonHold;
 
     bool shooting, readyToShoot, reloading;
+    [HideInInspector] public int bulletsLeft;
+
+    [Header("Mod Parents")]
+    public Transform WeaponWheelParent;
+    public Transform ModelParent;
 
     [Header("Assignebles")]
     public Camera PlayerCam;
@@ -48,9 +52,8 @@ public class GunScript : MonoBehaviour
     public GameObject[] muzzles;
     public GameObject[] specials;
 
-    public void Upgrades()
+    public void ApplyUpgradedStats()
     {
-        // vžydcky jde do basic aby se to nestackovalo
         damage = basicDamage;
         timeBetweenShooting = basicTimeBetweenShooting;
         spread = basicSpread;
@@ -58,134 +61,188 @@ public class GunScript : MonoBehaviour
         reloadTime = basicReloadTime;
         timeBetweenShots = basicTimeBetweenShots;
         magazineSize = basicMagazineSize;
-        timeBetweenShots = basicTimeBetweenShots;
-        magazineSize = basicMagazineSize;
         bulletsPerTap = basicBulletsPerTap;
+        allowButtonHold = basicAllowButtonHold;
 
-        // pridava k upgraded
-        foreach (var item in mags)
+        for (int i = 0; i < weaponScriptableObj.equippedMods.Length; i++)
         {
-            if (item.activeInHierarchy == true)
+            if (weaponScriptableObj.equippedMods[i] != null)
             {
-                int upgradedDamage = item.GetComponent<GunUpgrade>().upgradedDamage;
-                damage += upgradedDamage;
-
-                float upgradedTimeBetweenShooting = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShooting;
-                timeBetweenShooting += upgradedTimeBetweenShooting;
-
-                float upgradedSpread = item.GetComponent<GunUpgrade>().upgradedSpread;
-                spread += upgradedSpread;
-
-                float upgradedRange = item.GetComponent<GunUpgrade>().upgradedRange;
-                range += upgradedRange;
-
-                float upgradedReloadTime = item.GetComponent<GunUpgrade>().upgradedReloadTime;
-                reloadTime += upgradedReloadTime;
-
-                float upgradedTimeBetweenShots = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShots;
-                timeBetweenShots += upgradedTimeBetweenShots;
-
-                int upgradedMagazineSize = item.GetComponent<GunUpgrade>().upgradedMagazineSize;
-                magazineSize += upgradedMagazineSize;
-
-                int upgradedBulletsPerTap = item.GetComponent<GunUpgrade>().upgradedBulletsPerTap;
-                bulletsPerTap += upgradedBulletsPerTap;
+                damage += weaponScriptableObj.equippedMods[i].damage;
+                timeBetweenShooting += weaponScriptableObj.equippedMods[i].timeBetweenShots;
+                spread += weaponScriptableObj.equippedMods[i].spread;
+                range += weaponScriptableObj.equippedMods[i].range;
+                reloadTime += weaponScriptableObj.equippedMods[i].reloadTime;
+                timeBetweenShots += weaponScriptableObj.equippedMods[i].timeBetweenShots;
+                magazineSize += weaponScriptableObj.equippedMods[i].magazineSize;
+                bulletsPerTap += weaponScriptableObj.equippedMods[i].bulletsPerTap;
+                allowButtonHold = weaponScriptableObj.equippedMods[i].allowButtonHold;
             }
         }
-        foreach (var item in scopes)
-        {
-            if (item.activeInHierarchy == true)
-            {
-                int upgradedDamage = item.GetComponent<GunUpgrade>().upgradedDamage;
-                damage += upgradedDamage;
 
-                float upgradedTimeBetweenShooting = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShooting;
-                timeBetweenShooting += upgradedTimeBetweenShooting;
+        #region old logic
+        //// vžydcky jde do basic aby se to nestackovalo
+        // presunul jsem
 
-                float upgradedSpread = item.GetComponent<GunUpgrade>().upgradedSpread;
-                spread += upgradedSpread;
+        //// pridava k upgraded
+        //foreach (var item in mags)
+        //{
+        //    if (item.activeInHierarchy == true)
+        //    {
+        //        int upgradedDamage = item.GetComponent<GunUpgrade>().upgradedDamage;
+        //        this.upgradedDamage += upgradedDamage;
 
-                float upgradedRange = item.GetComponent<GunUpgrade>().upgradedRange;
-                range += upgradedRange;
+        //        float upgradedTimeBetweenShooting = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShooting;
+        //        timeBetweenShooting += upgradedTimeBetweenShooting;
 
-                float upgradedReloadTime = item.GetComponent<GunUpgrade>().upgradedReloadTime;
-                reloadTime += upgradedReloadTime;
+        //        float upgradedSpread = item.GetComponent<GunUpgrade>().upgradedSpread;
+        //        spread += upgradedSpread;
 
-                float upgradedTimeBetweenShots = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShots;
-                timeBetweenShots += upgradedTimeBetweenShots;
+        //        float upgradedRange = item.GetComponent<GunUpgrade>().upgradedRange;
+        //        range += upgradedRange;
 
-                int upgradedMagazineSize = item.GetComponent<GunUpgrade>().upgradedMagazineSize;
-                magazineSize += upgradedMagazineSize;
+        //        float upgradedReloadTime = item.GetComponent<GunUpgrade>().upgradedReloadTime;
+        //        reloadTime += upgradedReloadTime;
 
-                int upgradedBulletsPerTap = item.GetComponent<GunUpgrade>().upgradedBulletsPerTap;
-                bulletsPerTap = upgradedBulletsPerTap;
-            }
-        }
-        foreach (var item in muzzles)
-        {
-            if (item.activeInHierarchy == true)
-            {
-                int upgradedDamage = item.GetComponent<GunUpgrade>().upgradedDamage;
-                damage += upgradedDamage;
+        //        float upgradedTimeBetweenShots = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShots;
+        //        timeBetweenShots += upgradedTimeBetweenShots;
 
-                float upgradedTimeBetweenShooting = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShooting;
-                timeBetweenShooting += upgradedTimeBetweenShooting;
+        //        int upgradedMagazineSize = item.GetComponent<GunUpgrade>().upgradedMagazineSize;
+        //        magazineSize += upgradedMagazineSize;
 
-                float upgradedSpread = item.GetComponent<GunUpgrade>().upgradedSpread;
-                spread += upgradedSpread;
+        //        int upgradedBulletsPerTap = item.GetComponent<GunUpgrade>().upgradedBulletsPerTap;
+        //        bulletsPerTap += upgradedBulletsPerTap;
+        //    }
+        //}
+        //foreach (var item in scopes)
+        //{
 
-                float upgradedRange = item.GetComponent<GunUpgrade>().upgradedRange;
-                range += upgradedRange;
+        //    if (item.activeInHierarchy == true)
+        //    {
+        //        int upgradedDamage = item.GetComponent<GunUpgrade>().upgradedDamage;
+        //        this.upgradedDamage += upgradedDamage;
 
-                float upgradedReloadTime = item.GetComponent<GunUpgrade>().upgradedReloadTime;
-                reloadTime += upgradedReloadTime;
+        //        float upgradedTimeBetweenShooting = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShooting;
+        //        timeBetweenShooting += upgradedTimeBetweenShooting;
 
-                float upgradedTimeBetweenShots = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShots;
-                timeBetweenShots += upgradedTimeBetweenShots;
+        //        float upgradedSpread = item.GetComponent<GunUpgrade>().upgradedSpread;
+        //        spread += upgradedSpread;
 
-                int upgradedMagazineSize = item.GetComponent<GunUpgrade>().upgradedMagazineSize;
-                magazineSize += upgradedMagazineSize;
+        //        float upgradedRange = item.GetComponent<GunUpgrade>().upgradedRange;
+        //        range += upgradedRange;
 
-                int upgradedBulletsPerTap = item.GetComponent<GunUpgrade>().upgradedBulletsPerTap;
-                bulletsPerTap = upgradedBulletsPerTap;
-            }
-        }
-        foreach (var item in specials)
-        {
-            if (item.activeInHierarchy == true)
-            {
-                int upgradedDamage = item.GetComponent<GunUpgrade>().upgradedDamage;
-                damage += upgradedDamage;
+        //        float upgradedReloadTime = item.GetComponent<GunUpgrade>().upgradedReloadTime;
+        //        reloadTime += upgradedReloadTime;
 
-                float upgradedTimeBetweenShooting = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShooting;
-                timeBetweenShooting += upgradedTimeBetweenShooting;
+        //        float upgradedTimeBetweenShots = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShots;
+        //        timeBetweenShots += upgradedTimeBetweenShots;
 
-                float upgradedSpread = item.GetComponent<GunUpgrade>().upgradedSpread;
-                spread += upgradedSpread;
+        //        int upgradedMagazineSize = item.GetComponent<GunUpgrade>().upgradedMagazineSize;
+        //        magazineSize += upgradedMagazineSize;
 
-                float upgradedRange = item.GetComponent<GunUpgrade>().upgradedRange;
-                range += upgradedRange;
+        //        int upgradedBulletsPerTap = item.GetComponent<GunUpgrade>().upgradedBulletsPerTap;
+        //        bulletsPerTap = upgradedBulletsPerTap;
+        //    }
+        //}
+        //foreach (var item in muzzles)
+        //{
+        //    if (item.activeInHierarchy == true)
+        //    {
+        //        int upgradedDamage = item.GetComponent<GunUpgrade>().upgradedDamage;
+        //        this.upgradedDamage += upgradedDamage;
 
-                float upgradedReloadTime = item.GetComponent<GunUpgrade>().upgradedReloadTime;
-                reloadTime += upgradedReloadTime;
+        //        float upgradedTimeBetweenShooting = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShooting;
+        //        timeBetweenShooting += upgradedTimeBetweenShooting;
 
-                float upgradedTimeBetweenShots = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShots;
-                timeBetweenShots += upgradedTimeBetweenShots;
+        //        float upgradedSpread = item.GetComponent<GunUpgrade>().upgradedSpread;
+        //        spread += upgradedSpread;
 
-                int upgradedMagazineSize = item.GetComponent<GunUpgrade>().upgradedMagazineSize;
-                magazineSize += upgradedMagazineSize;
+        //        float upgradedRange = item.GetComponent<GunUpgrade>().upgradedRange;
+        //        range += upgradedRange;
 
-                int upgradedBulletsPerTap = item.GetComponent<GunUpgrade>().upgradedBulletsPerTap;
-                bulletsPerTap = upgradedBulletsPerTap;
-            }
-        }
+        //        float upgradedReloadTime = item.GetComponent<GunUpgrade>().upgradedReloadTime;
+        //        reloadTime += upgradedReloadTime;
+
+        //        float upgradedTimeBetweenShots = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShots;
+        //        timeBetweenShots += upgradedTimeBetweenShots;
+
+        //        int upgradedMagazineSize = item.GetComponent<GunUpgrade>().upgradedMagazineSize;
+        //        magazineSize += upgradedMagazineSize;
+
+        //        int upgradedBulletsPerTap = item.GetComponent<GunUpgrade>().upgradedBulletsPerTap;
+        //        bulletsPerTap = upgradedBulletsPerTap;
+        //    }
+        //}
+        //foreach (var item in specials)
+        //{
+        //    if (item.activeInHierarchy == true)
+        //    {
+        //        int upgradedDamage = item.GetComponent<GunUpgrade>().upgradedDamage;
+        //        this.upgradedDamage += upgradedDamage;
+
+        //        float upgradedTimeBetweenShooting = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShooting;
+        //        timeBetweenShooting += upgradedTimeBetweenShooting;
+
+        //        float upgradedSpread = item.GetComponent<GunUpgrade>().upgradedSpread;
+        //        spread += upgradedSpread;
+
+        //        float upgradedRange = item.GetComponent<GunUpgrade>().upgradedRange;
+        //        range += upgradedRange;
+
+        //        float upgradedReloadTime = item.GetComponent<GunUpgrade>().upgradedReloadTime;
+        //        reloadTime += upgradedReloadTime;
+
+        //        float upgradedTimeBetweenShots = item.GetComponent<GunUpgrade>().upgradedTimeBetweenShots;
+        //        timeBetweenShots += upgradedTimeBetweenShots;
+
+        //        int upgradedMagazineSize = item.GetComponent<GunUpgrade>().upgradedMagazineSize;
+        //        magazineSize += upgradedMagazineSize;
+
+        //        int upgradedBulletsPerTap = item.GetComponent<GunUpgrade>().upgradedBulletsPerTap;
+        //        bulletsPerTap = upgradedBulletsPerTap;
+        //    }
+        //}
+        #endregion
     }
+
+    public void ApplyModGraphics()
+    {
+        // clearnout ted aktivní grafiku
+
+        for (int i = 0; i < weaponScriptableObj.equippedMods.Length; i++)
+        {
+            Instantiate(weaponScriptableObj.equippedMods[i].model, ModelParent);
+            Instantiate(weaponScriptableObj.equippedMods[i].ui, WeaponWheelParent);
+        }
+
+        // ye... to je asi vsechno
+    }
+
     private void Awake()
     {
-        Upgrades();
         bulletsLeft = magazineSize;
         readyToShoot = true;
+
+        WeaponManager.onModEquipped += OnModEquipped;
     }
+
+    private void Start()
+    {
+        ApplyUpgradedStats();
+
+        for (int i = 0; i < weaponScriptableObj.equippedMods.Length; i++)
+        {
+            if (weaponScriptableObj.equippedMods[i] != null)
+            {
+                Debug.Log(weaponScriptableObj.equippedMods[i].name);
+            }
+            else
+            {
+                Debug.Log("No " + (WeaponModType)i + " equipped on " + gameObject.name);
+            }
+        }
+    }
+
     private void Update()
     {
         if(PauseMenu.GameIsPaused == false)
@@ -195,6 +252,20 @@ public class GunScript : MonoBehaviour
             AmmoBack.text = "" + bulletsMags;
         }
     }
+
+    private void OnDestroy()
+    {
+        WeaponManager.onModEquipped -= OnModEquipped;
+    }
+
+    public void OnModEquipped(Weapon weapon, WeaponMod weaponMod)
+    {
+        if (weapon == this.weaponScriptableObj)
+        {
+            ApplyUpgradedStats();
+        }
+    }
+
     private void MyInput()
     {
         if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
@@ -225,13 +296,15 @@ public class GunScript : MonoBehaviour
         //RayCast
         if (Physics.Raycast(PlayerCam.transform.position, direction, out rayHit, range, whatIsEnemy))
         {
-            Debug.Log(rayHit.collider.name);
+            //Debug.Log(rayHit.collider.name);
 
             if (rayHit.collider.CompareTag("Enemy"))
             {
                 Entity hitTarget;
                 rayHit.collider.gameObject.TryGetComponent<Entity>(out hitTarget);
                 hitTarget.TakeDamage(damage);
+
+                Debug.Log("damaging target for " + damage);
 
              // tady se volá enemy hit   rayHit.collider.GetComponent<ShootingAi>().TakeDamage(Damage);
             }

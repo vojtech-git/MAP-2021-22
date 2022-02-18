@@ -28,8 +28,11 @@ public class WeaponsCanvas : MonoBehaviour
         instance = this;
     }
 
-    public void OpenWeaponsMenu()
+    public void OpenMenu()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         WeaponsMenu.SetActive(true);
         SpecificWeaponMenu.SetActive(false);
         specificModMenu.SetActive(false);
@@ -38,6 +41,9 @@ public class WeaponsCanvas : MonoBehaviour
     }
     public void CloseMenu()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         WeaponsMenu.SetActive(false);
         SpecificWeaponMenu.SetActive(false);
         specificModMenu.SetActive(false);
