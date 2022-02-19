@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 743418513569106748}
   - component: {fileID: 2614174443061677586}
   m_Layer: 11
-  m_Name: DrzislavVC
+  m_Name: KorneliusVC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ AudioSource:
   m_GameObject: {fileID: 1735884341484180351}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 87677c34fc44e3a4d82cf8502fd9afe4, type: 2}
   m_audioClip: {fileID: 8300000, guid: fd91092982156ae4eaaed517afe3f688, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -52,9 +52,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 30
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -101,7 +101,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.013889313
       value: 0
       inSlope: 0
       outSlope: 0

@@ -13,6 +13,7 @@ public class Elevator : MonoBehaviour
     [Header("Specifications")]
     public float speed;
     public Door[] doorsToLockWhenMoving;
+    public ElevatorSwitch[] switches;
 
     List<NavMeshAgent> agentsOnElevator = new List<NavMeshAgent>();
     bool traveling;
@@ -74,6 +75,19 @@ public class Elevator : MonoBehaviour
                 door.enabled = false;
                 door.CloseDoor();
             }
+            foreach (ElevatorSwitch elevatorSwitch in switches)
+            {
+                if (goingDown)
+                {
+                    elevatorSwitch.arrowDown.gameObject.SetActive(true);
+                    elevatorSwitch.arrowUp.gameObject.SetActive(false);
+                }
+                else
+                {
+                    elevatorSwitch.arrowUp.gameObject.SetActive(true);
+                    elevatorSwitch.arrowDown.gameObject.SetActive(false);
+                }
+            }
 
             startPosition = transform.position;
             if (goingDown)
@@ -99,6 +113,11 @@ public class Elevator : MonoBehaviour
         {            
             door.enabled = true;
             door.OpenDoor();
+        }
+        foreach (ElevatorSwitch elevatorSwitch in switches)
+        {
+            elevatorSwitch.arrowDown.gameObject.SetActive(false);
+            elevatorSwitch.arrowUp.gameObject.SetActive(false);
         }
     }
 

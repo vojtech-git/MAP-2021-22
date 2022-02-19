@@ -6,6 +6,7 @@ public class Interactable : MonoBehaviour
 {
     [Header("interactable")]
     public string interactionMessage;
+    public bool pickup;
 
     private void Start()
     {

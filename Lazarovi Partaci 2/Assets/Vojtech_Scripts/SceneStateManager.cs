@@ -22,15 +22,6 @@ public class SceneStateManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name != "MainMenu")
         {
-            foreach (StoryObject storyObject in GameObject.FindObjectsOfType<StoryObject>())
-            {
-                if (!storyObject.startTurnedOn)
-                {
-                    storyObject.gameObject.SetActive(false);
-                }
-                storyObject.TryApplySaveData();
-            }
-
             if (startOfGame)
             {
                 //Debug.Log("starting the game");
@@ -49,16 +40,6 @@ public class SceneStateManager : MonoBehaviour
         startOfGame = true;
         SceneManager.LoadScene("System 0");
     }
-
-    #region old quest menu ui
-    [Header("Quest menu prefabs")]
-    public GameObject questTabButtonPrefab;
-    public GameObject acceptButtonPrefab;
-    [Header("Quest menu parents")]
-    public GameObject questSelectionMenu;
-    public HorizontalLayoutGroup questLayout;
-    public VerticalLayoutGroup qDescriptionLayout;
-    #endregion
 }
 
 

@@ -10,7 +10,11 @@ public class StoryObject : MonoBehaviour
 
     private void Awake()
     {
-
+        if (!startTurnedOn)
+        {
+            gameObject.SetActive(false);
+        }
+        TryApplySaveData();
     }
     
     private void OnDestroy()

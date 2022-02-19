@@ -15,7 +15,7 @@ MonoBehaviour:
   questline:
     title: Story
     activeQuests:
-    - title: vraceni se domu
+    - title: Vraceni se domu
       questStyle: 0
       activeGoals:
       - goalDescription: "Vra\u0165 se dom\u016F"
@@ -26,6 +26,10 @@ MonoBehaviour:
         goalValue: 1
         goalType: 0
         itemId: 2
+      - goalDescription: "Za\u010Dni humanitarn\xED bombardov\xE1n\xED"
+        goalValue: 1
+        goalType: 3
+        itemId: 0
       - goalDescription: "B\u011B\u017E do zbroj\xEDrny"
         goalValue: 1
         goalType: 0
@@ -122,6 +126,10 @@ MonoBehaviour:
         goalValue: 10
         goalType: 2
         itemId: 3
+      - goalDescription: "Jdi za kapit\xE1nem"
+        goalValue: 1
+        goalType: 0
+        itemId: 9
       completedGoals: []
     - title: Vladikavkaz
       questStyle: 0
@@ -512,4 +520,4 @@ MonoBehaviour:
         itemId: 42
       completedGoals: []
     completedQuests: []
-    questToStartAt: 21
+    questToStartAt: 0

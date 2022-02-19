@@ -105,11 +105,14 @@ public class FollowerEntity : Entity
             currentState.Exit();
             currentState = new FollowerRecoverState(gameObject, agent, anim, this, GameObject.FindGameObjectWithTag("Player").transform);
             StartCoroutine(RecoverHealth());
-        }        
+        }
     }
     // co se má stát když umøe follower pøes sequenci (GoalAction)
     public void StoryDie()
     {
+        // zapnout ragdoll a spustit delay?
+
+        gameObject.SetActive(false); // kvuli storyObjectu
         Destroy(gameObject);
     }
     public void ReturnToFollowerState()

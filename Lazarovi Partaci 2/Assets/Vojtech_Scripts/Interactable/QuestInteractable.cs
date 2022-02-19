@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class QuestInteractable : Interactable
 {
-    public bool pickup;
     public int itemId;
 
     public override void Interact()
@@ -13,6 +12,7 @@ public class QuestInteractable : Interactable
 
         if (pickup)
         {
+            gameObject.SetActive(false);
             Destroy(gameObject);
         }
     }
