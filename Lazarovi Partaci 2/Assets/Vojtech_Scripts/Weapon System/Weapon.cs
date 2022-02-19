@@ -5,24 +5,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "Weapons/Weapon")]
 public class Weapon : ScriptableObject
 {
+    [Header("Weapon Specifications")]
     public string weaponName;
+
     public WeaponMod[] muzzleMods;
     public WeaponMod[] scopeMods;
     public WeaponMod[] magazineMods;
     public WeaponMod[] specialMods;
 
+    [Header("Current")]
     public List<WeaponMod> boughtMods;
     public WeaponMod[] equippedMods;
-    public SkinnedMeshRenderer[] currentMeshes;
-    List<WeaponMod[]> allWeaponMods;
 
     private void OnEnable()
     {
-        allWeaponMods = new List<WeaponMod[]>();
-        int numOfSlots = System.Enum.GetNames(typeof(WeaponModType)).Length;
-        equippedMods = new WeaponMod[numOfSlots];
-        currentMeshes = new SkinnedMeshRenderer[numOfSlots];
-        boughtMods = new List<WeaponMod>();        
+        equippedMods = new WeaponMod[4];
+        boughtMods = new List<WeaponMod>();
     }
 
     /// <summary>

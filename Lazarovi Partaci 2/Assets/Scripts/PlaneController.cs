@@ -29,6 +29,8 @@ public class PlaneController : MonoBehaviour
     public AudioSource spaceShipHorn;
 
     public Rigidbody rb;
+
+    public AudioSource movementSound;
     
 
     //    public GameObject Camera;
@@ -99,12 +101,12 @@ public class PlaneController : MonoBehaviour
         rb.AddForce(movement, ForceMode.Acceleration);
 
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, rychlostVpred);
-        
+
         //if (rb.velocity.magnitude > rychlostVpred)
         //{
         //    rb.velocity = rb.velocity.normalized * rychlostVpred;
         //}
-        
+
         /*ukládani do promenny, mathf.lerp používáme, abyhcom zajistili smooth pohyb a akceleraci. 
         Lerp funkce dělá to, že z jedné hodnoty A přejde na hodnotu B v nějakém určitém intervale T.
         Input.getaxisraw využíváme pro získání os v unity. používáme poté na náš movement letadla.
@@ -117,6 +119,17 @@ public class PlaneController : MonoBehaviour
         první hodnota tj. mouseposition.y je zaporná, protože když myší koukáme dolů, tak je mouseposition.y zapornou hodnotu, ale v atributu rotace naseho objektu(letadla) pri koukani dolu je kladna.
         proto to v podstate vynasobujeme -1.
         */
+
+        if (rb.velocity.magnitude > 1f)
+        {
+            movementSound.Play();
+
+        }
+        else
+        {
+            movementSound.Stop();
+
+        }
     }
 
 }

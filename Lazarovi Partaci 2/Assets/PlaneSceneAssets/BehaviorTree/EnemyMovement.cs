@@ -23,7 +23,8 @@ public class EnemyMovement : MonoBehaviour
     public bool allowInvoke = true;
 
     // -------------------------------------KONEC SHOOTING PROMENNYCH
-  
+
+    public AudioSource shootSounds;
 
 
  /*   public  event InputEvent ForwardEvent;
@@ -78,22 +79,28 @@ public class EnemyMovement : MonoBehaviour
     private void FireWeapon()
     {
         if (readyToShoot == true){
-        readyToShoot = false; 
-        Vector3 directionWithoutSpread = shootPoint.forward;
-        Vector3 directionWithoutSpread2 = shootPoint2.forward;
 
-        GameObject currentBullet = Instantiate(bullet, shootPoint.position, Quaternion.identity);
-        GameObject currentBullet2 = Instantiate(bullet, shootPoint2.position, Quaternion.identity);
+            shootSounds.Play();
 
-        currentBullet.transform.forward = directionWithoutSpread.normalized;
-        currentBullet2.transform.forward = directionWithoutSpread2.normalized;
-        currentBullet.GetComponent<Rigidbody>().AddForce(directionWithoutSpread.normalized * shootForce, ForceMode.Impulse);
-        currentBullet2.GetComponent<Rigidbody>().AddForce(directionWithoutSpread2.normalized * shootForce, ForceMode.Impulse);
+            readyToShoot = false; 
+            Vector3 directionWithoutSpread = shootPoint.forward;
+            Vector3 directionWithoutSpread2 = shootPoint2.forward;
+
+            GameObject currentBullet = Instantiate(bullet, shootPoint.position, Quaternion.identity);
+            GameObject currentBullet2 = Instantiate(bullet, shootPoint2.position, Quaternion.identity);
+
+            currentBullet.transform.forward = directionWithoutSpread.normalized;
+            currentBullet2.transform.forward = directionWithoutSpread2.normalized;
+            currentBullet.GetComponent<Rigidbody>().AddForce(directionWithoutSpread.normalized * shootForce, ForceMode.Impulse);
+            currentBullet2.GetComponent<Rigidbody>().AddForce(directionWithoutSpread2.normalized * shootForce, ForceMode.Impulse);
        
 
 
-        StartCoroutine(ShootDelay());
+            StartCoroutine(ShootDelay());
         }
+
+
+
        /*  if (allowInvoke) {
             Invoke("ResetShot", timeBetweenShots);
             allowInvoke = false;

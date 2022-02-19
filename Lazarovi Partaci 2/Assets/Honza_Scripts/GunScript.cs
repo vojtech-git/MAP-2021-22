@@ -40,7 +40,7 @@ public class GunScript : MonoBehaviour
     public Camera PlayerCam;
     public Transform attackPoint;
     public RaycastHit rayHit;
-    public LayerMask whatIsEnemy;
+    public LayerMask isHittable;
     public Text AmmoCount;
     public Text AmmoBack;
     public GameObject bulletHoleGraphic;
@@ -207,19 +207,61 @@ public class GunScript : MonoBehaviour
 
     public void ApplyModGraphics()
     {
-        // clearnout ted aktivní grafiku
+        foreach (Transform weaponWheelChild in WeaponWheelParent)
+        {
+            Destroy(weaponWheelChild.gameObject);
+        }
 
         for (int i = 0; i < weaponScriptableObj.equippedMods.Length; i++)
         {
-            if (weaponScriptableObj.equippedMods[i].model != null)
+            if (weaponScriptableObj.equippedMods[i] != null)
             {
-                Instantiate(weaponScriptableObj.equippedMods[i].model, modModelParents[i]);
+                if (weaponScriptableObj.equippedMods[i].ui != null)
+                {
+                    Instantiate(weaponScriptableObj.equippedMods[i].ui, WeaponWheelParent);
 
-                Debug.Log("Applying " + weaponScriptableObj.equippedMods[i].name + " to parent: " + modModelParents[i].gameObject.name + " on gun: " + gameObject.name); 
+                    //Debug.Log("Applying weapon wheel graphics for mod: " + weaponScriptableObj.equippedMods[i].name + " to parent: " + modModelParents[i].gameObject.name + " on gun: " + gameObject.name);
+                }
+                else
+                {
+                    //Debug.Log("No ui graphics to create graphics for " + gameObject.name + " " + (WeaponModType)i);
+                } 
             }
             else
             {
-                Debug.Log("No " + (WeaponModType)i + " to create graphics for");
+                //Debug.Log("No mod eqquipped in this slot (gun ui)");
+            }
+
+        }
+
+
+        // clearnout ted aktivní grafiku
+        foreach (Transform transform in modModelParents)
+        {
+            foreach (Transform transform1 in transform)
+            {
+                Destroy(transform1.gameObject);
+            }
+        }
+
+        for (int i = 0; i < weaponScriptableObj.equippedMods.Length; i++)
+        {
+            if (weaponScriptableObj.equippedMods[i] != null)
+            {
+                if (weaponScriptableObj.equippedMods[i].model != null)
+                {
+                    Instantiate(weaponScriptableObj.equippedMods[i].model, modModelParents[i]);
+
+                    //Debug.Log("Applying " + weaponScriptableObj.equippedMods[i].name + " to parent: " + modModelParents[i].gameObject.name + " on gun: " + gameObject.name);
+                }
+                else
+                {
+                    //Debug.Log("No " + (WeaponModType)i + " to create graphics for");
+                } 
+            }
+            else
+            {
+                //Debug.Log("no mod equipped in this slot (gun model)");
             }
         }
     }
@@ -236,18 +278,6 @@ public class GunScript : MonoBehaviour
     {
         ApplyUpgradedStats();
         ApplyModGraphics();
-
-        for (int i = 0; i < weaponScriptableObj.equippedMods.Length; i++)
-        {
-            if (weaponScriptableObj.equippedMods[i] != null)
-            {
-                Debug.Log(gameObject.name + " " + (WeaponModType)i + " equppied: " + weaponScriptableObj.equippedMods[i].name);
-            }
-            else
-            {
-                Debug.Log("No " + (WeaponModType)i + " equipped on " + gameObject.name);
-            }
-        }
     }
 
     private void Update()
@@ -301,20 +331,23 @@ public class GunScript : MonoBehaviour
 
         //Running Spead to do
 
+        RaycastHit hit;
+
         //RayCast
-        if (Physics.Raycast(PlayerCam.transform.position, direction, out rayHit, range, whatIsEnemy))
+        if (Physics.Raycast(PlayerCam.transform.position, direction, out hit, range, isHittable))
         {
-            //Debug.Log(rayHit.collider.name);
+            //Debug.Log(hit.collider.name);
 
-            if (rayHit.collider.CompareTag("Enemy"))
+            if (!hit.collider.CompareTag("Friendly") && hit.transform.TryGetComponent<Entity>(out Entity entityToDamage))
             {
-                Entity hitTarget;
-                rayHit.collider.gameObject.TryGetComponent<Entity>(out hitTarget);
-                hitTarget.TakeDamage(damage);
+                entityToDamage.TakeDamage(damage);
+            }
 
-                Debug.Log("damaging target for " + damage);
-
-             // tady se volá enemy hit   rayHit.collider.GetComponent<ShootingAi>().TakeDamage(Damage);
+            if (!hit.transform.TryGetComponent<Entity>(out Entity entityToNotBullethole))
+            {
+                GameObject bullethole = Instantiate(bulletHoleGraphic, hit.point, Quaternion.LookRotation(hit.normal));
+                bullethole.transform.parent = hit.transform;
+                bullethole.transform.position += bullethole.transform.forward / 1000;
             }
         }
         //Graphics

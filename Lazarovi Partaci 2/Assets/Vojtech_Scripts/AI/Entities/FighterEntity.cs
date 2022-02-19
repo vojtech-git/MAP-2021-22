@@ -169,7 +169,7 @@ public class FighterEntity : Entity
 
     void DropLoot()
     {
-        int random = Random.Range(0, ItemsToDropPrefabs.Length - 1);
+        int random = Random.Range(0, ItemsToDropPrefabs.Length);
         GameObject droppedLoot = Instantiate(ItemsToDropPrefabs[random], transform.position, transform.rotation);
         droppedLoot.transform.Rotate(-90, 0, 0);
     }

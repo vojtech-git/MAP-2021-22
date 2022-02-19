@@ -28,6 +28,21 @@ public class WeaponsCanvas : MonoBehaviour
         instance = this;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (!menuOpen)
+            {
+                OpenMenu();
+            }
+            else
+            {
+                CloseMenu();
+            }
+        }
+    }
+
     public void OpenMenu()
     {
         Cursor.lockState = CursorLockMode.None;
