@@ -9,7 +9,10 @@ public class DestructableQuestEntity : Entity
 
     public override void Die()
     {
-        QuestingManager.OnPointGained(GoalType.Kill, id);
-        base.Die();
+        if (enabled)
+        {
+            QuestingManager.OnPointGained(GoalType.Kill, id);
+            base.Die(); 
+        }
     }
 }
