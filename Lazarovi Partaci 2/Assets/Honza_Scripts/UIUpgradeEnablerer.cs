@@ -34,11 +34,12 @@ public class UIUpgradeEnablerer : MonoBehaviour
             if (c.menuOpen == false)
             {
                 disableUI();
+                Time.timeScale = 1f;
             }
             else
             {
                 enableUI();
-                
+                Time.timeScale = 0f;
             }
         }
 

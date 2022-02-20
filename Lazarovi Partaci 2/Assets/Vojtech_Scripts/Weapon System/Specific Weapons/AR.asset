@@ -31,10 +31,10 @@ MonoBehaviour:
     ui: {fileID: 3836440485077740864, guid: aaa634bda6bbe044da261597885bfbeb, type: 3}
   - name: Compressor
     type: 0
-    cost: 0
-    damage: 0
-    timeBetweenShooting: 0
-    spread: 0
+    cost: 250
+    damage: 20
+    timeBetweenShooting: 1
+    spread: -0.1
     range: 0
     reloadTime: 0
     timeBetweenShots: 0
@@ -46,10 +46,10 @@ MonoBehaviour:
     ui: {fileID: 3323563618055588012, guid: 7422db23dffadab4a94c752b147e86cf, type: 3}
   - name: Compensator
     type: 0
-    cost: 0
-    damage: 0
-    timeBetweenShooting: 0
-    spread: 0
+    cost: 500
+    damage: 30
+    timeBetweenShooting: 1.5
+    spread: -0.2
     range: 0
     reloadTime: 0
     timeBetweenShots: 0
@@ -61,9 +61,9 @@ MonoBehaviour:
     ui: {fileID: 341088381650190398, guid: f40683720292ed243b9d9cb8e2f77a98, type: 3}
   - name: Silencer
     type: 0
-    cost: 0
-    damage: 0
-    timeBetweenShooting: 0
+    cost: 1000
+    damage: 40
+    timeBetweenShooting: -0.2
     spread: 0
     range: 0
     reloadTime: 0
@@ -92,10 +92,10 @@ MonoBehaviour:
     ui: {fileID: 3836440485077740864, guid: aaa634bda6bbe044da261597885bfbeb, type: 3}
   - name: Scope 1
     type: 1
-    cost: 0
+    cost: 250
     damage: 0
     timeBetweenShooting: 0
-    spread: 0
+    spread: -0.4
     range: 0
     reloadTime: 0
     timeBetweenShots: 0
@@ -107,10 +107,10 @@ MonoBehaviour:
     ui: {fileID: 4493598210678076455, guid: f35a0f2e1c8362347afbe252540dbc57, type: 3}
   - name: Scope 2
     type: 1
-    cost: 0
+    cost: 500
     damage: 0
     timeBetweenShooting: 0
-    spread: 0
+    spread: -0.8
     range: 0
     reloadTime: 0
     timeBetweenShots: 0
@@ -122,10 +122,10 @@ MonoBehaviour:
     ui: {fileID: 6188995319469455922, guid: 6b95dd4e2d82d4048866d5509cc80d07, type: 3}
   - name: Scope 3
     type: 1
-    cost: 0
+    cost: 1000
     damage: 0
     timeBetweenShooting: 0
-    spread: 0
+    spread: -1.2
     range: 0
     reloadTime: 0
     timeBetweenShots: 0
@@ -153,31 +153,31 @@ MonoBehaviour:
     ui: {fileID: 818768986980895225, guid: 881930f0af26fcd45a8cc266f713b454, type: 3}
   - name: Mag Fast
     type: 2
-    cost: 0
+    cost: 500
     damage: 0
     timeBetweenShooting: 0
     spread: 0
     range: 0
-    reloadTime: 0
+    reloadTime: -0.5
     timeBetweenShots: 0
-    magazineSize: 0
+    magazineSize: 5
     bulletsPerTap: 0
-    bulletsMags: 0
+    bulletsMags: 30
     allowButtonHold: 0
     model: {fileID: 7575025278273409461, guid: 971997621c0b0f043ba6b0d67f3feb73, type: 3}
     ui: {fileID: 5955810708502862390, guid: 2f77ca14430dc3b43ba3d24b88021369, type: 3}
   - name: Mag Long
     type: 2
-    cost: 0
+    cost: 1000
     damage: 0
     timeBetweenShooting: 0
     spread: 0
     range: 0
-    reloadTime: 0
+    reloadTime: 0.5
     timeBetweenShots: 0
-    magazineSize: 0
+    magazineSize: 30
     bulletsPerTap: 0
-    bulletsMags: 0
+    bulletsMags: 60
     allowButtonHold: 0
     model: {fileID: 1311726782773974663, guid: 9081f277303567849b907483518f5e3b, type: 3}
     ui: {fileID: 2391063278325349671, guid: caed1a81ab7b69349a4f152e86e95a05, type: 3}
@@ -199,10 +199,10 @@ MonoBehaviour:
     ui: {fileID: 3836440485077740864, guid: aaa634bda6bbe044da261597885bfbeb, type: 3}
   - name: Laser
     type: 3
-    cost: 0
+    cost: 250
     damage: 0
     timeBetweenShooting: 0
-    spread: 0
+    spread: -0.3
     range: 0
     reloadTime: 0
     timeBetweenShots: 0
@@ -214,10 +214,10 @@ MonoBehaviour:
     ui: {fileID: 7822410788456444657, guid: 126b54d2bf43a5843a09ffcb46f3b409, type: 3}
   - name: Flashlight
     type: 3
-    cost: 0
+    cost: 500
     damage: 0
     timeBetweenShooting: 0
-    spread: 0
+    spread: -0.5
     range: 0
     reloadTime: 0
     timeBetweenShots: 0
@@ -229,10 +229,10 @@ MonoBehaviour:
     ui: {fileID: 5607369033014589076, guid: e4a22cbef5a40f345822df5b5af14de9, type: 3}
   - name: Spring
     type: 3
-    cost: 0
+    cost: 1000
     damage: 0
     timeBetweenShooting: 0
-    spread: 0
+    spread: -0.8
     range: 0
     reloadTime: 0
     timeBetweenShots: 0

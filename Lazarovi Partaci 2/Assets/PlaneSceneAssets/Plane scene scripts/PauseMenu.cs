@@ -90,7 +90,7 @@ public class PauseMenu : MonoBehaviour
     }
 
 
-    void Pause()
+    public void Pause()
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         pauseMenuUI.SetActive(true);
