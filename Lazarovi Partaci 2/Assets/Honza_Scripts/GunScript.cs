@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class GunScript : MonoBehaviour
 {
     public Weapon weaponScriptableObj;
+    public bool isSpecial;
 
     [Header("Basic Weapon Stats")]
     public int basicDamage;
@@ -23,14 +24,14 @@ public class GunScript : MonoBehaviour
     [HideInInspector] public float range;
     [HideInInspector] public float reloadTime;
     [HideInInspector] public float timeBetweenShots;
-    [HideInInspector] public int magazineSize;
+     public int magazineSize;
     [HideInInspector] public int bulletsPerTap;
     [HideInInspector] public int bulletsShot;
     [HideInInspector] public int bulletsMags;
     [HideInInspector] public bool allowButtonHold;
 
     bool shooting, readyToShoot, reloading;
-    [HideInInspector] public int bulletsLeft;
+     public int bulletsLeft;
 
     [Header("Mod Parents")]
     public Transform WeaponWheelParent;
@@ -65,20 +66,23 @@ public class GunScript : MonoBehaviour
         bulletsPerTap = basicBulletsPerTap;
         allowButtonHold = basicAllowButtonHold;
 
-        for (int i = 0; i < weaponScriptableObj.equippedMods.Length; i++)
+        if (!isSpecial)
         {
-            if (weaponScriptableObj.equippedMods[i] != null)
+            for (int i = 0; i < weaponScriptableObj.equippedMods.Length; i++)
             {
-                damage += weaponScriptableObj.equippedMods[i].damage;
-                timeBetweenShooting += weaponScriptableObj.equippedMods[i].timeBetweenShots;
-                spread += weaponScriptableObj.equippedMods[i].spread;
-                range += weaponScriptableObj.equippedMods[i].range;
-                reloadTime += weaponScriptableObj.equippedMods[i].reloadTime;
-                timeBetweenShots += weaponScriptableObj.equippedMods[i].timeBetweenShots;
-                magazineSize += weaponScriptableObj.equippedMods[i].magazineSize;
-                bulletsPerTap += weaponScriptableObj.equippedMods[i].bulletsPerTap;
-                allowButtonHold = weaponScriptableObj.equippedMods[i].allowButtonHold;
-            }
+                if (weaponScriptableObj.equippedMods[i] != null)
+                {
+                    damage += weaponScriptableObj.equippedMods[i].damage;
+                    timeBetweenShooting += weaponScriptableObj.equippedMods[i].timeBetweenShots;
+                    spread += weaponScriptableObj.equippedMods[i].spread;
+                    range += weaponScriptableObj.equippedMods[i].range;
+                    reloadTime += weaponScriptableObj.equippedMods[i].reloadTime;
+                    timeBetweenShots += weaponScriptableObj.equippedMods[i].timeBetweenShots;
+                    magazineSize += weaponScriptableObj.equippedMods[i].magazineSize;
+                    bulletsPerTap += weaponScriptableObj.equippedMods[i].bulletsPerTap;
+                    allowButtonHold = weaponScriptableObj.equippedMods[i].allowButtonHold;
+                }
+            } 
         }
 
         #region old logic
@@ -208,77 +212,82 @@ public class GunScript : MonoBehaviour
 
     public void ApplyModGraphics()
     {
-        foreach (Transform weaponWheelChild in WeaponWheelParent)
+        if (!isSpecial)
         {
-            Destroy(weaponWheelChild.gameObject);
-        }
-
-        for (int i = 0; i < weaponScriptableObj.equippedMods.Length; i++)
-        {
-            if (weaponScriptableObj.equippedMods[i] != null)
+            foreach (Transform weaponWheelChild in WeaponWheelParent)
             {
-                if (weaponScriptableObj.equippedMods[i].ui != null)
-                {
-                    Instantiate(weaponScriptableObj.equippedMods[i].ui, WeaponWheelParent);
+                Destroy(weaponWheelChild.gameObject);
+            }
 
-                    //Debug.Log("Applying weapon wheel graphics for mod: " + weaponScriptableObj.equippedMods[i].name + " to parent: " + modModelParents[i].gameObject.name + " on gun: " + gameObject.name);
+            for (int i = 0; i < weaponScriptableObj.equippedMods.Length; i++)
+            {
+                if (weaponScriptableObj.equippedMods[i] != null)
+                {
+                    if (weaponScriptableObj.equippedMods[i].ui != null)
+                    {
+                        Instantiate(weaponScriptableObj.equippedMods[i].ui, WeaponWheelParent);
+
+                        //Debug.Log("Applying weapon wheel graphics for mod: " + weaponScriptableObj.equippedMods[i].name + " to parent: " + modModelParents[i].gameObject.name + " on gun: " + gameObject.name);
+                    }
+                    else
+                    {
+                        //Debug.Log("No ui graphics to create graphics for " + gameObject.name + " " + (WeaponModType)i);
+                    }
                 }
                 else
                 {
-                    //Debug.Log("No ui graphics to create graphics for " + gameObject.name + " " + (WeaponModType)i);
-                } 
-            }
-            else
-            {
-                //Debug.Log("No mod eqquipped in this slot (gun ui)");
+                    //Debug.Log("No mod eqquipped in this slot (gun ui)");
+                }
+
             }
 
-        }
 
-
-        // clearnout ted aktivn� grafiku
-        foreach (Transform transform in modModelParents)
-        {
-            foreach (Transform transform1 in transform)
+            // clearnout ted aktivn� grafiku
+            foreach (Transform transform in modModelParents)
             {
-                Destroy(transform1.gameObject);
-            }
-        }
-
-        for (int i = 0; i < weaponScriptableObj.equippedMods.Length; i++)
-        {
-            if (weaponScriptableObj.equippedMods[i] != null)
-            {
-                if (weaponScriptableObj.equippedMods[i].model != null)
+                foreach (Transform transform1 in transform)
                 {
-                    Instantiate(weaponScriptableObj.equippedMods[i].model, modModelParents[i]);
+                    Destroy(transform1.gameObject);
+                }
+            }
 
-                    //Debug.Log("Applying " + weaponScriptableObj.equippedMods[i].name + " to parent: " + modModelParents[i].gameObject.name + " on gun: " + gameObject.name);
+            for (int i = 0; i < weaponScriptableObj.equippedMods.Length; i++)
+            {
+                if (weaponScriptableObj.equippedMods[i] != null)
+                {
+                    if (weaponScriptableObj.equippedMods[i].model != null)
+                    {
+                        Instantiate(weaponScriptableObj.equippedMods[i].model, modModelParents[i]);
+
+                        //Debug.Log("Applying " + weaponScriptableObj.equippedMods[i].name + " to parent: " + modModelParents[i].gameObject.name + " on gun: " + gameObject.name);
+                    }
+                    else
+                    {
+                        //Debug.Log("No " + (WeaponModType)i + " to create graphics for");
+                    }
                 }
                 else
                 {
-                    //Debug.Log("No " + (WeaponModType)i + " to create graphics for");
-                } 
-            }
-            else
-            {
-                //Debug.Log("no mod equipped in this slot (gun model)");
-            }
+                    //Debug.Log("no mod equipped in this slot (gun model)");
+                }
+            } 
         }
     }
 
     private void Awake()
     {
+        WeaponManager.onModEquipped += OnModEquipped;
+
+        ApplyUpgradedStats();
+        ApplyModGraphics();
+
         bulletsLeft = magazineSize;
         readyToShoot = true;
-
-        WeaponManager.onModEquipped += OnModEquipped;
     }
 
     private void Start()
     {
-        ApplyUpgradedStats();
-        ApplyModGraphics();
+
     }
 
     private void Update()
