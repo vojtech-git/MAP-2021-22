@@ -30,6 +30,14 @@ public class WeaponsCanvas : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            CloseMenu();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseMenu();
+        }
         if (Input.GetKeyDown(KeyCode.I))
         {
             if (!menuOpen)

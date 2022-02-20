@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Smg
   muzzleMods:
-  - name: 
+  - name: None
     type: 0
     cost: 0
     damage: 0
@@ -27,11 +27,56 @@ MonoBehaviour:
     bulletsPerTap: 0
     bulletsMags: 0
     allowButtonHold: 0
-    model: {fileID: 0}
-    ui: {fileID: 0}
+    model: {fileID: 3836440485077740864, guid: aaa634bda6bbe044da261597885bfbeb, type: 3}
+    ui: {fileID: 3836440485077740864, guid: aaa634bda6bbe044da261597885bfbeb, type: 3}
+  - name: Compensator
+    type: 0
+    cost: 0
+    damage: 0
+    timeBetweenShooting: 0
+    spread: 0
+    range: 0
+    reloadTime: 0
+    timeBetweenShots: 0
+    magazineSize: 0
+    bulletsPerTap: 0
+    bulletsMags: 0
+    allowButtonHold: 0
+    model: {fileID: 6972790941278535304, guid: e1beed35c09250841ae8129d9e0647a2, type: 3}
+    ui: {fileID: 479828323457624509, guid: 85a2e1efb0b9dfd41a0b93b1aa012fb6, type: 3}
+  - name: Compressor
+    type: 0
+    cost: 0
+    damage: 0
+    timeBetweenShooting: 0
+    spread: 0
+    range: 0
+    reloadTime: 0
+    timeBetweenShots: 0
+    magazineSize: 0
+    bulletsPerTap: 0
+    bulletsMags: 0
+    allowButtonHold: 0
+    model: {fileID: 508138123783059178, guid: adc405121b697914398c62c4f8ae1eec, type: 3}
+    ui: {fileID: 4702548446956665921, guid: 4345864af2b8c7f4eb1c787d7ae4e0ac, type: 3}
+  - name: Silencer
+    type: 0
+    cost: 0
+    damage: 0
+    timeBetweenShooting: 0
+    spread: 0
+    range: 0
+    reloadTime: 0
+    timeBetweenShots: 0
+    magazineSize: 0
+    bulletsPerTap: 0
+    bulletsMags: 0
+    allowButtonHold: 0
+    model: {fileID: 5931283655674281249, guid: 968b5b0a1f7b9f2428070097b4ed9753, type: 3}
+    ui: {fileID: 5274325175093489924, guid: a099db34ef58c084eba95abe41f5a5bb, type: 3}
   scopeMods:
-  - name: 
-    type: 0
+  - name: None
+    type: 1
     cost: 0
     damage: 0
     timeBetweenShooting: 0
@@ -43,11 +88,56 @@ MonoBehaviour:
     bulletsPerTap: 0
     bulletsMags: 0
     allowButtonHold: 0
-    model: {fileID: 0}
-    ui: {fileID: 0}
+    model: {fileID: 3836440485077740864, guid: aaa634bda6bbe044da261597885bfbeb, type: 3}
+    ui: {fileID: 3836440485077740864, guid: aaa634bda6bbe044da261597885bfbeb, type: 3}
+  - name: Scope 1
+    type: 1
+    cost: 0
+    damage: 0
+    timeBetweenShooting: 0
+    spread: 0
+    range: 0
+    reloadTime: 0
+    timeBetweenShots: 0
+    magazineSize: 0
+    bulletsPerTap: 0
+    bulletsMags: 0
+    allowButtonHold: 0
+    model: {fileID: 7012199314032991956, guid: 045980219387cb647a1b8471eaf7bd49, type: 3}
+    ui: {fileID: 3011891835694525151, guid: b9765cb1f44228447849e534fb97b4c7, type: 3}
+  - name: Scope 2
+    type: 1
+    cost: 0
+    damage: 0
+    timeBetweenShooting: 0
+    spread: 0
+    range: 0
+    reloadTime: 0
+    timeBetweenShots: 0
+    magazineSize: 0
+    bulletsPerTap: 0
+    bulletsMags: 0
+    allowButtonHold: 0
+    model: {fileID: 1170845617107970662, guid: e9b50be91e6cc9a418585285e06115ff, type: 3}
+    ui: {fileID: 7160586733222055724, guid: cfe1927dd328a614d8d45546e4da4379, type: 3}
+  - name: Scope 3
+    type: 1
+    cost: 0
+    damage: 0
+    timeBetweenShooting: 0
+    spread: 0
+    range: 0
+    reloadTime: 0
+    timeBetweenShots: 0
+    magazineSize: 0
+    bulletsPerTap: 0
+    bulletsMags: 0
+    allowButtonHold: 0
+    model: {fileID: 2172812516261825076, guid: a1b63e481eb4d574a8ef9b8fd71e6c78, type: 3}
+    ui: {fileID: 7703799842909920439, guid: e13389255e6487e468390198d6a44a9a, type: 3}
   magazineMods:
-  - name: 
-    type: 0
+  - name: Basic Mag
+    type: 2
     cost: 0
     damage: 0
     timeBetweenShooting: 0
@@ -59,11 +149,41 @@ MonoBehaviour:
     bulletsPerTap: 0
     bulletsMags: 0
     allowButtonHold: 0
-    model: {fileID: 0}
-    ui: {fileID: 0}
+    model: {fileID: 2034711971164745465, guid: e4b970dedfad29748942b1144e48b885, type: 3}
+    ui: {fileID: 8137894962557356672, guid: f320f9fce36009d4e93a1b12a9c013bd, type: 3}
+  - name: Fast Mag
+    type: 2
+    cost: 0
+    damage: 0
+    timeBetweenShooting: 0
+    spread: 0
+    range: 0
+    reloadTime: 0
+    timeBetweenShots: 0
+    magazineSize: 0
+    bulletsPerTap: 0
+    bulletsMags: 0
+    allowButtonHold: 0
+    model: {fileID: 3747491292867941519, guid: 932a9cfba28f02544ab39b1cc631af4f, type: 3}
+    ui: {fileID: 5285528046923528127, guid: ea2bdc56167e0f7448d3812132ba0604, type: 3}
+  - name: Drum Mag
+    type: 2
+    cost: 0
+    damage: 0
+    timeBetweenShooting: 0
+    spread: 0
+    range: 0
+    reloadTime: 0
+    timeBetweenShots: 0
+    magazineSize: 0
+    bulletsPerTap: 0
+    bulletsMags: 0
+    allowButtonHold: 0
+    model: {fileID: 319560133319107774, guid: 9affae98691950249840a23c3ab81594, type: 3}
+    ui: {fileID: 6558840599270173284, guid: 91dbe10de63171e4caaeab05b57cc815, type: 3}
   specialMods:
-  - name: 
-    type: 0
+  - name: None
+    type: 3
     cost: 0
     damage: 0
     timeBetweenShooting: 0
@@ -77,6 +197,51 @@ MonoBehaviour:
     allowButtonHold: 0
     model: {fileID: 0}
     ui: {fileID: 0}
+  - name: Special 1
+    type: 3
+    cost: 0
+    damage: 0
+    timeBetweenShooting: 0
+    spread: 0
+    range: 0
+    reloadTime: 0
+    timeBetweenShots: 0
+    magazineSize: 0
+    bulletsPerTap: 0
+    bulletsMags: 0
+    allowButtonHold: 0
+    model: {fileID: 7449893304200711828, guid: a9483ab08097b784c8a28da968ed48c8, type: 3}
+    ui: {fileID: 1775060164043998493, guid: b301c959eda28384f9e7c6cd255bda11, type: 3}
+  - name: Special 2
+    type: 3
+    cost: 0
+    damage: 0
+    timeBetweenShooting: 0
+    spread: 0
+    range: 0
+    reloadTime: 0
+    timeBetweenShots: 0
+    magazineSize: 0
+    bulletsPerTap: 0
+    bulletsMags: 0
+    allowButtonHold: 0
+    model: {fileID: 3152109337231625890, guid: e74f0165eace1c54ba20025a3ab4275d, type: 3}
+    ui: {fileID: 3711600834176024582, guid: 10d6287c02976ea46bb6e50d3e650ca2, type: 3}
+  - name: Special 3
+    type: 3
+    cost: 0
+    damage: 0
+    timeBetweenShooting: 0
+    spread: 0
+    range: 0
+    reloadTime: 0
+    timeBetweenShots: 0
+    magazineSize: 0
+    bulletsPerTap: 0
+    bulletsMags: 0
+    allowButtonHold: 0
+    model: {fileID: 967118108433992020, guid: f6922c7a62bf96b42a3f43f88549011e, type: 3}
+    ui: {fileID: 3776355529449774419, guid: 313d2284a8254ce45a077ce9ce436037, type: 3}
   boughtMods: []
   equippedMods:
   - name: 
