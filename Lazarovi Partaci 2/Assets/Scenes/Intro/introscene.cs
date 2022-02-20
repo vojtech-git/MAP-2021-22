@@ -24,6 +24,6 @@ public class introscene : MonoBehaviour
 
         yield return new WaitForSecondsRealtime((float)IntroVideo.length + 2f);
 
-        SceneManager.LoadSceneAsync("System 0");
+        SceneStateManager.Instance.RestartGame();
     }
 }
