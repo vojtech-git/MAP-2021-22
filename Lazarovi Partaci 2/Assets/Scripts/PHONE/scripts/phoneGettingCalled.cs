@@ -12,6 +12,7 @@ public class phoneGettingCalled : MonoBehaviour
     public GameObject caller2;
     public GameObject calledPerson1;
     public GameObject calledPerson2;
+    public GameObject calledPerson3;
     public GameObject home;
 
     public GameObject[] wallpapers;
@@ -22,6 +23,7 @@ public class phoneGettingCalled : MonoBehaviour
 
     public AudioSource[] storyVoicelines1;
     public AudioSource[] storyVoicelines2;
+    public AudioSource[] storyVoicelines3;
 
     public phoneOnOff phoneOnOff;
 
@@ -69,39 +71,53 @@ public class phoneGettingCalled : MonoBehaviour
             ringtone.GetComponent<AudioSource>().loop = false;
         }
         */
-        if (Input.GetKeyDown(KeyCode.Return) && caller1.activeSelf)
+        if (caller1 != null)
         {
-            caller1.SetActive(false);
-
-            calledPerson1.SetActive(true);
-            
-            ringtone.GetComponent<AudioSource>().Stop();
-            ringtone.GetComponent<AudioSource>().loop = false;
-
-            callTimer.beginTimer();
-
-            Debug.Log("prijmuti hovoru");
-
-            foreach (AudioSource audioSource in storyVoicelines1)
+            if (Input.GetKeyDown(KeyCode.Return) && caller1.activeSelf)
             {
-                Debug.Log("voiceline");
-            }
+                caller1.SetActive(false);
 
-            StartCoroutine(test(storyVoicelines1));
+                calledPerson1.SetActive(true);
+
+                ringtone.GetComponent<AudioSource>().Stop();
+                ringtone.GetComponent<AudioSource>().loop = false;
+
+                callTimer.beginTimer();
+
+                Debug.Log("prijmuti hovoru");
+
+                foreach (AudioSource audioSource in storyVoicelines1)
+                {
+                    Debug.Log("voiceline");
+                }
+
+                StartCoroutine(test(storyVoicelines1));
+            } 
+        }
+        else
+        {
+            Debug.Log("caller1 neni specifikovan");
         }
 
-        if (Input.GetKeyDown(KeyCode.Return) && caller2.activeSelf)
+        if (caller2 != null)
         {
-            caller2.SetActive(false);
+            if (Input.GetKeyDown(KeyCode.Return) && caller2.activeSelf)
+            {
+                caller2.SetActive(false);
 
-            calledPerson2.SetActive(true);
+                calledPerson2.SetActive(true);
 
-            ringtone.GetComponent<AudioSource>().Stop();
-            ringtone.GetComponent<AudioSource>().loop = false;
+                ringtone.GetComponent<AudioSource>().Stop();
+                ringtone.GetComponent<AudioSource>().loop = false;
 
-            callTimer.beginTimer();
+                callTimer.beginTimer();
 
-            StartCoroutine(test(storyVoicelines2));
+                StartCoroutine(test(storyVoicelines2));
+            } 
+        }
+        else
+        {
+            Debug.Log("caller 2 neni specifikovan");
         }
         /*
         if (Input.GetKeyDown(KeyCode.E) && calledPerson.activeSelf)
@@ -144,6 +160,20 @@ public class phoneGettingCalled : MonoBehaviour
 
         ringtone.GetComponent<AudioSource>().Play();
         ringtone.GetComponent<AudioSource>().loop = true;
+    }
+    public void StoryGettingCalled3()
+    {
+        Start();
+
+        currentWallpaper.SetActive(false);
+        home.SetActive(false);
+
+        callingBG.SetActive(true);
+        calledPerson3.SetActive(true);
+
+        callTimer.beginTimer();
+
+        StartCoroutine(test(storyVoicelines3));
     }
 
     IEnumerator test(AudioSource[] audioVoicelines)

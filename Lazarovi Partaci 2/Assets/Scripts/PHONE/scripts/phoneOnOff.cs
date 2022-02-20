@@ -67,6 +67,10 @@ public class phoneOnOff : MonoBehaviour
         {
             phoneGettingCalled.StoryGettingCalled2();
         }
+        else if (questNumber == 2)
+        {
+            phoneGettingCalled.StoryGettingCalled3();
+        }
     }
 
     public void turnOff()
