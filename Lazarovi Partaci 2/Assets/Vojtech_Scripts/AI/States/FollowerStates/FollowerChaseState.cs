@@ -34,6 +34,15 @@ public class FollowerChaseState : State
     {
         if (target != null)
         {
+            //Debug.Log(followerEntity.gameObject.name + " " + target.gameObject.name);
+
+        }
+        else
+        {
+            //Debug.Log("no target ");
+        }
+        if (target != null)
+        {
             base.Update();
 
             GameObject tempTarget = LookForClosestTarget(); // i kdyz chasuje tak hleda jestli nenajde nìjakej bližší target
