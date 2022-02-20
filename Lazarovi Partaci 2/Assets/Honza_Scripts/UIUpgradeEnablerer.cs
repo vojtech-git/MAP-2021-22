@@ -33,11 +33,12 @@ public class UIUpgradeEnablerer : MonoBehaviour
             
             if (c.menuOpen == false)
             {
-                enableUI();
+                disableUI();
             }
             else
             {
-                disableUI();
+                enableUI();
+                
             }
         }
 
