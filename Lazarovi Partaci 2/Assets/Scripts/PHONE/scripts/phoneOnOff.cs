@@ -46,7 +46,7 @@ public class phoneOnOff : MonoBehaviour
             StartCoroutine(test());
 
             Debug.Log("story zvoní telefon");
-            phoneGettingCalled.storyGettingCalled();
+            phoneGettingCalled.StoryGettingCalled1();
         }
     }
 
@@ -59,11 +59,11 @@ public class phoneOnOff : MonoBehaviour
         StartCoroutine(test());
 
         Debug.Log("story zvoní telefon");
-        if (questNumber == 1)
+        if (questNumber == 0)
         {
-            phoneGettingCalled.storyGettingCalled();
+            phoneGettingCalled.StoryGettingCalled1();
         }
-        else
+        else if (questNumber == 1)
         {
             phoneGettingCalled.StoryGettingCalled2();
         }

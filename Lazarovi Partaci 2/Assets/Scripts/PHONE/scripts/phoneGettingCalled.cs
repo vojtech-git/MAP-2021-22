@@ -5,21 +5,22 @@ using UnityEngine;
 public class phoneGettingCalled : MonoBehaviour
 {
     [Header("Pozadí")]
-    public GameObject callingBG1;
-    public GameObject callingBG2;
+    public GameObject callingBG;
     
     [Header("Stránky")]
     public GameObject caller1;
     public GameObject caller2;
-    public GameObject calledPerson;
+    public GameObject calledPerson1;
+    public GameObject calledPerson2;
     public GameObject home;
 
     public GameObject[] wallpapers;
+    GameObject currentWallpaper;
     GameObject ringtone;
 
     //public GameObject voicline;
 
-    public AudioSource[] storyVoicelines;
+    public AudioSource[] storyVoicelines1;
     public AudioSource[] storyVoicelines2;
 
     public phoneOnOff phoneOnOff;
@@ -29,6 +30,14 @@ public class phoneGettingCalled : MonoBehaviour
     void Start()
     {
         ringtone = GameObject.FindGameObjectWithTag("Ringtone");
+
+        foreach (GameObject wallpaper in wallpapers)
+        {
+            if (wallpaper.activeSelf)
+            {
+                currentWallpaper = wallpaper;
+            }
+        }
     }
 
     void Update()
@@ -62,15 +71,32 @@ public class phoneGettingCalled : MonoBehaviour
         */
         if (Input.GetKeyDown(KeyCode.Return) && caller1.activeSelf)
         {
-            calledPerson.SetActive(true);
             caller1.SetActive(false);
+
+            calledPerson1.SetActive(true);
+            
+            ringtone.GetComponent<AudioSource>().Stop();
+            ringtone.GetComponent<AudioSource>().loop = false;
+
+            callTimer.beginTimer();
+
+            Debug.Log("prijmuti hovoru");
+
+            StartCoroutine(test(storyVoicelines1));
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return) && caller2.activeSelf)
+        {
+            caller2.SetActive(false);
+
+            calledPerson2.SetActive(true);
 
             ringtone.GetComponent<AudioSource>().Stop();
             ringtone.GetComponent<AudioSource>().loop = false;
 
             callTimer.beginTimer();
 
-            StartCoroutine(test());
+            StartCoroutine(test(storyVoicelines2));
         }
         /*
         if (Input.GetKeyDown(KeyCode.E) && calledPerson.activeSelf)
@@ -87,14 +113,14 @@ public class phoneGettingCalled : MonoBehaviour
         */
     }
 
-    public void storyGettingCalled()
+    public void StoryGettingCalled1()
     {
         Start();
 
-        wallpapers[0].SetActive(false);
-        callingBG1.SetActive(true);
-
+        currentWallpaper.SetActive(false);
         home.SetActive(false);
+        
+        callingBG.SetActive(true);
         caller1.SetActive(true);
 
         ringtone.GetComponent<AudioSource>().Play();
@@ -105,9 +131,10 @@ public class phoneGettingCalled : MonoBehaviour
     {
         Start();
 
-        wallpapers[0].SetActive(false);
+        currentWallpaper.SetActive(false);
         home.SetActive(false);
-        callingBG2.SetActive(true);
+
+        callingBG.SetActive(true);
         caller2.SetActive(true);
 
         ringtone.GetComponent<AudioSource>().Play();
@@ -131,6 +158,8 @@ public class phoneGettingCalled : MonoBehaviour
 
                 audioVoicelines[i].Play();
                 yield return new WaitUntil(() => !audioVoicelines[i].isPlaying); // wait untill musi pøijmout func jako parametr. proto vytvaøím anonym metodu
+
+                Debug.Log("prehrana hlasla " + i);
             }
         }
 
