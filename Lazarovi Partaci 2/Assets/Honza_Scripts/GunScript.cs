@@ -16,19 +16,20 @@ public class GunScript : MonoBehaviour
     public int basicMagazineSize;
     public int basicBulletsPerTap;
     public bool basicAllowButtonHold;
+    public int basicBulletsMags;
 
     [Header("Upgraded Weapon Stats")]
-    [HideInInspector] public int damage;
-    [HideInInspector] public float timeBetweenShooting;
-    [HideInInspector] public float spread;
-    [HideInInspector] public float range;
-    [HideInInspector] public float reloadTime;
-    [HideInInspector] public float timeBetweenShots;
-     public int magazineSize;
-    [HideInInspector] public int bulletsPerTap;
-    [HideInInspector] public int bulletsShot;
-    [HideInInspector] public int bulletsMags;
-    [HideInInspector] public bool allowButtonHold;
+    public int damage;
+    public float timeBetweenShooting;
+    public float spread;
+    public float range;
+    public float reloadTime;
+    public float timeBetweenShots;
+    public int magazineSize;
+    public int bulletsPerTap;
+    public int bulletsShot;
+    public int bulletsMags;
+    public bool allowButtonHold;
 
     bool shooting, readyToShoot, reloading;
      public int bulletsLeft;
@@ -65,6 +66,7 @@ public class GunScript : MonoBehaviour
         magazineSize = basicMagazineSize;
         bulletsPerTap = basicBulletsPerTap;
         allowButtonHold = basicAllowButtonHold;
+        bulletsMags = basicBulletsMags;
 
         if (!isSpecial)
         {
@@ -81,6 +83,7 @@ public class GunScript : MonoBehaviour
                     magazineSize += weaponScriptableObj.equippedMods[i].magazineSize;
                     bulletsPerTap += weaponScriptableObj.equippedMods[i].bulletsPerTap;
                     allowButtonHold = weaponScriptableObj.equippedMods[i].allowButtonHold;
+                    bulletsMags += weaponScriptableObj.equippedMods[i].bulletsMags;
                 }
             } 
         }
