@@ -31,7 +31,7 @@ public class PlaneController : MonoBehaviour
     public Rigidbody rb;
 
     public AudioSource movementSound;
-    
+    public bool isMoving;
 
     //    public GameObject Camera;
     //    public float cameraFollowSpeed;
@@ -120,15 +120,24 @@ public class PlaneController : MonoBehaviour
         proto to v podstate vynasobujeme -1.
         */
 
-        if (rb.velocity.magnitude > 1f)
-        {
-            movementSound.Play();
+      
+    }
 
+    void Update() 
+    {
+          if(rb.velocity.magnitude >3f){
+            isMoving = true;
         }
-        else
-        {
+        else{
+            isMoving=false;
+        }
+        if(isMoving){
+            if(movementSound.isPlaying==false){
+                movementSound.Play();
+            }
+        }
+        else{
             movementSound.Stop();
-
         }
     }
 

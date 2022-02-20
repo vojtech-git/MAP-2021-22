@@ -51,6 +51,7 @@ public class GunScript : MonoBehaviour
     public GameObject[] scopes;
     public GameObject[] muzzles;
     public GameObject[] specials;
+    public AudioSource pistolSound;
 
     public void ApplyUpgradedStats()
     {
@@ -81,7 +82,7 @@ public class GunScript : MonoBehaviour
         }
 
         #region old logic
-        //// vžydcky jde do basic aby se to nestackovalo
+        //// vï¿½ydcky jde do basic aby se to nestackovalo
         // presunul jsem
 
         //// pridava k upgraded
@@ -235,7 +236,7 @@ public class GunScript : MonoBehaviour
         }
 
 
-        // clearnout ted aktivní grafiku
+        // clearnout ted aktivnï¿½ grafiku
         foreach (Transform transform in modModelParents)
         {
             foreach (Transform transform1 in transform)
@@ -354,7 +355,7 @@ public class GunScript : MonoBehaviour
         Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
         muzzleFlash.Play();
         bulletDrop.Play();
-
+        pistolSound.Play();
 
         // Yeeters (bulleftShot nefunguje?? whaat?)
         bulletsLeft--;
