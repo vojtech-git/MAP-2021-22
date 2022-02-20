@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(AudioSource))]
 public class PayMoneyInteractable : QuestInteractable
 {
     [Header("Pay Money")]
     public int cost;
-
+    public AudioSource moneyPaidAllreadySound;
+    public AudioSource notEnoughMoneySound;
 
     Player player;
     bool paid = false;
@@ -14,19 +17,27 @@ public class PayMoneyInteractable : QuestInteractable
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        interactionMessage = interactionMessage + " " + cost.ToString();
     }
 
     public override void Interact()
     {
-        if (player.UseMoney(cost) && !paid)
+        // hrac zaplatil
+        if (paid)
         {
-            base.Interact();
+            moneyPaidAllreadySound.Play();
+        }
+        // pokud spravne strhne hracovi penize
+        else if (player.UseMoney(cost))
+        {
+            QuestingManager.OnPointGained(GoalType.Interact, itemId);
             paid = true;
+
             Debug.Log("playing to " + gameObject.name);
         }
         else
         {
-            Debug.LogWarning("player doesent have enoguh money for " + gameObject.name);
+            notEnoughMoneySound.Play();
         }
     }
 }

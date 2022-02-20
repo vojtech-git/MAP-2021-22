@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class StoryObject : MonoBehaviour
 {
     public bool startTurnedOn;
-    // IDENTIFIKACE BY MOHLA OBSAHOVAT PARENT NAME
 
     private void Awake()
     {
@@ -16,7 +15,18 @@ public class StoryObject : MonoBehaviour
         }
         TryApplySaveData();
     }
-    
+
+    private void Start()
+    {
+        if (SaveData.objectEnabledStates.ContainsKey(SceneManager.GetActiveScene().name))
+        {
+            if (SaveData.objectEnabledStates[SceneManager.GetActiveScene().name].ContainsKey(gameObject.name))
+            {
+                Debug.Log(gameObject.name + " " + SaveData.objectEnabledStates[SceneManager.GetActiveScene().name][gameObject.name]);
+            }
+        }
+    }
+
     private void OnDestroy()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;

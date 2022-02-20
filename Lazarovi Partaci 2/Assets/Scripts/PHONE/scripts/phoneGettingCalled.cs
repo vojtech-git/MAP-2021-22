@@ -82,6 +82,11 @@ public class phoneGettingCalled : MonoBehaviour
 
             Debug.Log("prijmuti hovoru");
 
+            foreach (AudioSource audioSource in storyVoicelines1)
+            {
+                Debug.Log("voiceline");
+            }
+
             StartCoroutine(test(storyVoicelines1));
         }
 
@@ -147,7 +152,7 @@ public class phoneGettingCalled : MonoBehaviour
 
         //voicline.GetComponent<AudioSource>().Play();
 
-        for (int i = 0; i < storyVoicelines2.Length; i++)
+        for (int i = 0; i < audioVoicelines.Length; i++)
         {
             if (audioVoicelines[i] != null)
             {

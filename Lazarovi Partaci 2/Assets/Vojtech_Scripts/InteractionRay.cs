@@ -20,9 +20,12 @@ public class InteractionRay : MonoBehaviour
             {
                 if (hit.transform.TryGetComponent(out Interactable interactable))
                 {
-                    QuestCanvas.Instance.interactionMessageUi.text = interactable.interactionMessage;
+                    if (interactable.enabled)
+                    {
+                        QuestCanvas.Instance.interactionMessageUi.text = interactable.interactionMessage;
 
-                    displayingInteractMsg = true;
+                        displayingInteractMsg = true; 
+                    }
                 } 
             }
         }
