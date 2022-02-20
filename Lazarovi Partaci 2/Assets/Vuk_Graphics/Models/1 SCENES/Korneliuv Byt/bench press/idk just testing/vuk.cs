@@ -44,6 +44,9 @@ public class vuk : MonoBehaviour
         {
             cam2.SetActive(false);
             player.SetActive(true);
+
+            player.GetComponent<Player>().UseMoney(-cashEarned);
+
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && cam2.activeSelf && numOfReps < 100)
@@ -75,6 +78,7 @@ public class vuk : MonoBehaviour
                     StartCoroutine(prosimNemlatMeHonzo());
                     break;
             }
+
         }
     }
 
@@ -85,6 +89,9 @@ public class vuk : MonoBehaviour
         yield return new WaitForSecondsRealtime(5f);
         cam2.SetActive(false);
         player.SetActive(true);
+
+        player.GetComponent<Player>().UseMoney(-cashEarned);
+
     }
 
     IEnumerator africanAmericansInParis()
