@@ -50,7 +50,7 @@ public class phoneOnOff : MonoBehaviour
         }
     }
 
-    public void Volani()
+    public void Volani(int questNumber)
     {
         phoneUI.SetActive(true);
         Debug.Log("zapnutí");
@@ -59,7 +59,14 @@ public class phoneOnOff : MonoBehaviour
         StartCoroutine(test());
 
         Debug.Log("story zvoní telefon");
-        phoneGettingCalled.storyGettingCalled();
+        if (questNumber == 1)
+        {
+            phoneGettingCalled.storyGettingCalled();
+        }
+        else
+        {
+            phoneGettingCalled.StoryGettingCalled2();
+        }
     }
 
     public void turnOff()

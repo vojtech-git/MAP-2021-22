@@ -5,19 +5,22 @@ using UnityEngine;
 public class phoneGettingCalled : MonoBehaviour
 {
     [Header("Pozadí")]
-    public GameObject callingBG;
+    public GameObject callingBG1;
+    public GameObject callingBG2;
     
     [Header("Stránky")]
-    public GameObject caller;
+    public GameObject caller1;
+    public GameObject caller2;
     public GameObject calledPerson;
     public GameObject home;
 
-    GameObject wallpaper;
+    public GameObject[] wallpapers;
     GameObject ringtone;
 
     //public GameObject voicline;
 
-    public AudioSource[] voicelines;
+    public AudioSource[] storyVoicelines;
+    public AudioSource[] storyVoicelines2;
 
     public phoneOnOff phoneOnOff;
 
@@ -26,7 +29,6 @@ public class phoneGettingCalled : MonoBehaviour
     void Start()
     {
         ringtone = GameObject.FindGameObjectWithTag("Ringtone");
-        wallpaper = GameObject.FindGameObjectWithTag("Wallpaper");
     }
 
     void Update()
@@ -58,10 +60,10 @@ public class phoneGettingCalled : MonoBehaviour
             ringtone.GetComponent<AudioSource>().loop = false;
         }
         */
-        if (Input.GetKeyDown(KeyCode.Return) && caller.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Return) && caller1.activeSelf)
         {
             calledPerson.SetActive(true);
-            caller.SetActive(false);
+            caller1.SetActive(false);
 
             ringtone.GetComponent<AudioSource>().Stop();
             ringtone.GetComponent<AudioSource>().loop = false;
@@ -88,37 +90,47 @@ public class phoneGettingCalled : MonoBehaviour
     public void storyGettingCalled()
     {
         Start();
-        wallpaper = GameObject.FindGameObjectWithTag("Wallpaper");
-        
-        wallpaper.SetActive(false);
-        callingBG.SetActive(true);
+
+        wallpapers[0].SetActive(false);
+        callingBG1.SetActive(true);
 
         home.SetActive(false);
-        caller.SetActive(true);
+        caller1.SetActive(true);
 
         ringtone.GetComponent<AudioSource>().Play();
         ringtone.GetComponent<AudioSource>().loop = true;
-
-
     }
 
-    IEnumerator test()
+    public void StoryGettingCalled2()
+    {
+        Start();
+
+        wallpapers[0].SetActive(false);
+        home.SetActive(false);
+        callingBG2.SetActive(true);
+        caller2.SetActive(true);
+
+        ringtone.GetComponent<AudioSource>().Play();
+        ringtone.GetComponent<AudioSource>().loop = true;
+    }
+
+    IEnumerator test(AudioSource[] audioVoicelines)
     {
         yield return new WaitForSecondsRealtime(1f);
 
         //voicline.GetComponent<AudioSource>().Play();
 
-        for (int i = 0; i < voicelines.Length; i++)
+        for (int i = 0; i < storyVoicelines2.Length; i++)
         {
-            if (voicelines[i] != null)
+            if (audioVoicelines[i] != null)
             {
-                if (voicelines[i].isPlaying)
+                if (audioVoicelines[i].isPlaying)
                 {
-                    voicelines[i].Stop();
+                    audioVoicelines[i].Stop();
                 }
 
-                voicelines[i].Play();
-                yield return new WaitUntil(() => !voicelines[i].isPlaying); // wait untill musi pøijmout func jako parametr. proto vytvaøím anonym metodu
+                audioVoicelines[i].Play();
+                yield return new WaitUntil(() => !audioVoicelines[i].isPlaying); // wait untill musi pøijmout func jako parametr. proto vytvaøím anonym metodu
             }
         }
 
