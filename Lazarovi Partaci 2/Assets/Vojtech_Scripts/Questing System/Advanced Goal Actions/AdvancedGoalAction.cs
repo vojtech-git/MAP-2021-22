@@ -133,10 +133,7 @@ public class AdvancedGoalAction : MonoBehaviour
             }
             else if (structure.actionType == GoalActionType.PhoneCall)
             {
-                if (structure.phoneActionStructure.whichQuest == 0)
-                {
-                    structure.phoneActionStructure.phone.GetComponent<phoneOnOff>().Volani();
-                }
+                structure.phoneActionStructure.phone.GetComponent<phoneOnOff>().Volani(structure.phoneActionStructure.whichQuest);
             }
         }
     }
