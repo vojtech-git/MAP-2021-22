@@ -67,6 +67,7 @@ public class Entity : MonoBehaviour
     {
         isDead = true;
         gameObject.SetActive(false);
+        Debug.Log("entity " + gameObject.name + " is dying");
         Destroy(this.gameObject);
     }
 }

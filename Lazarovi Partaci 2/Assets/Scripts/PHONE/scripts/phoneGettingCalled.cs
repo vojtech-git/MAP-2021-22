@@ -28,6 +28,8 @@ public class phoneGettingCalled : MonoBehaviour
     public phoneOnOff phoneOnOff;
 
     public callTimer callTimer;
+    public callTimer callTimer2;
+    public callTimer callTimer3;
 
     void Start()
     {
@@ -110,7 +112,7 @@ public class phoneGettingCalled : MonoBehaviour
                 ringtone.GetComponent<AudioSource>().Stop();
                 ringtone.GetComponent<AudioSource>().loop = false;
 
-                callTimer.beginTimer();
+                callTimer2.beginTimer();
 
                 StartCoroutine(test(storyVoicelines2));
             } 
@@ -171,7 +173,7 @@ public class phoneGettingCalled : MonoBehaviour
         callingBG.SetActive(true);
         calledPerson3.SetActive(true);
 
-        callTimer.beginTimer();
+        callTimer3.beginTimer();
 
         StartCoroutine(test(storyVoicelines3));
     }

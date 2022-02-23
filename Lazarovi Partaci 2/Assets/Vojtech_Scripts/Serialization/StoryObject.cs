@@ -9,15 +9,17 @@ public class StoryObject : MonoBehaviour
 
     private void Awake()
     {
+
+    }
+
+    private void Start()
+    {
         if (!startTurnedOn)
         {
             gameObject.SetActive(false);
         }
         TryApplySaveData();
-    }
 
-    private void Start()
-    {
         if (SaveData.objectEnabledStates.ContainsKey(SceneManager.GetActiveScene().name))
         {
             if (SaveData.objectEnabledStates[SceneManager.GetActiveScene().name].ContainsKey(gameObject.name))
@@ -36,7 +38,7 @@ public class StoryObject : MonoBehaviour
         {
             SaveData.objectEnabledStates.Add(currentSceneName, new Dictionary<string, bool>());
 
-            //Debug.Log("Creating log for a SCENE: " + SceneManager.GetActiveScene().name);
+            Debug.Log("Creating enabled log for a SCENE: " + SceneManager.GetActiveScene().name);
         }
 
         // pokud neexistuje log v dictionary týhle scénu o tomhle gameobjectu tak ho vytvoø
@@ -44,14 +46,14 @@ public class StoryObject : MonoBehaviour
         {
             SaveData.objectEnabledStates[currentSceneName].Add(gameObject.name, gameObject.activeSelf);
 
-            //Debug.Log("Creating log for OBJECT: " + gameObject.name);
+            Debug.Log("Creating enabled log for OBJECT: " + gameObject.name + " " + gameObject.activeSelf);
         }
         // pokud exituje log tak na nìj zapiš
         else
         {
             SaveData.objectEnabledStates[currentSceneName][gameObject.name] = gameObject.activeSelf;
 
-            //Debug.Log("Rewriting data for OBJECT: " + gameObject.name);
+            Debug.Log("Rewriting enabled data for OBJECT: " + gameObject.name + " " + SaveData.objectEnabledStates[currentSceneName][gameObject.name]);
         }
 
 
@@ -78,7 +80,7 @@ public class StoryObject : MonoBehaviour
         {
             gameObject.SetActive(SaveData.objectEnabledStates[currentSceneName][gameObject.name]);
 
-            //Debug.Log("Applied enabled data on " + gameObject.name);
+            Debug.Log("Applied enabled data on " + gameObject.name + " " + SaveData.objectEnabledStates[currentSceneName][gameObject.name]);
         }
         else
         {
