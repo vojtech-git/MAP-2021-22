@@ -5,25 +5,24 @@ using UnityEngine.UI;
 
 public class weaponWheel : MonoBehaviour
 {
+    [SerializeField] private KeyCode wheelKey = KeyCode.Tab; //urcime na kterou klavesu chceme wheel
+    [SerializeField] private GameObject wheelParent;
+    [SerializeField] private Camera mojeKamera;  //kamera playera
+    public bool WheelEnabled;
 
+    public GameObject GunTop;
+    public GameObject GunRightTop;
+    public GameObject GunRightBot;
+    public GameObject GunLeftBot;
+    public GameObject GunLeftTop;
 
-     [SerializeField] private KeyCode wheelKey = KeyCode.Tab; //urcime na kterou klavesu chceme wheel
-     [SerializeField] private GameObject wheelParent;
-     [SerializeField] private Camera mojeKamera;  //kamera playera
-     public bool WheelEnabled;
-     
-     public GameObject GunTop;
-     public GameObject GunRightTop;
-     public GameObject GunRightBot;
-     public GameObject GunLeftBot;
-     public GameObject GunLeftTop;
-
-     [System.Serializable] public class wheel
+    [System.Serializable]
+    public class wheel
     {
         public Material highlightSprite; //zlomový bod 
         private Material m_NormalSprite;
         public Image wheela;
-      
+
 
         public Material NormalSprite
         {
@@ -33,10 +32,10 @@ public class weaponWheel : MonoBehaviour
         }
     }
     [SerializeField] private wheel[] wheels = new wheel[5];
-     
+
     [Header("Dots & Lines")]
     [SerializeField] private Transform[] dots = new Transform[6];
-    private Vector2[] pos=new Vector2[6];
+    private Vector2[] pos = new Vector2[6];
     private Vector2 start, end;
     private Vector2 mousePos;
 
@@ -47,7 +46,7 @@ public class weaponWheel : MonoBehaviour
     public AudioSource hoverWheel3;
     public AudioSource hoverWheel4;
     public AudioSource hoverWheel5;
-     private void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         for (int i = 0; i < dots.Length; i++)
         {
@@ -80,12 +79,12 @@ public class weaponWheel : MonoBehaviour
 
     }
 
-    
+
     private float Area(Vector2 v1, Vector2 v2, Vector2 v3)
     {
-        return Mathf.Abs(f:(v1.x *(v2.y - v3.y) + v2.x *(v3.y-v1.y)+ v3.x * (v1.y - v2.y))/2f);
+        return Mathf.Abs(f: (v1.x * (v2.y - v3.y) + v2.x * (v3.y - v1.y) + v3.x * (v1.y - v2.y)) / 2f);
     }
-        
+
     private bool IsInside(Vector2 v1, Vector2 v2, Vector2 v3, Vector2 v)
     {
         float A = Area(v1, v2, v3);    //checkujeme zda mys se nachazi se v nasem trojuhelniku
@@ -99,33 +98,35 @@ public class weaponWheel : MonoBehaviour
     void Start()
     {
         DisableWheel();
-        for(int i =0; i < wheels.Length; i++){
+        for (int i = 0; i < wheels.Length; i++)
+        {
 
-                if(wheels[i].wheela !=null){
+            if (wheels[i].wheela != null)
+            {
 
-                    wheels[i].NormalSprite = wheels[i].wheela.material;
-                }
+                wheels[i].NormalSprite = wheels[i].wheela.material;
             }
+        }
     }
 
-     private void EnableAllHighlight(int index)
+    private void EnableAllHighlight(int index)
     {
-       
+
         for (int i = 0; i < wheels.Length; i++)
         {
             if (wheels[i].wheela != null && wheels[i].highlightSprite != null)
-            { 
+            {
                 if (i == index)
                 {
                     wheels[i].wheela.material = wheels[i].highlightSprite;
-                 
-                    
+
+
 
                 }
                 else
                 {
                     wheels[i].wheela.material = wheels[i].NormalSprite;
-                      //metoda na zoranzoveni wheelu
+                    //metoda na zoranzoveni wheelu
                 }
             }  //honza je píča
 
@@ -143,21 +144,23 @@ public class weaponWheel : MonoBehaviour
     }
     private void EnableWheel()
     {
+        WeaponsCanvas.Instance.CloseMenu();
+
         //if (PauseMenu.GameIsPaused == false && GameObject.Find("WeaponHolder") != null  && defeatscreen.jsiDead==false) {
-        
+
         if (wheelParent != null)
             wheelParent.SetActive(true);
+
         WheelEnabled = true;
-       
+
         Time.timeScale = 0.1f;
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true; 
-        
+        Cursor.visible = true;
     }
 
     public void DisableWheel()   //udelal jsem z metody public abych to mohl pouzivat na fixnuti bagu na load a na new game, drive to bylo PRIVATE
     {
-       // if (PauseMenu.GameIsPaused == false) {
+        // if (PauseMenu.GameIsPaused == false) {
         if (wheelParent != null)
             wheelParent.SetActive(false);
         WheelEnabled = false;
@@ -169,113 +172,125 @@ public class weaponWheel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(wheelKey) && PauseMenu.GameIsPaused == false)
+        if (Input.GetKeyDown(wheelKey) && PauseMenu.GameIsPaused == false)
         { //HONZO TO JE MÍSTO PRO TEBE KURVA
-           
+
             EnableWheel();
-            CheckForCurrentWeapon();
+            
         }
-        else if(Input.GetKeyUp(wheelKey) && PauseMenu.GameIsPaused == false)
+        else if (Input.GetKeyUp(wheelKey) && PauseMenu.GameIsPaused == false)
         {
             DisableWheel();
         }
-        if( Input.GetKeyDown(wheelKey)){
+        if (Input.GetKeyDown(wheelKey))
+        {
             openWheel.Play();
         }
-      
+
+
+        if (WheelEnabled)
+        {
+            CheckForCurrentWeapon();
+
+        }    
     }
 
-
-
-     private void CheckForCurrentWeapon()
-    { 
+    private void CheckForCurrentWeapon()
+    {
         //if (PauseMenu.GameIsPaused == false && GameObject.Find("WeaponHolder") != null && defeatscreen.jsiDead==false) {  //podminka hlida aby jsme nemohli dat wheel kdyz mame pauslou hru
-            if (mojeKamera == null)
-                return;
+        if (mojeKamera == null)
+            return;
 
 
-            for (int i = 0; i < pos.Length; i++)
-            {
-                pos[i] = mojeKamera.WorldToScreenPoint(dots[i].position); //prevadime na screen
-            }
+        for (int i = 0; i < pos.Length; i++)
+        {
+            pos[i] = mojeKamera.WorldToScreenPoint(dots[i].position); //prevadime na screen
+        }
 
-            mousePos = Input.mousePosition;
-           
-            if (IsInside(v1: pos[0], v2: pos[1], v3: pos[2], v: mousePos))  //tyto podminky nam rikaji co se ma stat kdyz jsme v urcitem okruhu trojuhelniku
-            {   
-                EnableAllHighlight(index: 0);   //vyber ktery se ma zvyrznit kdyz jsme v urcitem trojuhelniku
-                 hoverWheel.Play();                         //pepa.selectedWeapon=1;
-                                                //TADY DOPLNIT UNLOCK ZBRANI
-                /*WeaponSwitching pepa = GameObject.Find("WeaponHolder").transform.GetComponent<WeaponSwitching>(); //reference na wepaonswitch
-                pepa.selectedWeapon = 0;
-               */ 
-               GunTop.SetActive(true);
-               GunRightTop.SetActive(false);
-               GunRightBot.SetActive(false);
-               GunLeftBot.SetActive(false);
-               GunLeftTop.SetActive(false);
-            
-      
+        mousePos = Input.mousePosition;
+
+        if (IsInside(v1: pos[0], v2: pos[1], v3: pos[2], v: mousePos))  //tyto podminky nam rikaji co se ma stat kdyz jsme v urcitem okruhu trojuhelniku
+        {
+            EnableAllHighlight(index: 0);   //vyber ktery se ma zvyrznit kdyz jsme v urcitem trojuhelniku
+            hoverWheel.Play();                         //pepa.selectedWeapon=1;
+                                                       //TADY DOPLNIT UNLOCK ZBRANI
+            /*WeaponSwitching pepa = GameObject.Find("WeaponHolder").transform.GetComponent<WeaponSwitching>(); //reference na wepaonswitch
+            pepa.selectedWeapon = 0;
+           */
+            GunTop.SetActive(true);
+            GunRightTop.SetActive(false);
+            GunRightBot.SetActive(false);
+            GunLeftBot.SetActive(false);
+            GunLeftTop.SetActive(false);
 
 
-            }
 
-            if (IsInside(pos[0], pos[2], pos[3], mousePos)) {
-                  
-                EnableAllHighlight(1);
-              /*  WeaponSwitching pepa = GameObject.Find("WeaponHolder").transform.GetComponent<WeaponSwitching>();
-                pepa.selectedWeapon = 1;
-                */
-               hoverWheel2.Play();
-                
-               GunTop.SetActive(false);
-               GunRightTop.SetActive(true);
-               GunRightBot.SetActive(false);
-               GunLeftBot.SetActive(false);
-               GunLeftTop.SetActive(false);
-     
-            }
-            if (IsInside(pos[0], pos[3], pos[4], mousePos)) {
-               
-                EnableAllHighlight(2);
-              /*  WeaponSwitching pepa = GameObject.Find("WeaponHolder").transform.GetComponent<WeaponSwitching>();
-                pepa.selectedWeapon = 2;
-               */   hoverWheel3.Play();
-               GunTop.SetActive(false);
-               GunRightTop.SetActive(false);
-               GunRightBot.SetActive(true);
-               GunLeftBot.SetActive(false);
-               GunLeftTop.SetActive(false);
-  
-            }
-            if (IsInside(pos[0], pos[4], pos[5], mousePos)) {
-                
-                EnableAllHighlight(3);
-               /* WeaponSwitching pepa = GameObject.Find("WeaponHolder").transform.GetComponent<WeaponSwitching>();
-                pepa.selectedWeapon = 3;
-              */  hoverWheel4.Play();  
-               GunTop.SetActive(false);
-               GunRightTop.SetActive(false);
-               GunRightBot.SetActive(false);
-               GunLeftBot.SetActive(true);
-               GunLeftTop.SetActive(false);
-                 
-            }
-            if (IsInside(pos[0], pos[5], pos[1], mousePos)) {
-                
-                EnableAllHighlight(4);
-                /*WeaponSwitching pepa = GameObject.Find("WeaponHolder").transform.GetComponent<WeaponSwitching>();
-                //pepa.selectedWeapon = 0;
-                pepa.selectedWeapon = 4;
-             */ hoverWheel5.Play();
-               GunTop.SetActive(false);
-               GunRightTop.SetActive(false);
-               GunRightBot.SetActive(false);
-               GunLeftBot.SetActive(false);
-               GunLeftTop.SetActive(true);
-                   
 
-           } 
+        }
+
+        if (IsInside(pos[0], pos[2], pos[3], mousePos))
+        {
+
+            EnableAllHighlight(1);
+            /*  WeaponSwitching pepa = GameObject.Find("WeaponHolder").transform.GetComponent<WeaponSwitching>();
+              pepa.selectedWeapon = 1;
+              */
+            hoverWheel2.Play();
+
+            GunTop.SetActive(false);
+            GunRightTop.SetActive(true);
+            GunRightBot.SetActive(false);
+            GunLeftBot.SetActive(false);
+            GunLeftTop.SetActive(false);
+
+        }
+        if (IsInside(pos[0], pos[3], pos[4], mousePos))
+        {
+
+            EnableAllHighlight(2);
+            /*  WeaponSwitching pepa = GameObject.Find("WeaponHolder").transform.GetComponent<WeaponSwitching>();
+              pepa.selectedWeapon = 2;
+             */
+            hoverWheel3.Play();
+            GunTop.SetActive(false);
+            GunRightTop.SetActive(false);
+            GunRightBot.SetActive(true);
+            GunLeftBot.SetActive(false);
+            GunLeftTop.SetActive(false);
+
+        }
+        if (IsInside(pos[0], pos[4], pos[5], mousePos))
+        {
+
+            EnableAllHighlight(3);
+            /* WeaponSwitching pepa = GameObject.Find("WeaponHolder").transform.GetComponent<WeaponSwitching>();
+             pepa.selectedWeapon = 3;
+           */
+            hoverWheel4.Play();
+            GunTop.SetActive(false);
+            GunRightTop.SetActive(false);
+            GunRightBot.SetActive(false);
+            GunLeftBot.SetActive(true);
+            GunLeftTop.SetActive(false);
+
+        }
+        if (IsInside(pos[0], pos[5], pos[1], mousePos))
+        {
+
+            EnableAllHighlight(4);
+            /*WeaponSwitching pepa = GameObject.Find("WeaponHolder").transform.GetComponent<WeaponSwitching>();
+            //pepa.selectedWeapon = 0;
+            pepa.selectedWeapon = 4;
+         */
+            hoverWheel5.Play();
+            GunTop.SetActive(false);
+            GunRightTop.SetActive(false);
+            GunRightBot.SetActive(false);
+            GunLeftBot.SetActive(false);
+            GunLeftTop.SetActive(true);
+
+
         }
     }
+}
 //}

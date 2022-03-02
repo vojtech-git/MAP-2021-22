@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class WeaponsCanvas : MonoBehaviour
@@ -16,6 +17,10 @@ public class WeaponsCanvas : MonoBehaviour
     public VerticalLayoutGroup modVerticalLayout;
     [Header("Prefab")]
     public GameObject ModButtonPrefab;
+    [Header("To Disable")]
+    public Mouse cameraController;
+    public GunScript[] guns;
+    public UIUpgradeEnablerer uiUpgradeEnablerer;
 
     [HideInInspector] public Weapon selectedWeapon;
     [HideInInspector] public bool menuOpen = false;
@@ -30,14 +35,6 @@ public class WeaponsCanvas : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            CloseMenu();
-        }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            CloseMenu();
-        }
         if (Input.GetKeyDown(KeyCode.I))
         {
             if (!menuOpen)
@@ -61,6 +58,15 @@ public class WeaponsCanvas : MonoBehaviour
         specificModMenu.SetActive(false);
 
         menuOpen = true;
+
+        // disabling mouse control and guns
+        foreach (GunScript gun in guns)
+        {
+            gun.enabled = false;
+        }
+        cameraController.enabled = false;
+        uiUpgradeEnablerer.EnableUI();
+        Time.timeScale = 0f;
     }
     public void CloseMenu()
     {
@@ -72,6 +78,15 @@ public class WeaponsCanvas : MonoBehaviour
         specificModMenu.SetActive(false);
 
         menuOpen = false;
+
+        // enabling mouse control and guns
+        foreach (GunScript gun in guns)
+        {
+            gun.enabled = true;
+        }
+        cameraController.enabled = true;
+        uiUpgradeEnablerer.DisableUI();
+        Time.timeScale = 1f;
     }
 
     public void OpenSpecificWeaponMenu(Weapon _selectedWeapon)

@@ -10,7 +10,6 @@ public class UIUpgradeEnablerer : MonoBehaviour
     public Volume volume;
     public List<GameObject> toggleList;
     public List<GameObject> fadeList;
-    public WeaponsCanvas c;
 
     // Start is called before the first frame update
     void Start()
@@ -28,23 +27,9 @@ public class UIUpgradeEnablerer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            
-            if (c.menuOpen == false)
-            {
-                disableUI();
-                Time.timeScale = 1f;
-            }
-            else
-            {
-                enableUI();
-                Time.timeScale = 0f;
-            }
-        }
 
     }
-    private void enableUI()
+    public void EnableUI()
     {
         DepthOfField dof;
         if (volume.profile.TryGet<DepthOfField>(out dof))
@@ -59,8 +44,13 @@ public class UIUpgradeEnablerer : MonoBehaviour
         {
             juaj.SetActive(true);
         }
+
+        // pøidám si sem sviòácky svoje ui doufam že to nic nerozbije
+        QuestCanvas.Instance.gameObject.SetActive(false);
+
+        //Debug.Log("Enabling honza ui blur");
     }
-    private void disableUI()
+    public void DisableUI()
     {
         DepthOfField dof;
         if (volume.profile.TryGet<DepthOfField>(out dof))
@@ -72,5 +62,9 @@ public class UIUpgradeEnablerer : MonoBehaviour
             juaj.SetActive(false);
         }
 
+        // pøidám si sem sviòácky svoje ui doufam že to nic nerozbije
+        QuestCanvas.Instance.gameObject.SetActive(true);
+
+        //Debug.Log("Disabling honza ui blur");
     }
 }

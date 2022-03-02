@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     // Start is called before the first frame update
-   public static bool GameIsPaused = false;  //checkuje zda bezi nejaky skript
+    public static bool GameIsPaused = false;  //checkuje zda bezi nejaky skript
     public GameObject pauseMenuUI;
     public bool fpsPlayer;
     [SerializeField] Texture2D crosshair;
@@ -17,10 +17,17 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject health;
 
     public AudioSource openSound;
-    void Start() {
+
+    [Header("To Disable")]
+    public Mouse cameraController;
+    public GunScript[] guns;
+    public UIUpgradeEnablerer uiUpgradeEnablerer;
+
+    void Start()
+    {
         pauseMenuUI.SetActive(false);  // pri startu je vyply pause
         GameIsPaused = false; // FIX BUGU, kdyz dame main menu a pak dame new game tak muzeme normalne hrat, jinak jsme nemohli strilet. FIXED
-        DefeatScreen.jsiDead=false;
+        DefeatScreen.jsiDead = false;
     }
     void Update()
     {
@@ -38,8 +45,7 @@ public class PauseMenu : MonoBehaviour
                     openSound.Play();
                 }
             }
-        } 
-
+        }
 
 
         if (PauseMenu.GameIsPaused == true)
@@ -55,12 +61,12 @@ public class PauseMenu : MonoBehaviour
           } */
         //if (PauseMenu.GameIsPaused == false && defeatscreen.jsiDead==false) Cursor.lockState = CursorLockMode.Locked;
 
-       // if (weaponWheel.instance.WheelEnabled && weaponWheel.instance != null) 
-      //  {  
-            //aby se nelockovala mys kdyz dame weapon wheel.
-          //  Cursor.lockState = CursorLockMode.None;
-       // }
-      //   }
+        // if (weaponWheel.instance.WheelEnabled && weaponWheel.instance != null) 
+        //  {  
+        //aby se nelockovala mys kdyz dame weapon wheel.
+        //  Cursor.lockState = CursorLockMode.None;
+        // }
+        //   }
     }
 
 
@@ -75,46 +81,66 @@ public class PauseMenu : MonoBehaviour
             Cursor.SetCursor(crosshair, cursorOffset, CursorMode.Auto);
         }
 
-        if(redHealth != null && greenHealth != null && border != null && health != null ){
-        redHealth.SetActive(true);
-        greenHealth.SetActive(true);
-        border.SetActive(true);
-        health.SetActive(true);
+        if (redHealth != null && greenHealth != null && border != null && health != null)
+        {
+            redHealth.SetActive(true);
+            greenHealth.SetActive(true);
+            border.SetActive(true);
+            health.SetActive(true);
         }
+
         if (fpsPlayer)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-        }
 
+            // zapnout zbranì, zapnout ovladaní kamery myší, vypnout honzovo ui blur.
+            foreach (GunScript gun in guns)
+            {
+                gun.enabled = true;
+            }
+            cameraController.enabled = true;
+            uiUpgradeEnablerer.DisableUI();
+        }
     }
 
 
     public void Pause()
     {
+        WeaponsCanvas.Instance.CloseMenu();
+
+        // vypnout zbranì, vypnout ovladaní kamery myší, zapnout honzovo ui blur.
+        if (fpsPlayer)
+        {
+            foreach (GunScript gun in guns)
+            {
+                gun.enabled = false;
+            }
+            cameraController.enabled = false;
+        }
+        uiUpgradeEnablerer.EnableUI();
+
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f; //pomoci tohoto muzeme delat i slowmotion
         GameIsPaused = true;
         Cursor.visible = true;  // moznost klikani na buttony, mys nam nezmizi
         Cursor.lockState = CursorLockMode.None; //
-        if(redHealth != null && greenHealth != null && border != null && health != null ){
-        redHealth.SetActive(false);
-        greenHealth.SetActive(false);
-        border.SetActive(false);
-        health.SetActive(false);
+        if (redHealth != null && greenHealth != null && border != null && health != null)
+        {
+            redHealth.SetActive(false);
+            greenHealth.SetActive(false);
+            border.SetActive(false);
+            health.SetActive(false);
         }
     }
 
     public void LoadMenu()
     {
         Time.timeScale = 1f;
-         SceneManager.LoadScene("MainMenu");
-             // Cursor.lockState = CursorLockMode.None;
-             // Cursor.visible=true;
-     
-     
-       
+        SceneManager.LoadScene("MainMenu");
+        // Cursor.lockState = CursorLockMode.None;
+        // Cursor.visible=true;
     }
 
     public void QuitGame()
