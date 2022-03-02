@@ -118,6 +118,7 @@ public class FollowerEntity : Entity
     public void ReturnToFollowerState()
     {
         currentState = new FollowerFollowPlayerState(gameObject, agent, anim, this, GameObject.FindGameObjectWithTag("Player").transform);
+        scriptedSequencePlaying = false;
     }
 
     #region Granade Throwing

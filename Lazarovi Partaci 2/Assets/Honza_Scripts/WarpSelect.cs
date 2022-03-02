@@ -63,17 +63,11 @@ public class WarpSelect : MonoBehaviour
         ExitThisMenu();
 
         QuestingManager.OnPointGained(GoalType.SystemChange, 1);
-        for (int i = 0; i < levelLoaders.Length - 1; i++)
+        foreach (GameObject levelLoader in levelLoaders)
         {
-            if (i == 1)
-            {
-                levelLoaders[i].SetActive(true);
-            }
-            else
-            {
-                levelLoaders[i].SetActive(false);
-            }
+            levelLoader.gameObject.SetActive(false);
         }
+        levelLoaders[0].gameObject.SetActive(true);
     }
     public void WarpToSystem2()
     {
@@ -84,17 +78,11 @@ public class WarpSelect : MonoBehaviour
         ExitThisMenu();
 
         QuestingManager.OnPointGained(GoalType.SystemChange, 2);
-        for (int i = 0; i < levelLoaders.Length - 1; i++)
+        foreach (GameObject levelLoader in levelLoaders)
         {
-            if (i == 2)
-            {
-                levelLoaders[i].SetActive(true);
-            }
-            else
-            {
-                levelLoaders[i].SetActive(false);
-            }
+            levelLoader.gameObject.SetActive(false);
         }
+        levelLoaders[1].gameObject.SetActive(true);
     }
     public void WarpToSystem3()
     {
@@ -105,17 +93,11 @@ public class WarpSelect : MonoBehaviour
         ExitThisMenu();
 
         QuestingManager.OnPointGained(GoalType.SystemChange, 3);
-        for (int i = 0; i < levelLoaders.Length - 1; i++)
+        foreach (GameObject levelLoader in levelLoaders)
         {
-            if (i == 3)
-            {
-                levelLoaders[i].SetActive(true);
-            }
-            else
-            {
-                levelLoaders[i].SetActive(false);
-            }
+            levelLoader.gameObject.SetActive(false);
         }
+        levelLoaders[2].gameObject.SetActive(true);
     }
 
     public void ChangeSkybox()

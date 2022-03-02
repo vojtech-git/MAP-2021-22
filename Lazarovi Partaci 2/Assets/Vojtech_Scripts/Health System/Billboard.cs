@@ -9,7 +9,6 @@ public class Billboard : MonoBehaviour
     private void Awake()
     {
         //billboard hledá GameObject kterej se jmenuje pøesnì PlayerCamera - to by se mohlo rozbít
-        cam = GameObject.Find("Player Camera");
     }
 
     void LateUpdate()

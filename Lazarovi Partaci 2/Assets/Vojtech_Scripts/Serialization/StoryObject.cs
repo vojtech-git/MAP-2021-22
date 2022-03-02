@@ -7,11 +7,6 @@ public class StoryObject : MonoBehaviour
 {
     public bool startTurnedOn;
 
-    private void Awake()
-    {
-
-    }
-
     private void Start()
     {
         if (!startTurnedOn)
@@ -19,14 +14,15 @@ public class StoryObject : MonoBehaviour
             gameObject.SetActive(false);
         }
         TryApplySaveData();
+    }
 
-        if (SaveData.objectEnabledStates.ContainsKey(SceneManager.GetActiveScene().name))
-        {
-            if (SaveData.objectEnabledStates[SceneManager.GetActiveScene().name].ContainsKey(gameObject.name))
-            {
-                Debug.Log(gameObject.name + " " + SaveData.objectEnabledStates[SceneManager.GetActiveScene().name][gameObject.name]);
-            }
-        }
+    private void OnEnable()
+    {
+        Debug.Log(gameObject.name + " is enabling");
+    }
+    private void OnDisable()
+    {
+        Debug.Log(gameObject.name + " is disabling");
     }
 
     private void OnDestroy()

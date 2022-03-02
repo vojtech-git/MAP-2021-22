@@ -16,6 +16,7 @@ public class Elevator : MonoBehaviour
     public ElevatorSwitch[] switches;
 
     List<NavMeshAgent> agentsOnElevator = new List<NavMeshAgent>();
+    Dictionary<Collider, Transform> parents = new Dictionary<Collider, Transform>();
     bool traveling;
     bool goingDown;
     Coroutine travelingCorutine;
@@ -34,6 +35,8 @@ public class Elevator : MonoBehaviour
             agentsOnElevator.Add(agent);
         }
 
+        parents.Add(other, other.transform.parent);
+
         other.transform.parent = this.transform;
     }
     private void OnTriggerExit(Collider other)
@@ -43,7 +46,8 @@ public class Elevator : MonoBehaviour
             agentsOnElevator.Remove(agent);
         }
 
-        other.transform.parent = null;
+        other.transform.parent = parents[other];
+        parents.Remove(other);
     }
 
     private void FixedUpdate()
