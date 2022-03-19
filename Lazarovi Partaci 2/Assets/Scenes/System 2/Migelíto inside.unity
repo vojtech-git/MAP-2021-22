@@ -9,7 +9,7 @@ OcclusionCullingSettings:
     smallestHole: 0.25
     backfaceThreshold: 100
   m_SceneGUID: f6ec16c930f0a2c4798242f1314e8377
-  m_OcclusionCullingData: {fileID: 36300000, guid: b5eb3d540040a8a4689deb3b805ca6b3, type: 2}
+  m_OcclusionCullingData: {fileID: 36300000, guid: 5841829ef20658c41af019c83bc71e9d, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -4149,7 +4149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3544122ea57f0429b676e37a8d9be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeRoom: {fileID: 287106267}
 --- !u!65 &689961995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10320,7 +10319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1488599845
 Transform:
   m_ObjectHideFlags: 0
@@ -10651,6 +10650,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 391952070965671065, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674082947834667959, guid: edb457faa55adbf44b22b05ea1d1c725, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -11629,7 +11632,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3544122ea57f0429b676e37a8d9be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeRoom: {fileID: 1710623093}
 --- !u!65 &1877878785
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12672,7 +12674,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3544122ea57f0429b676e37a8d9be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeRoom: {fileID: 1488599844}
 --- !u!65 &2031113115
 BoxCollider:
   m_ObjectHideFlags: 0
