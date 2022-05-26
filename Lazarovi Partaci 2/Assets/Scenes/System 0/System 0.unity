@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 0be3b8fdc76fae14bbf536ec19063fc7, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 6702b3e15febac042b40a8d90bcb34f4, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.008435807, g: 0.011325469, b: 0.017714303, a: 1}
+  m_IndirectSpecularColor: {r: 0.05254376, g: 0.033279855, b: 0.035154015, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2995,6 +2995,9 @@ MonoBehaviour:
   border: {fileID: 1252052137}
   health: {fileID: 1794368418}
   openSound: {fileID: 612549684}
+  cameraController: {fileID: 0}
+  guns: []
+  uiUpgradeEnablerer: {fileID: 0}
 --- !u!82 &612549684
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12103,6 +12106,9 @@ MonoBehaviour:
   border: {fileID: 1252052137}
   health: {fileID: 1794368418}
   openSound: {fileID: 0}
+  cameraController: {fileID: 0}
+  guns: []
+  uiUpgradeEnablerer: {fileID: 0}
 --- !u!224 &4335832147256968728 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4450242324527685304, guid: 3f548744e478a504db35428ab3af7eb1, type: 3}
