@@ -26,7 +26,7 @@ public class DefeatScreen : MonoBehaviour
         //JE POTREBA EDIT V PAUSE MENU (PODMINKA) V SHOOTINGU A WEAPON SWITCHINGU(PODMINKY)
         // podminka v metode load player, podminka v pause menu, ve weapon wheelu, weapon switchingu, shootingu, a radek kodu v main menu scriptu
         StartTalkingSound();
-        textWriter.addWriter_Static(messageText, "Your breathing has been easily stopped", .1f, true, StopTalkingSound);
+        textWriter.addWriter_Static(messageText, "Tvoje dýchání bylo velmi jednoduše pozastaveno", .1f, true, StopTalkingSound);
 
         StartCoroutine(Text());
         //  Invoke("typeText",2f);
@@ -36,7 +36,7 @@ public class DefeatScreen : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(5);
         StartTalkingSound();
-        textWriter.addWriter_Static(messageText2, "Time of elimination: " + System.DateTime.Now.ToString(), .1f, true, StopTalkingSound);
+        textWriter.addWriter_Static(messageText2, "Èas eliminace: " + System.DateTime.Now.ToString(), .1f, true, StopTalkingSound);
     }
 
 
