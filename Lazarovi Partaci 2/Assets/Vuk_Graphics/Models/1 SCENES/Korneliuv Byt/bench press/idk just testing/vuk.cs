@@ -10,6 +10,10 @@ public class vuk : MonoBehaviour
     public GameObject cam2;
     public GameObject controls;
 
+    public GameObject staticBar;
+
+    public bool isReady = true;
+
     public Text repsText;
     public Text cashText;
     public int numOfReps;
@@ -31,6 +35,7 @@ public class vuk : MonoBehaviour
             Start();
 
             player.SetActive(false);
+            staticBar.SetActive(false);
             cam2.SetActive(true);
             
             repsText.text = "Number of reps: 0";
@@ -47,13 +52,16 @@ public class vuk : MonoBehaviour
 
             player.GetComponent<Player>().UseMoney(-cashEarned);
 
+            staticBar.SetActive(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && cam2.activeSelf && numOfReps < 100)
+        if (isReady && Input.GetKeyDown(KeyCode.Space) && cam2.activeSelf && numOfReps < 100)
         {
+            // !(anim.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length > anim.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime)
             anim.GetComponent<Animator>().SetTrigger("Bench");
 
             numOfReps++;
+            StartCoroutine(BetterCallYourMom());
             repsText.text = "Number of reps: " + numOfReps;
 
             switch (numOfReps)
@@ -78,7 +86,6 @@ public class vuk : MonoBehaviour
                     StartCoroutine(prosimNemlatMeHonzo());
                     break;
             }
-
         }
     }
 
@@ -92,11 +99,19 @@ public class vuk : MonoBehaviour
 
         player.GetComponent<Player>().UseMoney(-cashEarned);
 
+        staticBar.SetActive(true);
     }
 
     IEnumerator africanAmericansInParis()
     {
         yield return new WaitForSecondsRealtime(5f);
         controls.SetActive(false);
+    }
+
+    IEnumerator BetterCallYourMom()
+    {
+        isReady = false;
+        yield return new WaitForSecondsRealtime(2f);
+        isReady = true;
     }
 }
